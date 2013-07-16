@@ -15,9 +15,9 @@ use .bash_aliases
 # Copy .bash_ps1
 cp .bash_ps1 ~/.bash_ps1
 
-# Use .bashrc and apply it to current shell
-use .bashrc
-. ~/.bashrc
-
 # Copy .vimrc
 use .vimrc
+
+# Use .bashrc and apply it to current shell
+use .bashrc
+source ~/.bashrc
