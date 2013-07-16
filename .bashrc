@@ -109,13 +109,13 @@ if ! shopt -oq posix; then
   fi
 fi
 
-# Creates a timestamped line separator between commands in terminal
+# Create a timestamped line separator between commands in terminal
 # source: http://lifehacker.com/5840450/add-a-handy-separator-between-commands-in-your-terminal-on-mac-os-x-and-linux
 if [ -f "$HOME"/.bash_ps1 ]; then
 	. "$HOME"/.bash_ps1
 fi
 
-# Colors the output of 'man' command
+# Color the output of 'man' command
 # source: https://wiki.archlinux.org/index.php/Man_Page#Colored_man_pages
 man() {
     env LESS_TERMCAP_mb=$(printf "\e[1;31m") \
@@ -128,7 +128,7 @@ man() {
 	man "$@"
 }
 
-# Uses Vim as a default text editor (useful when using Git)
+# Use Vim as a default text editor (useful when using Git)
 export EDITOR=vim
 
 # You may delete/comment this part if you don't use Heroku
