@@ -1,0 +1,5 @@
+# Ignore swap and backup files from Vim
+*.swp
+.*.swp
+*~
+.*~
