@@ -13,8 +13,17 @@ use() {
 	file=$1
 
 	if [ -f $HOME/$file ]; then
-		mv $HOME/$file $HOME/$file.old
+		echo -n "File '$HOME/$file' exists. Delete file? (Y/n) "
+		read opt
+		if [ "$opt" = "n" ]; then
+			mv $HOME/$file $HOME/$file.old
+			echo "Renamed '$HOME/$file' into '$HOME/$file.old'"
+		else
+			rm $HOME/$file
+			echo "'$HOME/$file' deleted"
+		fi
 	fi
+
 	ln -s $PWD/$file $HOME/$file
 }
 
@@ -24,5 +33,6 @@ for dotfile in $DOTFILES; do
 done
 
 echo "Dotfiles has been installed!"
-echo "To get the latest update of dotfiles, simply execute 'git pull'"
+echo "To get the latest update of dotfiles, simply execute 'git pull' in this directory. Enjoy!"
+
 exit
