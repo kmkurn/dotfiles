@@ -19,3 +19,8 @@ alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo
 psgrep() {
 	ps aux | grep "$1"
 }
+
+# Function to batch kill processes matching a given <pattern>
+pskill() {
+	ps ax | grep "$1" | grep -v grep | awk '{ print $1 }' | xargs kill
+}
