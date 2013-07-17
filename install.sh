@@ -1,30 +1,29 @@
 #!/bin/bash
 
 # Dotfiles installation script
-# Author: Kemal Maulana <kemskems12@gmail.com>
+# Copyright (c) 2013 Kemal Maulana
+# Licensed under the MIT license
+# See LICENSE to view the full license
 
-DOTFILES=".bash_aliases .bash_ps1 .bashrc .vimrc"
-PWD=`pwd`
+DOTFILES=".bash_aliases .bash_prompt .dircolors .bashrc .vimrc .gitconfig"
 
-# Rename existing file with .old extension
-# and create a symbolic link in home directory to dotfiles
-# you can then update the dotfiles by simply executing 'git pull'
+# Install dotfiles in $HOME directory
 use() {
-	file=$1
-
-	if [ -f $HOME/$file ]; then
+	file="$1"
+	# Check if file already existed. If yes, then prompt user whether to
+	# delete or rename it with .old extension
+	if [ -f "$HOME/$file" ]; then
 		echo -n "File '$HOME/$file' exists. Delete file? (Y/n) "
 		read opt
 		if [ "$opt" = "n" ]; then
-			mv $HOME/$file $HOME/$file.old
+			mv "$HOME/$file" "$HOME/$file.old"
 			echo "Renamed '$HOME/$file' into '$HOME/$file.old'"
 		else
-			rm $HOME/$file
+			rm "$HOME/$file"
 			echo "'$HOME/$file' deleted"
 		fi
 	fi
-
-	ln -s $PWD/$file $HOME/$file
+	cp "$file" "$HOME/$file"
 }
 
 # Catch interrupt signal (usually by pressing CTRL-C)
@@ -35,7 +34,7 @@ for dotfile in $DOTFILES; do
 	use $dotfile
 done
 
-echo "Dotfiles has been installed! Execute 'source ~/.bashrc' to apply changes."
-echo "To get the latest update of dotfiles, simply execute 'git pull' in this directory. Enjoy!"
+echo "Dotfiles has been installed! Restart your shell to apply changes."
+echo "You may set your email in .gitconfig with your real email."
 
 exit
