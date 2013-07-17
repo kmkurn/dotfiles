@@ -35,7 +35,7 @@ for dotfile in $DOTFILES; do
 	use $dotfile
 done
 
-echo "Dotfiles has been installed!"
+echo "Dotfiles has been installed! Execute 'source ~/.bashrc' to apply changes."
 echo "To get the latest update of dotfiles, simply execute 'git pull' in this directory. Enjoy!"
 
 exit
