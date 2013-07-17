@@ -1,7 +1,13 @@
 dotfiles
 ========
 
-My config files for bash, vim, etc. Currently this repository only has `.bash_aliases`, `.bash_ps1`, `.bashrc`, and `.vimrc`.
+My config files for bash, vim, etc. Currently, it has:
+1. `.bash_aliases` containing some useful aliases
+2. `.bash_prompt` containing a fancy prompt settings
+3. `.bashrc` containing my custom Bash settings
+4. `.dircolors` containing color settings for `ls` command
+5. `.gitconfig` containing my Git configuration
+6. `.vimrc` containing my Vim configuration
 
 Installation
 ------------
@@ -12,4 +18,4 @@ Installation
 License
 -------
 
-Released under the MIT license (MIT). See [here](https://github.com/kemskems/dotfiles/blob/master/LICENSE) to view the complete license.
+Licensed under the MIT license. See [LICENSE](https://github.com/kemskems/dotfiles/blob/master/LICENSE) to view the complete license.
