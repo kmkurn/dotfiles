@@ -2,7 +2,7 @@
 
 # Copyright (c) 2012 "Cowboy" Ben Alman
 #               2013 Kemal Maulana
-# Licensed under the MIT license.
+# Licensed under the MIT license
 # http://benalman.com/about/license/
 
 # ANSI CODES - SEPARATE MULTIPLE VALUES WITH ;
@@ -21,7 +21,7 @@ if [[ ! "${prompt_colors[@]}" ]]; then
     "36" # information color
     "37" # bracket color
     "31" # error color
-	"33" # command color
+	"1;33" # command color
   )
 
   if [[ "$SSH_TTY" ]]; then
