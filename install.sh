@@ -27,6 +27,9 @@ use() {
 	ln -s $PWD/$file $HOME/$file
 }
 
+# Catch interrupt signal (usually by pressing CTRL-C)
+trap 'echo "Interrupted by user. Aborting."; exit 1;' INT
+
 # Use all dotfiles
 for dotfile in $DOTFILES; do
 	use $dotfile
