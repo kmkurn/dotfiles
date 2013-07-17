@@ -35,6 +35,6 @@ for dotfile in $DOTFILES; do
 done
 
 echo "Dotfiles has been installed! Restart your shell to apply changes."
-echo "You may set your email in .gitconfig with your real email."
+echo "You may change [NAME] and [EMAIL] in .gitconfig with your real credentials."
 
 exit
