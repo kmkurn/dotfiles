@@ -12,3 +12,5 @@
 	ren = branch -m
 	graph = log --graph --pretty=format':%C(yellow)%h%Cblue%d%Creset %s %C(white) %an, %ar%Creset'
 	standup = log --since '1 day ago' --oneline --author [EMAIL]
+	br = branch
+	ci = commit
