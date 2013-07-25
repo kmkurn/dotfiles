@@ -21,7 +21,7 @@ if [[ ! "${prompt_colors[@]}" ]]; then
     "36" # information color
     "37" # bracket color
     "31" # error color
-	"1;33" # command color
+  "1;33" # command color
   )
 
   if [[ "$SSH_TTY" ]]; then

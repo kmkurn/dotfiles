@@ -20,23 +20,23 @@ alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo
 # List all processes matching a PATTERN
 # Usage: psgrep PATTERN
 psgrep() {
-	ps aux | grep "$1"
+    ps aux | grep "$1"
 }
 
 # Batch kill processes matching a PATTERN
 # Usage: pskill PATTERN
 pskill() {
-	ps ax | grep "$1" | grep -v grep | awk '{ print $1 }' | xargs kill
+    ps ax | grep "$1" | grep -v grep | awk '{ print $1 }' | xargs kill
 }
 
 # List NUMBER processes sorted by CPU usage
 # Usage: pssort NUMBER
 pssort() {
-	DEFAULT_NUM=3
-	if [ "$#" -ge 1 ]; then
-		num="$1"
-	else
-		num=$DEFAULT_NUM
-	fi
-	ps aux | tail -n+2 | sort -nr -k 3 | head -n "$num"
+    DEFAULT_NUM=3
+    if [ "$#" -ge 1 ]; then
+        num="$1"
+    else
+        num=$DEFAULT_NUM
+    fi
+    ps aux | tail -n+2 | sort -nr -k 3 | head -n "$num"
 }
