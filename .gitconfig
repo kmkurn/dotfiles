@@ -1,14 +1,16 @@
 [user]
-	name = [NAME]
-	email = [EMAIL]
+    name = [NAME]
+    email = [EMAIL]
 [color]
-	ui = true
+    ui = true
 [alias]
-	co = checkout
-	st = status -sb
-	ds = diff --staged
-	mg = merge --no-ff
-	del = branch -d
-	ren = branch -m
-	graph = log --graph --pretty=format':%C(yellow)%h%Cblue%d%Creset %s %C(white) %an, %ar%Creset'
-	standup = log --since '1 day ago' --oneline --author [EMAIL]
+    co = checkout
+    st = status -sb
+    ds = diff --staged
+    mg = merge --no-ff
+    del = branch -d
+    ren = branch -m
+    graph = log --graph --pretty=format':%C(yellow)%h%Cblue%d%Creset %s %C(white) %an, %ar%Creset'
+    standup = log --since '1 day ago' --oneline --author [EMAIL]
+    br = branch
+    ci = commit
