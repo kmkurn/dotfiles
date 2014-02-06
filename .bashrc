@@ -36,7 +36,7 @@ fi
 
 # Load prompt configuration in ~/.bash_prompt
 if [ -f ~/.bash_prompt ]; then
-	. ~/.bash_prompt
+    . ~/.bash_prompt
 fi
 
 # If this is an xterm set the title to user@host:dir
@@ -54,8 +54,8 @@ if [ -x /usr/bin/dircolors ]; then
 fi
 
 # Alias definitions
-if [ -f ~/.bash_aliases ]; then
-    . ~/.bash_aliases
+if [ -f ~/.aliases ]; then
+    . ~/.aliases
 fi
 
 # Enable programmable completion features (you don't need to enable
@@ -73,13 +73,13 @@ fi
 # source: https://wiki.archlinux.org/index.php/Man_Page#Colored_man_pages
 man() {
     env LESS_TERMCAP_mb=$(printf "\e[1;31m") \
-	LESS_TERMCAP_md=$(printf "\e[1;31m") \
-	LESS_TERMCAP_me=$(printf "\e[0m") \
-	LESS_TERMCAP_se=$(printf "\e[0m") \
-	LESS_TERMCAP_so=$(printf "\e[1;44;33m") \
-	LESS_TERMCAP_ue=$(printf "\e[0m") \
-	LESS_TERMCAP_us=$(printf "\e[1;32m") \
-	man "$@"
+        LESS_TERMCAP_md=$(printf "\e[1;31m") \
+        LESS_TERMCAP_me=$(printf "\e[0m") \
+        LESS_TERMCAP_se=$(printf "\e[0m") \
+        LESS_TERMCAP_so=$(printf "\e[1;44;33m") \
+        LESS_TERMCAP_ue=$(printf "\e[0m") \
+        LESS_TERMCAP_us=$(printf "\e[1;32m") \
+        man "$@"
 }
 
 # Use Vim as a default text editor (useful when using Git)
