@@ -2,7 +2,11 @@
 echo ">^.^<"
 
 
-" BASIC SETTINGS ---------------------------------------------------------- {{{1
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" BASIC SETTINGS  {{{1
+"
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " Display line number
 set number
@@ -28,11 +32,18 @@ set statusline+=Total:\      " Label
 set statusline+=%L           " Total number of lines
 set statusline+=%8p%%        " Percentage through file in lines
 
+" Always display statusline
+set laststatus=2
+
 " Start editing with all folds closed
 set foldlevelstart=0
 
 
-" KEY MAPPING ------------------------------------------------------------- {{{1
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" KEY MAPPINGS  {{{1
+"
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 let mapleader = ","
 let maplocalleader = "\\"
@@ -51,7 +62,10 @@ inoremap <right> <nop>
 inoremap <c-[> <nop>
 inoremap <esc> <nop>
 
-" Normal Mode ------------------------------------------------------------- {{{2
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Normal Mode  {{{2
+"
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " Edit ~/.vimrc in a split window
 nnoremap <leader>ev :split $MYVIMRC<cr>
@@ -80,7 +94,10 @@ nnoremap H 0
 " Move to the end of current line
 nnoremap L $
 
-" Insert Mode ------------------------------------------------------------- {{{2
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Insert Mode  {{{2
+"
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " Use jk as escape key
 inoremap jk <esc>
@@ -98,7 +115,11 @@ inoremap <leader>" <esc>bi"<esc>lea"
 inoremap <leader>' <esc>bi'<esc>lea'
 
 
-" AUTOCOMMANDS ------------------------------------------------------------ {{{1
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" AUTOCOMMANDS  {{{1
+"
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " Commenting current line in source codes
 augroup comment
@@ -114,7 +135,11 @@ augroup filetype_vim
 augroup END
 
 
-" ABBREVIATIONS ----------------------------------------------------------- {{{1
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" ABBREVIATIONS  {{{1
+"
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " Email
 iabbrev @@ kemskems12@gmail.com
