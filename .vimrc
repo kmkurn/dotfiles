@@ -1,117 +1,121 @@
-" Custom .vimrc files based on http://vim.wikia.com/wiki/Example_vimrc
-"
-" Copyright (c) 2013 Kemal Maulana
-" Licensed under the MIT license
-"
+" Cute ASCII-art cat
+echo ">^.^<"
 
-" Set 'nocompatible' to ward off unexpected things that your distro might
-" have made, as well as sanely reset options when re-sourcing .vimrc
-set nocompatible
 
-" Attempt to determine the type of a file based on its name and possibly its
-" contents. Use this to allow intelligent auto-indenting for each filetype,
-" and for plugins that are filetype specific.
-filetype indent plugin on
+" BASIC SETTINGS ---------------------------------------------------------- {{{1
 
-" Enable syntax highlighting
-syntax on
-set background=dark
-
-" Allow you to re-use the same window and switch from an unsaved buffer without
-" saving it first. Also allows you to keep an undo history for multiple files when
-" re-using the same window in this way. Note that using persistent undo also lets
-" you undo in multiple files even in the same window, but is less efficient and is
-" actually designed for keeping undo history after closing Vim entirely. Vim will
-" complain if you try to quit without saving, and swap files will keep you safe if
-" your computer crashes.
-set hidden
-
-" Note that not everyone likes working this way (with the hidden option).
-" Alternatives include using tabs or split windows instead of re-using the same
-" window as mentioned above, and/or either of the following options:
-" set confirm
-set autowriteall
-
-" Better command-line completion
-set wildmenu
-
-" Show partial commands in the last line of the screen
-set showcmd
-
-" Highlight searches (use <C-L> to temporarily turn off highlighting; see the
-" mapping of <C-L> below)
-set hlsearch
-
-" Modelines have historically been a source of security vulnerabilities. As
-" such, it may be a good idea to disable them and use the securemodelines
-" script, <http://www.vim.org/scripts/script.php?script_id=1876>.
-" set nomodeline
-
-" Use case insensitive search, except when using capital letters
-set ignorecase
-set smartcase
-
-" Allow backspacing over autoindent, line breaks and start of insert action
-set backspace=indent,eol,start
-
-" When opening a new line and no filetype-specific indenting is enabled, keep
-" the same indent as the line you're currently on. Useful for READMEs, etc.
-set autoindent
-
-" Stop certain movements from always going to the first character of a line.
-" While this behaviour deviates from that of Vi, it does what most users
-" coming from other editors would expect.
-set nostartofline
-
-" Display the cursor position on the last line of the screen or in the status
-" line of a window
-set ruler
-
-" Always display the status line, even if only one window is displayed
-set laststatus=2
-
-" Instead of failing a command because of unsaved changes, instead raise a
-" dialogue asking if you wish to save changed files.
-set confirm
-
-" Use visual bell instead of beeping when doing something wrong
-set visualbell
-
-" And reset the terminal code for the visual bell. If visualbell is set, and
-" this line is also included, vim will neither flash nor beep. If visualbell
-" is unset, this does nothing.
-set t_vb=
-
-" Enable use of the mouse for all modes
-set mouse=a
-
-" Set the command window height to 2 lines, to avoid many cases of having to
-" "press <Enter> to continue"
-set cmdheight=2
-
-" Display line numbers on the left
+" Display line number
 set number
 
-" Quickly time out on keycodes, but never time out on mappings
-set notimeout ttimeout ttimeoutlen=200
+" Enable line wrapping
+set wrap
 
-" Use <F11> to toggle between 'paste' and 'nopaste'
-set pastetoggle=<F11>
+" Round indentation to multiple of shiftwidth
+set shiftround
 
-" Indentation settings for using 4 spaces instead of tabs.
-set tabstop=4
-set shiftwidth=4
-set softtabstop=4
-set expandtab
-set smarttab
+" Format statusline
+set statusline=%f            " Path to file
+set statusline+=\ -\         " Separator
+set statusline+=FileType:\   " Label
+set statusline+=%y           " Type of file
+set statusline+=%m           " Modified flag
+set statusline+=%=           " Align right from this point
+set statusline+=Loc:\        " Label
+set statusline+=%l           " Current line number
+set statusline+=,            " Separator
+set statusline+=%c\ \        " Current column number
+set statusline+=Total:\      " Label
+set statusline+=%L           " Total number of lines
+set statusline+=%8p%%        " Percentage through file in lines
 
-" Map Y to act like D and C, i.e. to yank until EOL, rather than act as yy,
-" which is the default
-map Y y$
+" Start editing with all folds closed
+set foldlevelstart=0
 
-" Map <C-L> (redraw screen) to also turn off search highlighting until the
-" next search
-nnoremap <C-L> :nohl<CR><C-L>
 
-set nobackup
-set noswapfile
+" KEY MAPPING ------------------------------------------------------------- {{{1
+
+let mapleader = ","
+let maplocalleader = "\\"
+
+" Disable arrow keys
+nnoremap <up> <nop>
+nnoremap <down> <nop>
+nnoremap <left> <nop>
+nnoremap <right> <nop>
+inoremap <up> <nop>
+inoremap <down> <nop>
+inoremap <left> <nop>
+inoremap <right> <nop>
+
+" Disable default escape keys
+inoremap <c-[> <nop>
+inoremap <esc> <nop>
+
+" Normal Mode ------------------------------------------------------------- {{{2
+
+" Edit ~/.vimrc in a split window
+nnoremap <leader>ev :split $MYVIMRC<cr>
+
+" Load ~/.vimrc in current session
+nnoremap <leader>sv :source $MYVIMRC<cr>
+
+" Move a line downwards
+nnoremap <leader>- ddp
+
+" Move a line upwards
+nnoremap <leader>_ kddpk
+
+" Convert current word into uppercase
+nnoremap <leader>U bveU
+
+" Enclose current word in double quotes
+nnoremap <leader>" bi"<esc>lea"<esc>l
+
+" Enclose current word in single quotes
+nnoremap <leader>' bi'<esc>lea'<esc>l
+
+" Move to the beginning of current line
+nnoremap H 0
+
+" Move to the end of current line
+nnoremap L $
+
+" Insert Mode ------------------------------------------------------------- {{{2
+
+" Use jk as escape key
+inoremap jk <esc>
+
+" Delete current line
+inoremap <leader>D <esc>ddi
+
+" Convert current word into uppercase
+inoremap <leader>U <esc>bveUea
+
+" Enclose current word in double quotes
+inoremap <leader>" <esc>bi"<esc>lea"
+
+" Enclose current word in single quotes
+inoremap <leader>' <esc>bi'<esc>lea'
+
+
+" AUTOCOMMANDS ------------------------------------------------------------ {{{1
+
+" Commenting current line in source codes
+augroup comment
+    autocmd!
+    autocmd FileType python nnoremap <buffer> <localleader>c I#<esc>
+    autocmd FileType cpp nnoremap <buffer> <localleader>c I//<esc>
+augroup END
+
+" Vimscript file settings
+augroup filetype_vim
+    autocmd!
+    autocmd FileType vim setlocal foldmethod=marker
+augroup END
+
+
+" ABBREVIATIONS ----------------------------------------------------------- {{{1
+
+" Email
+iabbrev @@ kemskems12@gmail.com
+
