@@ -38,6 +38,10 @@ set laststatus=2
 " Start editing with all folds closed
 set foldlevelstart=0
 
+" Highlight and incremental search
+set hlsearch
+set incsearch
+
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -93,6 +97,21 @@ nnoremap H 0
 
 " Move to the end of current line
 nnoremap L $
+
+" Open previous buffer in split window
+nnoremap <leader>eb :execute "rightbelow split " . bufname("#")<cr>
+
+" Highlight trailing whitespace as error
+nnoremap <leader>w :match ErrorMsg /\v +$/<cr>
+
+" Clear trailing whitespace highlight
+nnoremap <leader>W :match<cr>
+
+" Always use very magic regex parsing mode when searching
+nnoremap / /\v
+
+" Clear highlight from last search
+nnoremap <leader>cl :nohlsearch<cr>
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Insert Mode  {{{2
