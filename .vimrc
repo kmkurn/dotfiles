@@ -238,3 +238,23 @@ nnoremap <leader>a :Ack<space>
 
 "--------------------------------------------------------}}}
 
+" PLUGIN-LIKE STUFF  {{{1
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+" Enclose current WORD in quotes, parentheses, etc
+nnoremap <leader>" mzBi"<esc>lEa"<esc>`zl
+nnoremap <leader>' mzBi'<esc>lEa'<esc>`zl
+nnoremap <leader>< mzBi<<esc>lEa><esc>`zl
+nnoremap <leader>( mzBi(<esc>lEa)<esc>`zl
+nnoremap <leader>[ mzBi[<esc>lEa]<esc>`zl
+nnoremap <leader>_ mzBi_<esc>lEa_<esc>`zl
+
+inoremap <leader>" <esc>Bi"<esc>lEa"
+inoremap <leader>' <esc>Bi'<esc>lEa'
+inoremap <leader>< <esc>Bi<<esc>lEa>
+inoremap <leader>( <esc>Bi(<esc>lEa)
+inoremap <leader>[ <esc>Bi[<esc>lEa]
+inoremap <leader>_ <esc>Bi_<esc>lEa_
+
+"--------------------------------------------------------}}}
+
