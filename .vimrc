@@ -1,56 +1,90 @@
-" Cute ASCII-art cat
-echo ">^.^<"
-
-
-
+" PATHOGEN INITIALIZATION  {{{1
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+filetype off
+call pathogen#infect()
+Helptags
+
+"--------------------------------------------------------}}}
+
 " BASIC SETTINGS  {{{1
-"
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-" Display line number
-set number
+" Configure terminal
+set t_Co=256                    " Support 256 colors
+set background=dark
+silent! colorscheme molokai
 
-" Enable line wrapping
-set wrap
+" Display relative line number
+set relativenumber
+
+" Set maximum length
+set textwidth=79
+
+" Disable line wrapping
+set nowrap
+
+" Allow hidden buffer
+set hidden
+
+" Autoread files
+set autoread
+
+" Enable syntax highlighting, autodetect filetype, and filetype-based indent
+syntax on
+filetype on
+filetype plugin indent on
+
+" Enable indentation
+set autoindent
+set smartindent
+set cindent
+
+" Set indentation to 4 spaces
+set shiftwidth=4
+set softtabstop=4       " Insert spaces for <Tab>
+set expandtab           " Use spaces for <Tab>
 
 " Round indentation to multiple of shiftwidth
 set shiftround
 
-" Format statusline
-set statusline=%f            " Path to file
-set statusline+=\ -\         " Separator
-set statusline+=FileType:\   " Label
-set statusline+=%y           " Type of file
-set statusline+=%m           " Modified flag
-set statusline+=%=           " Align right from this point
-set statusline+=Loc:\        " Label
-set statusline+=%l           " Current line number
-set statusline+=,            " Separator
-set statusline+=%c\ \        " Current column number
-set statusline+=Total:\      " Label
-set statusline+=%L           " Total number of lines
-set statusline+=%8p%%        " Percentage through file in lines
-
 " Always display statusline
 set laststatus=2
 
-" Start editing with all folds closed
-set foldlevelstart=0
+" Format statusline
+set statusline=%F\ \ \           " Full path to file
+set statusline+=%y               " Type of file
+set statusline+=%m               " Modified flag
+set statusline+=%=               " Align right from this point
+set statusline+=%l,%c\ \ \       " Current position
+set statusline+=%L\ lines\ \ \   " Total number of lines
+set statusline+=--%p%%--         " Percentage through file in lines
+
+" Show partial commmand in the last line of the screen
+set showcmd
 
 " Highlight and incremental search
 set hlsearch
 set incsearch
 
+" Ignore case if search pattern is all lowercase, case sensitive otherwise
+set ignorecase
+set smartcase
 
+" Briefly jump to matching bracket
+set showmatch
 
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" No backup files
+set nobackup
+set noswapfile
+
+"--------------------------------------------------------}}}
+
 " KEY MAPPINGS  {{{1
-"
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 let mapleader = ","
-let maplocalleader = "\\"
+let maplocalleader = "\\"           " Single backslash
 
 " Disable arrow keys
 nnoremap <up> <nop>
@@ -66,31 +100,14 @@ inoremap <right> <nop>
 inoremap <c-[> <nop>
 inoremap <esc> <nop>
 
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Some other disabled things
+nnoremap : <nop>
+
 " Normal Mode  {{{2
-"
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-" Edit ~/.vimrc in a split window
-nnoremap <leader>ev :split $MYVIMRC<cr>
-
-" Load ~/.vimrc in current session
-nnoremap <leader>sv :source $MYVIMRC<cr>
-
-" Move a line downwards
-nnoremap <leader>- ddp
-
-" Move a line upwards
-nnoremap <leader>_ kddpk
-
-" Convert current word into uppercase
-nnoremap <leader>U bveU
-
-" Enclose current word in double quotes
-nnoremap <leader>" bi"<esc>lea"<esc>l
-
-" Enclose current word in single quotes
-nnoremap <leader>' bi'<esc>lea'<esc>l
+" Set capital Y to yank until end of line
+nnoremap Y y$
 
 " Move to the beginning of current line
 nnoremap H 0
@@ -98,46 +115,62 @@ nnoremap H 0
 " Move to the end of current line
 nnoremap L $
 
-" Open previous buffer in split window
-nnoremap <leader>eb :execute "rightbelow split " . bufname("#")<cr>
-
-" Highlight trailing whitespace as error
-nnoremap <leader>w :match ErrorMsg /\v +$/<cr>
-
-" Clear trailing whitespace highlight
-nnoremap <leader>W :match<cr>
-
 " Always use very magic regex parsing mode when searching
 nnoremap / /\v
+nnoremap ? ?\v
 
-" Clear highlight from last search
-nnoremap <leader>cl :nohlsearch<cr>
+" Navigate multiple windows easily
+nnoremap <c-h> <c-w>h
+nnoremap <c-j> <c-w>j
+nnoremap <c-k> <c-w>k
+nnoremap <c-l> <c-w>l
 
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Some useful file operation shortcuts
+nnoremap <space> :
+nnoremap <leader>w :w<cr>
+nnoremap <leader>q :q<cr>
+
+" Easy working with .vimrc
+nnoremap <leader>ev :split $MYVIMRC<cr>
+nnoremap <leader>sv :source $MYVIMRC<cr>:nohlsearch<cr>
+
+" Convert current word into uppercase
+nnoremap <leader>U bveU
+
+" Quickfix window easy shortcut
+nnoremap <leader>co :copen<cr>
+nnoremap <leader>cc :cclose<cr>
+nnoremap <leader>cj :cnext<cr>
+nnoremap <leader>ck :cprevious<cr>
+
+" Location list easy shortcut
+nnoremap <leader>lo :lopen<cr>
+nnoremap <leader>lc :lclose<cr>
+nnoremap <leader>lj :lnext<cr>
+nnoremap <leader>lk :lprevious<cr>
+
+" Clear highlight and redraw screen
+nnoremap <f5> :nohlsearch<cr>:redraw!<cr>
+
+"--------------------------------------------------------}}}
+
 " Insert Mode  {{{2
-"
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " Use jk as escape key
 inoremap jk <esc>
 
 " Delete current line
-inoremap <leader>D <esc>ddi
+inoremap <leader>D <esc>d^xi
 
 " Convert current word into uppercase
 inoremap <leader>U <esc>bveUea
 
-" Enclose current word in double quotes
-inoremap <leader>" <esc>bi"<esc>lea"
+"--------------------------------------------------------}}}
 
-" Enclose current word in single quotes
-inoremap <leader>' <esc>bi'<esc>lea'
+"--------------------------------------------------------}}}
 
-
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " AUTOCOMMANDS  {{{1
-"
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " Commenting current line in source codes
@@ -145,6 +178,9 @@ augroup comment
     autocmd!
     autocmd FileType python nnoremap <buffer> <localleader>c I#<esc>
     autocmd FileType cpp nnoremap <buffer> <localleader>c I//<esc>
+    autocmd FileType c nnoremap <buffer> <localleader>c I//<esc>
+    autocmd FileType java nnoremap <buffer> <localleader>c I//<esc>
+    autocmd FileType vim nnoremap <buffer> <localleader>c I"<esc>
 augroup END
 
 " Vimscript file settings
@@ -153,13 +189,52 @@ augroup filetype_vim
     autocmd FileType vim setlocal foldmethod=marker
 augroup END
 
+" Text file settings
+augroup filetype_text
+    autocmd!
+    autocmd FileType text setlocal wrap
+    autocmd FileType text setlocal noexpandtab
+augroup END
 
 
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"--------------------------------------------------------}}}
+
 " ABBREVIATIONS  {{{1
-"
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " Email
 iabbrev @@ kemskems12@gmail.com
+
+"--------------------------------------------------------}}}
+
+" PLUGIN-RELATED SETTINGS {{{1
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+" UltiSnips
+let g:UltiSnipsExpandTrigger = "<tab>"
+let g:UltiSnipsJumpForwardTrigger = "<tab>"
+let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
+let g:UltiSnipsListSnippets = g:mapleader . "<tab>"
+let g:UltiSnipsEditSplit = "horizontal"
+
+" Syntastic
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+let g:syntastic_check_on_open = 1
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_mode_map = { 'mode': 'active',
+                           \ 'passive_filetypes': ['python'] }
+
+" MiniBufExpl
+nnoremap <leader>j :MBEFocus<cr>
+
+" NERDTree
+nnoremap <leader>n :NERDTreeToggle<cr>
+
+" Ack
+nnoremap <leader>a :Ack<space>
+
+"--------------------------------------------------------}}}
 
