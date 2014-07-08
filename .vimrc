@@ -13,7 +13,7 @@ Helptags
 " Configure terminal
 set t_Co=256                    " Support 256 colors
 set background=dark
-silent! colorscheme molokai
+silent! colorscheme badwolf
 
 " Display relative line number
 set relativenumber
@@ -227,8 +227,8 @@ let g:syntastic_auto_loc_list = 1
 let g:syntastic_mode_map = { 'mode': 'active',
                            \ 'passive_filetypes': ['python'] }
 
-" MiniBufExpl
-nnoremap <leader>j :MBEFocus<cr>
+" Molokai
+let g:molokai_original = 1
 
 " NERDTree
 nnoremap <leader>n :NERDTreeToggle<cr>
