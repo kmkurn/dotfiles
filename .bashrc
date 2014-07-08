@@ -1,5 +1,5 @@
 # My custom .bashrc file based on /usr/share/doc/bash/example/startup-files
-# in the package bash-doc
+# in the bash-doc package
 
 # Copyright (c) 2013 Kemal Maulana
 # Licensed under the MIT license
@@ -84,7 +84,3 @@ man() {
 
 # Use Vim as a default text editor (useful when using Git)
 export EDITOR=vim
-
-# You may delete/comment this part if you don't use Heroku
-### Added by the Heroku Toolbelt
-export PATH="/usr/local/heroku/bin:$PATH"
