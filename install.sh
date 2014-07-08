@@ -7,7 +7,7 @@
 
 DOTFILES=".aliases .bash_prompt .dircolors .bashrc .vimrc .gitconfig"
 
-# Install dotfiles in $HOME directory
+# Create symlinks to dotfiles in $HOME directory
 use() {
     file="$1"
     # Check if file already existed. If yes, then prompt user whether to
@@ -23,7 +23,7 @@ use() {
             echo "'$HOME/$file' deleted"
         fi
     fi
-    cp "$file" "$HOME/$file"
+    ln -s `realpath "$file"` "$HOME/$file"
 }
 
 # Catch interrupt signal (usually by pressing CTRL-C)
@@ -35,6 +35,5 @@ for dotfile in $DOTFILES; do
 done
 
 echo "Dotfiles has been installed! Restart your shell to apply changes."
-echo "You may change [NAME] and [EMAIL] in .gitconfig with your real credentials."
 
 exit
