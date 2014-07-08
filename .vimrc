@@ -126,9 +126,10 @@ nnoremap <c-k> <c-w>k
 nnoremap <c-l> <c-w>l
 
 " Some useful file operation shortcuts
-nnoremap <space> :
+nnoremap ; :
 nnoremap <leader>w :w<cr>
 nnoremap <leader>q :q<cr>
+nnoremap <leader>Q :q!<cr>
 
 " Easy working with .vimrc
 nnoremap <leader>ev :split $MYVIMRC<cr>
@@ -211,10 +212,9 @@ iabbrev @@ kemskems12@gmail.com
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " UltiSnips
-let g:UltiSnipsExpandTrigger = "<tab>"
-let g:UltiSnipsJumpForwardTrigger = "<tab>"
-let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
-let g:UltiSnipsListSnippets = g:mapleader . "<tab>"
+let g:UltiSnipsExpandTrigger = g:mapleader . "<tab>"
+let g:UltiSnipsJumpForwardTrigger = g:mapleader . "<tab>"
+let g:UltiSnipsListSnippets = g:mapleader . "`"
 let g:UltiSnipsEditSplit = "horizontal"
 
 " Syntastic
@@ -224,17 +224,6 @@ set statusline+=%*
 let g:syntastic_check_on_open = 1
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
-let g:syntastic_mode_map = { 'mode': 'active',
-                           \ 'passive_filetypes': ['python'] }
-
-" Molokai
-let g:molokai_original = 1
-
-" NERDTree
-nnoremap <leader>n :NERDTreeToggle<cr>
-
-" Ack
-nnoremap <leader>a :Ack<space>
 
 "--------------------------------------------------------}}}
 
