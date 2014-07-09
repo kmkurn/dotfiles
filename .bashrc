@@ -48,11 +48,6 @@ xterm*|rxvt*)
     ;;
 esac
 
-# Enable color support of ls
-if [ -x /usr/bin/dircolors ]; then
-    test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
-fi
-
 # Alias definitions
 if [ -f ~/.aliases ]; then
     . ~/.aliases
