@@ -18,9 +18,6 @@ silent! colorscheme badwolf
 " Display relative line number
 set relativenumber
 
-" Set maximum length
-set textwidth=79
-
 " Disable line wrapping
 set nowrap
 
