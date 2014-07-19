@@ -79,3 +79,6 @@ man() {
 
 # Use Vim as a default text editor (useful when using Git)
 export EDITOR=vim
+
+# Add rubygems bin directory to PATH
+export PATH=$PATH:$HOME/.gem/ruby/2.1.0/bin
