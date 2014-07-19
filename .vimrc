@@ -181,6 +181,12 @@ augroup comment
     autocmd FileType vim nnoremap <buffer> <localleader>c I"<esc>
 augroup END
 
+" Detect .md files as markdown
+augroup markdown
+    autocmd!
+    autocmd BufRead,BufNew *.md set filetype=markdown
+augroup END
+
 " Vimscript file settings
 augroup filetype_vim
     autocmd!
@@ -192,6 +198,19 @@ augroup filetype_text
     autocmd!
     autocmd FileType text setlocal wrap
     autocmd FileType text setlocal noexpandtab
+augroup END
+
+" Markdown file settings
+augroup filetype_md
+    autocmd!
+    autocmd FileType markdown setlocal wrap
+augroup END
+
+" HTML file settings
+augroup filetype_html
+    autocmd!
+    autocmd FileType html setlocal shiftwidth=2
+    autocmd FileType html setlocal softtabstop=2
 augroup END
 
 
