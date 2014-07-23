@@ -184,7 +184,7 @@ augroup END
 " Detect .md files as markdown
 augroup markdown
     autocmd!
-    autocmd BufRead,BufNew *.md set filetype=markdown
+    autocmd BufRead,BufNewFile,BufNew *.md set filetype=markdown
 augroup END
 
 " Vimscript file settings
