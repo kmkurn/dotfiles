@@ -7,7 +7,8 @@ My config files for bash, vim, etc. Currently, it has:
 2. `.bash_prompt` containing a fancy prompt settings
 3. `.bashrc` containing my custom Bash settings
 4. `.gitconfig` containing my Git configuration
-5. `.vimrc` containing my Vim configuration
+5. `.i3status.conf` containing my i3status configuration
+6. `.vimrc` containing my Vim configuration
 
 Installation
 ------------
