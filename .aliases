@@ -28,3 +28,9 @@ pssort() {
     fi
     ps aux | tail -n+2 | sort -nr -k 3 | head -n "$num"
 }
+
+# Alias for shutdown
+alias sd='sudo shutdown now'
+
+# Alias for restart
+alias rs='sudo shutdown -r now'
