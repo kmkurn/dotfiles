@@ -34,3 +34,22 @@ alias sd='sudo shutdown now'
 
 # Alias for restart
 alias rs='sudo shutdown -r now'
+
+# Function to set proxy
+assign_proxy() {
+    PROXY_ENV="http_proxy ftp_proxy https_proxy all_proxy HTTP_PROXY HTTPS_PROXY FTP_PROXY ALL_PROXY"
+    for envar in $PROXY_ENV; do
+        export $envar=$1
+    done
+    for envar in no_proxy NO_PROXY; do
+        export $envar=$2
+    done
+}
+
+# Function to clear proxy
+clear_proxy() {
+    assign_proxy ""
+}
+
+# Alias for UI proxy
+alias uiprox='assign_proxy http://152.118.24.10:8080 localhost,127.0.0.1,*.ui.ac.id'
