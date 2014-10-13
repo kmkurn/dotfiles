@@ -5,7 +5,7 @@
 # Licensed under the MIT license
 # See LICENSE to view the full license
 
-DOTFILES=".aliases .bash_prompt .dircolors .bashrc .vimrc .gitconfig .i3status.conf"
+DOTFILES=".aliases .bash_prompt .bashrc .vimrc .gitconfig .i3status.conf"
 
 # Create symlinks to dotfiles in $HOME directory
 use() {
