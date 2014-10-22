@@ -12,10 +12,10 @@ use() {
     file="$1"
     # Check if file already existed. If yes, then prompt user whether to
     # delete or rename it with .old extension
-    if [ -f "$HOME/$file" ]; then
+    if [[ -e "$HOME/$file" ]] || [[ -L "$HOME/$file" ]]; then
         echo -n "File '$HOME/$file' exists. Delete file? (Y/n) "
         read opt
-        if [ "$opt" = "n" ]; then
+        if [[ "$opt" = "n" ]]; then
             mv "$HOME/$file" "$HOME/$file.old"
             echo "Renamed '$HOME/$file' into '$HOME/$file.old'"
         else
