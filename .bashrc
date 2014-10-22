@@ -82,3 +82,9 @@ export EDITOR=vim
 
 # Add rubygems bin directory to PATH
 export PATH=$PATH:$HOME/.gem/ruby/2.1.0/bin
+
+# Python virtualenvwrapper
+export WORKON_HOME=$HOME/.virtualenvs
+if [ -f /usr/bin/virtualenvwrapper_lazy.sh ]; then
+    . /usr/bin/virtualenvwrapper_lazy.sh
+fi

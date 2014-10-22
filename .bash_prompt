@@ -63,6 +63,16 @@ function prompt_git() {
   echo "$c1[$c0$output$c1]$c9"
 }
 
+# Virtualenv status.
+function prompt_virtualenv() {
+    prompt_getcolors
+    if [ -z "$VIRTUAL_ENV" ]; then
+        echo ""
+    else
+        echo "$c1($c0$(basename $VIRTUAL_ENV)$c1)$c9"
+    fi
+}
+
 # Maintain a per-execution call stack.
 # Also, stop color scheme before command output.
 prompt_stack=()
@@ -84,6 +94,8 @@ function prompt_command() {
   prompt_getcolors
   # http://twitter.com/cowboy/status/150254030654939137
   PS1="\n"
+  # virtualenv: [virtualenv]
+  PS1="$PS1$(prompt_virtualenv)"
   # git: [branch:flags]
   PS1="$PS1$(prompt_git)"
   # path: [user@host:path]
