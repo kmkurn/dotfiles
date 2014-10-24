@@ -13,7 +13,7 @@ Helptags
 " Configure terminal
 set t_Co=256                    " Support 256 colors
 set background=dark
-silent! colorscheme badwolf
+silent! colorscheme molokai
 
 " Display relative line number
 set relativenumber
