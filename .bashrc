@@ -89,3 +89,6 @@ export PROJECT_HOME=$HOME/Projects
 if [ -f /usr/bin/virtualenvwrapper_lazy.sh ]; then
     . /usr/bin/virtualenvwrapper_lazy.sh
 fi
+
+# Disable flow control
+stty -ixon
