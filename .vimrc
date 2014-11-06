@@ -213,6 +213,13 @@ augroup filetype_html
     autocmd FileType html setlocal softtabstop=2
 augroup END
 
+" Python file settings
+augroup filetype_python
+    autocmd!
+    autocmd FileType python setlocal foldmethod=indent
+    autocmd FileType python setlocal foldlevel=99
+augroup END
+
 
 "--------------------------------------------------------}}}
 
@@ -238,8 +245,6 @@ set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
 let g:syntastic_check_on_open = 1
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
 
 "--------------------------------------------------------}}}
 

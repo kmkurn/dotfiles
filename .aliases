@@ -10,6 +10,9 @@ alias egrep='egrep --color=auto'
 alias ll='ls -lF'
 alias lh='ls -lhF'
 
+# Alias for yaourt
+alias y='yaourt'
+
 # Alias to clean unused files
 alias clean='rm -f \#* *~ .*~ *.bak .*.bak *.tmp .*.tmp *.swp .*.swp core a.out'
 
@@ -52,4 +55,4 @@ clear_proxy() {
 }
 
 # Alias for UI proxy
-alias uiprox='assign_proxy http://152.118.24.10:8080 localhost,127.0.0.1,*.ui.ac.id'
+alias uiprox='assign_proxy 152.118.24.10:8080 localhost,127.0.0.1,.ui.ac.id'
