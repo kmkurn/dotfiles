@@ -174,11 +174,11 @@ inoremap <leader>U <esc>bveUea
 " Commenting current line in source codes
 augroup comment
     autocmd!
-    autocmd FileType python nnoremap <buffer> <localleader>c I#<esc>
-    autocmd FileType cpp nnoremap <buffer> <localleader>c I//<esc>
-    autocmd FileType c nnoremap <buffer> <localleader>c I//<esc>
-    autocmd FileType java nnoremap <buffer> <localleader>c I//<esc>
-    autocmd FileType vim nnoremap <buffer> <localleader>c I"<esc>
+    autocmd FileType python nnoremap <buffer> <localleader>c I# <esc>
+    autocmd FileType cpp nnoremap <buffer> <localleader>c I// <esc>
+    autocmd FileType c nnoremap <buffer> <localleader>c I// <esc>
+    autocmd FileType java nnoremap <buffer> <localleader>c I// <esc>
+    autocmd FileType vim nnoremap <buffer> <localleader>c I" <esc>
 augroup END
 
 " Detect .md files as markdown
