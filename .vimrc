@@ -150,6 +150,9 @@ nnoremap <leader>lk :lprevious<cr>
 " Clear highlight and redraw screen
 nnoremap <f5> :nohlsearch<cr>:redraw!<cr>
 
+" Toggle fold
+nnoremap <space> za
+
 "--------------------------------------------------------}}}
 
 " Insert Mode  {{{2
@@ -174,7 +177,6 @@ inoremap <leader>U <esc>bveUea
 " Commenting current line in source codes
 augroup comment
     autocmd!
-    autocmd FileType python nnoremap <buffer> <localleader>c I# <esc>
     autocmd FileType cpp nnoremap <buffer> <localleader>c I// <esc>
     autocmd FileType c nnoremap <buffer> <localleader>c I// <esc>
     autocmd FileType java nnoremap <buffer> <localleader>c I// <esc>
@@ -218,6 +220,10 @@ augroup filetype_python
     autocmd!
     autocmd FileType python setlocal foldmethod=indent
     autocmd FileType python setlocal foldlevel=99
+    " Single line comment
+    autocmd FileType python nnoremap <buffer> <localleader>c I# <esc>
+    " Multiline comment
+    autocmd FileType python vnoremap <buffer> <localleader>c <esc>'<O"""<esc>'>o"""<esc>
 augroup END
 
 
