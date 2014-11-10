@@ -53,6 +53,3 @@ assign_proxy() {
 clear_proxy() {
     assign_proxy ""
 }
-
-# Alias for UI proxy
-alias uiprox='assign_proxy 152.118.24.10:8080 localhost,127.0.0.1,.ui.ac.id'
