@@ -1,9 +1,27 @@
-" PATHOGEN INITIALIZATION  {{{1
+" VUNDLE INITIALIZATION  {{{1
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
+set nocompatible
 filetype off
-call pathogen#infect()
-Helptags
+
+" Set runtime path to include Vundle and initialize
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+
+" Let Vundle manage Vundle, required
+Plugin 'gmarik/Vundle.vim'
+
+" List of plugins here
+Plugin 'Valloric/YouCompleteMe'         " Autocomplete engine
+Plugin 'SirVer/ultisnips'               " Snippet engine
+Plugin 'honza/vim-snippets'             " Snippet collections
+Plugin 'wincent/command-t'              " Easy finding files
+Plugin 'scrooloose/syntastic'           " Syntax checker
+Plugin 'itchyny/lightline.vim'          " Minimalist statusline
+
+" All plugins must be added before the following line
+call vundle#end()               " required
+filetype plugin indent on       " required
 
 "--------------------------------------------------------}}}
 
