@@ -263,6 +263,9 @@ iabbrev @@ kemskems12@gmail.com
 " PLUGIN-RELATED SETTINGS {{{1
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
+" Command-T
+let g:CommandTMaxHeight = 10
+
 " UltiSnips
 let g:UltiSnipsExpandTrigger = g:mapleader . "<tab>"
 let g:UltiSnipsJumpForwardTrigger = g:mapleader . "<tab>"
