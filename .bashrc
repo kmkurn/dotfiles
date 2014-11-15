@@ -77,11 +77,11 @@ man() {
         man "$@"
 }
 
-# Use Vim as a default text editor (useful when using Git)
-export EDITOR=vim
+# Use GVim as the default GUI text editor
+export VISUAL=gvim
 
-# Add rubygems bin directory to PATH
-export PATH=$PATH:$HOME/.gem/ruby/2.1.0/bin
+# Use Vim as the default text editor (useful when using Git)
+export EDITOR=vim
 
 # Python virtualenvwrapper
 export WORKON_HOME=$HOME/.virtualenvs
