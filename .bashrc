@@ -90,5 +90,6 @@ if [ -f /usr/bin/virtualenvwrapper_lazy.sh ]; then
     . /usr/bin/virtualenvwrapper_lazy.sh
 fi
 
-# Disable flow control
+# Disable flow control. This enables Ctrl+s to open file in horizontal split
+# when using Command-T in Vim
 stty -ixon
