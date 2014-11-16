@@ -35,7 +35,7 @@ silent! colorscheme molokai
 
 " Set font in gvim
 if has("gui_running")
-    set guifont=Inconsolata-g\ Medium\ 10
+    set guifont=Inconsolata\ 10
 endif
 
 " Display relative line number
