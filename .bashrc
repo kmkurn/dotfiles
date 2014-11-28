@@ -83,13 +83,12 @@ export VISUAL=gvim
 # Use Vim as the default text editor (useful when using Git)
 export EDITOR=vim
 
-# Python virtualenvwrapper
-export WORKON_HOME=$HOME/.virtualenvs
-export PROJECT_HOME=$HOME/Projects
-if [ -f /usr/bin/virtualenvwrapper_lazy.sh ]; then
-    . /usr/bin/virtualenvwrapper_lazy.sh
-fi
-
 # Disable flow control. This enables Ctrl+s to open file in horizontal split
 # when using Command-T in Vim
 stty -ixon
+
+# Added by Anaconda3 2.1.0 installer
+export PATH="$HOME/anaconda3/bin:$PATH"
+
+# Tab completion for conda
+eval "$(register-python-argcomplete conda)"
