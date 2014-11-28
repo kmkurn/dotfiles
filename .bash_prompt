@@ -66,10 +66,10 @@ function prompt_git() {
 # Virtualenv status.
 function prompt_virtualenv() {
     prompt_getcolors
-    if [ -z "$VIRTUAL_ENV" ]; then
+    if [ -z "$CONDA_DEFAULT_ENV" ]; then
         echo ""
     else
-        echo "$c1($c0$(basename $VIRTUAL_ENV)$c1)$c9"
+        echo "$c1($c0$(basename $CONDA_DEFAULT_ENV)$c1)$c9"
     fi
 }
 
