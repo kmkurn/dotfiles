@@ -92,3 +92,6 @@ export PATH="$HOME/anaconda3/bin:$PATH"
 
 # Tab completion for conda
 eval "$(register-python-argcomplete conda)"
+
+# DO NOT use graphical ssh
+unset SSH_ASKPASS
