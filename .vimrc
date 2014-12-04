@@ -31,7 +31,7 @@ filetype plugin indent on       " required
 " Configure terminal
 set t_Co=256                    " Support 256 colors
 set background=dark
-silent! colorscheme molokai
+silent! colorscheme solarized
 
 " Set font in gvim
 if has("gui_running")
