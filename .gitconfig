@@ -14,3 +14,5 @@
     standup = log --since '1 day ago' --oneline --author kemskems12@gmail.com
     br = branch
     ci = commit
+[core]
+	editor = vim
