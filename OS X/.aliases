@@ -1,0 +1,49 @@
+# Mac OS X
+
+# Some simple aliases
+alias ls='ls -G'
+alias grep='grep --color=auto'
+alias fgrep='fgrep --color=auto'
+alias egrep='egrep --color=auto'
+alias ll='ls -lF'
+alias lh='ls -lhF'
+
+# Alias to clean unused files
+alias clean='rm -f \#* *~ .*~ *.bak .*.bak *.tmp .*.tmp *.swp .*.swp core a.out'
+
+# MacVim console
+alias mvim='/Applications/MacVim.app/Contents/MacOS/Vim'
+
+# List NUMBER processes sorted by CPU usage
+# Usage: pssort NUMBER
+pssort() {
+    DEFAULT_NUM=3
+    if [[ "$#" -ge 1 ]]; then
+        num="$1"
+    else
+        num=$DEFAULT_NUM
+    fi
+    ps aux | tail -n+2 | sort -nr -k 3 | head -n "$num"
+}
+
+# Alias for shutdown
+alias sd='sudo shutdown now'
+
+# Alias for restart
+alias rs='sudo shutdown -r now'
+
+# Function to set proxy
+assign_proxy() {
+    PROXY_ENV="http_proxy ftp_proxy https_proxy all_proxy HTTP_PROXY HTTPS_PROXY FTP_PROXY ALL_PROXY"
+    for envar in $PROXY_ENV; do
+        export $envar=$1
+    done
+    for envar in no_proxy NO_PROXY; do
+        export $envar=$2
+    done
+}
+
+# Function to clear proxy
+clear_proxy() {
+    assign_proxy ""
+}

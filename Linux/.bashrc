@@ -1,7 +1,7 @@
 # My custom .bashrc file based on /usr/share/doc/bash/example/startup-files
 # in the bash-doc package
 
-# Copyright (c) 2013 Kemal Maulana
+# Copyright (c) 2014 Kemal Maulana
 # Licensed under the MIT license
 # See LICENSE to view the full license
 
@@ -87,11 +87,8 @@ export EDITOR=vim
 # when using Command-T in Vim
 stty -ixon
 
-# Added by Anaconda3 2.1.0 installer
-export PATH="$HOME/anaconda3/bin:$PATH"
-
 # Tab completion for conda
-eval "$(register-python-argcomplete conda)"
+eval "$($HOME/miniconda3/bin/register-python-argcomplete conda)"
 
 # DO NOT use graphical ssh
 unset SSH_ASKPASS

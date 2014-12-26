@@ -14,7 +14,6 @@ Plugin 'gmarik/Vundle.vim'
 " List of plugins here
 Plugin 'Valloric/YouCompleteMe'         " Autocomplete engine
 Plugin 'SirVer/ultisnips'               " Snippet engine
-Plugin 'honza/vim-snippets'             " Snippet collections
 Plugin 'wincent/command-t'              " Easy finding files
 Plugin 'scrooloose/syntastic'           " Syntax checker
 Plugin 'itchyny/lightline.vim'          " Minimalist statusline
