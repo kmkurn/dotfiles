@@ -15,4 +15,4 @@
     br = branch
     ci = commit
 [core]
-	editor = vim
+    editor = vim
