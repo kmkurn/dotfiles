@@ -38,15 +38,9 @@ if [ -f ~/.aliases ]; then
     . ~/.aliases
 fi
 
-# Enable programmable completion features (you don't need to enable
-# this, if it's already enabled in /etc/bash.bashrc and /etc/profile
-# sources /etc/bash.bashrc).
-if ! shopt -oq posix; then
-  if [ -f /usr/share/bash-completion/bash_completion ]; then
-    . /usr/share/bash-completion/bash_completion
-  elif [ -f /etc/bash_completion ]; then
-    . /etc/bash_completion
-  fi
+# Enable programmable completion features
+if [ -f $(brew --prefix)/etc/bash_completion ]; then
+    source $(brew --prefix)/etc/bash_completion
 fi
 
 # Color the output of 'man' command
@@ -71,3 +65,9 @@ export EDITOR=vim
 
 # Tab completion for conda
 eval "$($HOME/miniconda3/bin/register-python-argcomplete conda)"
+
+# Set architecture flag
+export ARCHFLAGS="-arch x86_64"
+
+# Ensure user-installed binaries take precedence
+export PATH=/usr/local/bin:$PATH
