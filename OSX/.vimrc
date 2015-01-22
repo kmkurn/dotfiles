@@ -277,6 +277,9 @@ set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
 let g:syntastic_check_on_open = 1
 
+" YouCompleteMe
+let g:ycm_path_to_python_interpreter = '/usr/bin/python'
+
 "--------------------------------------------------------}}}
 
 " PLUGIN-LIKE STUFF  {{{1
