@@ -268,6 +268,7 @@ let g:CommandTMaxHeight = 10
 " UltiSnips
 let g:UltiSnipsExpandTrigger = g:mapleader . "<tab>"
 let g:UltiSnipsJumpForwardTrigger = g:mapleader . "<tab>"
+let g:UltiSnipsJumpBackwardTrigger = g:mapleader . "<s-tab>"
 let g:UltiSnipsListSnippets = g:mapleader . "`"
 let g:UltiSnipsEditSplit = "horizontal"
 
@@ -275,7 +276,10 @@ let g:UltiSnipsEditSplit = "horizontal"
 set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
 
 " YouCompleteMe
 let g:ycm_path_to_python_interpreter = '/usr/bin/python'
