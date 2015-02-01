@@ -70,4 +70,4 @@ eval "$($HOME/miniconda3/bin/register-python-argcomplete conda)"
 export ARCHFLAGS="-arch x86_64"
 
 # Ensure user-installed binaries take precedence
-export PATH=/usr/local/bin:$PATH
+export PATH=/usr/local/bin:/usr/local/sbin:$PATH
