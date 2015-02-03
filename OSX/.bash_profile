@@ -3,7 +3,7 @@
 
 # Mac OS X with iTerm2
 
-# Copyright (c) 2014 Kemal Maulana
+# Copyright (c) 2015 Kemal Maulana
 # Licensed under the MIT license
 # See LICENSE to view the full license
 
@@ -71,3 +71,23 @@ export ARCHFLAGS="-arch x86_64"
 
 # Ensure user-installed binaries take precedence
 export PATH=/usr/local/bin:/usr/local/sbin:$PATH
+
+# Pip bash completion
+hash pip 2>/dev/null && eval "$(pip completion --bash)"
+
+# Python virtualenv settings
+export WORKON_HOME=$HOME/.virtualenvs
+export PROJECT_HOME=$HOME/Projects
+export VIRTUALENVWRAPPER_SCRIPT=/usr/local/bin/virtualenvwrapper.sh
+source /usr/local/bin/virtualenvwrapper_lazy.sh
+
+# Enable Python to connect to MySQL
+export DYLD_LIBRARY_PATH=/usr/local/Cellar/mysql/5.6.22/lib
+export LANG="en_US.UTF-8"
+export LC_COLLATE="en_US.UTF-8"
+export LC_CTYPE="en_US.UTF-8"
+export LC_MESSAGES="en_US.UTF-8"
+export LC_MONETARY="en_US.UTF-8"
+export LC_NUMERIC="en_US.UTF-8"
+export LC_TIME="en_US.UTF-8"
+export LC_ALL=
