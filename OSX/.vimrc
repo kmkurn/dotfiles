@@ -17,6 +17,7 @@ Plugin 'SirVer/ultisnips'               " Snippet engine
 Plugin 'wincent/command-t'              " Easy finding files
 Plugin 'scrooloose/syntastic'           " Syntax checker
 Plugin 'itchyny/lightline.vim'          " Minimalist statusline
+Plugin 'tpope/vim-surround'             " Surrounding made easy
 
 " All plugins must be added before the following line
 call vundle#end()               " required
