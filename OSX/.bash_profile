@@ -28,20 +28,11 @@ HISTFILESIZE=2000
 # update the values of LINES and COLUMNS.
 shopt -s checkwinsize
 
-# Load prompt configuration in ~/.bash_prompt
-if [ -f ~/.bash_prompt ]; then
-    . ~/.bash_prompt
-fi
+# Load prompt string configuration
+[ -f "$HOME/.bash_prompt" ] && source "$HOME/.bash_prompt"
 
 # Alias definitions
-if [ -f ~/.aliases ]; then
-    . ~/.aliases
-fi
-
-# Enable programmable completion features
-if [ -f $(brew --prefix)/etc/bash_completion ]; then
-    source $(brew --prefix)/etc/bash_completion
-fi
+[ -f "$HOME/.aliases" ] && source "$HOME/.aliases"
 
 # Color the output of 'man' command
 # source: https://wiki.archlinux.org/index.php/Man_Page#Colored_man_pages
@@ -61,28 +52,34 @@ export EDITOR=vim
 
 # Disable flow control. This enables Ctrl+s to open file in horizontal split
 # when using Command-T in Vim
-#stty -ixon
+stty -ixon
+
+# Enable bash completion feature installed by Homebrew
+hash brew 2>/dev/null && [ -f "$(brew --prefix)/etc/bash_completion" ] && \
+    source "$(brew --prefix)/etc/bash_completion"
 
 # Tab completion for conda
-eval "$($HOME/miniconda3/bin/register-python-argcomplete conda)"
+[ -f "$HOME/miniconda3/bin/register-python-argcomplete" ] && \
+    eval "$($HOME/miniconda3/bin/register-python-argcomplete conda)"
 
 # Set architecture flag
 export ARCHFLAGS="-arch x86_64"
 
 # Ensure user-installed binaries take precedence
-export PATH=/usr/local/bin:/usr/local/sbin:$PATH
+export PATH="/usr/local/bin:/usr/local/sbin:$PATH"
 
 # Pip bash completion
 hash pip 2>/dev/null && eval "$(pip completion --bash)"
 
 # Python virtualenv settings
-export WORKON_HOME=$HOME/.virtualenvs
-export PROJECT_HOME=$HOME/Projects
-export VIRTUALENVWRAPPER_SCRIPT=/usr/local/bin/virtualenvwrapper.sh
-source /usr/local/bin/virtualenvwrapper_lazy.sh
+export WORKON_HOME="$HOME/.virtualenvs"
+export PROJECT_HOME="$HOME/Projects"
+export VIRTUALENVWRAPPER_SCRIPT="/usr/local/bin/virtualenvwrapper.sh"
+[ -f "$(brew --prefix)/bin/virtualenvwrapper_lazy.sh" ] && \
+    source "$(brew --prefix)/bin/virtualenvwrapper_lazy.sh"
 
 # Enable Python to connect to MySQL
-export DYLD_LIBRARY_PATH=/usr/local/Cellar/mysql/5.6.22/lib
+export DYLD_LIBRARY_PATH="/usr/local/Cellar/mysql/5.6.22/lib"
 export LANG="en_US.UTF-8"
 export LC_COLLATE="en_US.UTF-8"
 export LC_CTYPE="en_US.UTF-8"
