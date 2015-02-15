@@ -18,6 +18,9 @@ Plugin 'wincent/command-t'              " Easy finding files
 Plugin 'scrooloose/syntastic'           " Syntax checker
 Plugin 'itchyny/lightline.vim'          " Minimalist statusline
 Plugin 'tpope/vim-surround'             " Surrounding made easy
+Plugin 'scrooloose/nerdtree'            " Files and directory browser
+Plugin 'vim-scripts/taglist.vim'        " Source code browser
+Plugin 'embear/vim-localvimrc'          " Enable local Vim settings
 
 " All plugins must be added before the following line
 call vundle#end()               " required
@@ -176,6 +179,9 @@ nnoremap <f5> :nohlsearch<cr>:redraw!<cr>
 " Toggle fold
 nnoremap <space> za
 
+" Jump to tag if there is only one matching tag, otherwise list matching tags
+nnoremap <c-]> g<c-]>
+
 "--------------------------------------------------------}}}
 
 " Insert Mode  {{{2
@@ -284,6 +290,9 @@ let g:syntastic_check_on_wq = 0
 
 " YouCompleteMe
 let g:ycm_path_to_python_interpreter = '/usr/bin/python'
+
+" Taglist.vim
+let g:Tlist_Use_Right_Window = 1
 
 "--------------------------------------------------------}}}
 
