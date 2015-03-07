@@ -294,6 +294,9 @@ let g:ycm_path_to_python_interpreter = '/usr/bin/python'
 " Taglist.vim
 let g:Tlist_Use_Right_Window = 1
 
+" NERDTree shortcut
+nnoremap <leader>nt :NERDTreeToggle<cr>
+
 "--------------------------------------------------------}}}
 
 " PLUGIN-LIKE STUFF  {{{1
