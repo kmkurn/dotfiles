@@ -65,8 +65,14 @@ hash brew 2>/dev/null && [ -f "$(brew --prefix)/etc/bash_completion" ] && \
 # Set architecture flag
 export ARCHFLAGS="-arch x86_64"
 
-# Ensure user-installed binaries take precedence
-export PATH="/usr/local/bin:/usr/local/sbin:$PATH"
+# Ensure brew-installed binaries take precedence
+hash brew 2>/dev/null && \
+    export PATH="$(brew --prefix)/bin:$(brew --prefix)/sbin:$PATH"
+
+# Prioritize GNU coreutils
+hash brew 2>/dev/null && brew --prefix coreutils > /dev/null 2>&1 && \
+    export PATH="$(brew --prefix coreutils)/libexec/gnubin:$PATH" && \
+    export MANPATH="$(brew --prefix coreutils)/libexec/gnuman:$MANPATH"
 
 # Pip bash completion
 hash pip 2>/dev/null && eval "$(pip completion --bash)"
