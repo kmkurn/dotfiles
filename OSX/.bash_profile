@@ -34,6 +34,9 @@ shopt -s checkwinsize
 # Alias definitions
 [ -f "$HOME/.aliases" ] && source "$HOME/.aliases"
 
+# Set Solarized dircolors
+[ -f "$HOME/.dircolors" ] && source "$HOME/.dircolors"
+
 # Color the output of 'man' command
 # source: https://wiki.archlinux.org/index.php/Man_Page#Colored_man_pages
 man() {
