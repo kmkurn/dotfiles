@@ -12,9 +12,6 @@ alias lh='ls -lhF'
 # Alias to clean unused files
 alias clean='rm -f \#* *~ .*~ *.bak .*.bak *.tmp .*.tmp *.swp .*.swp core a.out'
 
-# MacVim console
-alias mvim='/Applications/MacVim.app/Contents/MacOS/Vim'
-
 # List NUMBER processes sorted by CPU usage
 # Usage: pssort NUMBER
 pssort() {
