@@ -34,6 +34,11 @@ if [ -z "${debian_chroot:-}" ] && [ -r /etc/debian_chroot ]; then
     debian_chroot=$(cat /etc/debian_chroot)
 fi
 
+# Load dircolors configuration
+if [ -f ~/.dircolors ]; then
+    . ~/.dircolors
+fi
+
 # Load prompt configuration in ~/.bash_prompt
 if [ -f ~/.bash_prompt ]; then
     . ~/.bash_prompt
@@ -88,7 +93,7 @@ export EDITOR=vim
 stty -ixon
 
 # Tab completion for conda
-eval "$($HOME/miniconda3/bin/register-python-argcomplete conda)"
+[ -f "$HOME/miniconda3/bin/register-python-argcomplete" ] && eval "$($HOME/miniconda3/bin/register-python-argcomplete conda)"
 
 # DO NOT use graphical ssh
 unset SSH_ASKPASS
