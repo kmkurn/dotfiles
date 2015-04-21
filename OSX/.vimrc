@@ -255,6 +255,13 @@ augroup filetype_python
     autocmd FileType python vnoremap <buffer> <localleader>c <esc>'<O"""<esc>'>o"""<esc>
 augroup END
 
+" JavaScript file settings
+augroup filetype_javascript
+    autocmd!
+    autocmd FileType javascript setlocal shiftwidth=2
+    autocmd FileType javascript setlocal softtabstop=2
+augroup END
+
 
 "--------------------------------------------------------}}}
 
@@ -262,7 +269,7 @@ augroup END
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " Email
-iabbrev @@ kemskems12@gmail.com
+iabbrev @@ kemskems@fastmail.com
 
 "--------------------------------------------------------}}}
 
