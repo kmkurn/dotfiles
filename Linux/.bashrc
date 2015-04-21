@@ -97,3 +97,12 @@ stty -ixon
 
 # DO NOT use graphical ssh
 unset SSH_ASKPASS
+
+# Add redis bin directory to PATH
+export PATH="/opt/redis/bin:$PATH"
+
+# Add arcanist bin directory to PATH
+export PATH="$HOME/Software/arcanist/arcanist/bin:$PATH"
+
+# added by travis gem
+[ -f /home/kemal/.travis/travis.sh ] && source /home/kemal/.travis/travis.sh
