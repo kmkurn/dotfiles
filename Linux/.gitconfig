@@ -17,3 +17,5 @@
     llog = log --oneline -n 10
 [core]
     editor = vim
+[push]
+    default = simple
