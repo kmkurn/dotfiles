@@ -10,6 +10,9 @@ alias egrep='egrep --color=auto'
 alias ll='ls -lF'
 alias lh='ls -lhF'
 
+# Alias for tmux so VIM won't lose its colorscheme
+alias tmux='TERM=screen-256color-bce tmux'
+
 # Alias for yaourt
 alias y='yaourt'
 
