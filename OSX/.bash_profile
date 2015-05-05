@@ -86,3 +86,7 @@ export PROJECT_HOME="$HOME/Projects"
 export VIRTUALENVWRAPPER_SCRIPT="/usr/local/bin/virtualenvwrapper.sh"
 [ -f "$(brew --prefix)/bin/virtualenvwrapper_lazy.sh" ] && \
     source "$(brew --prefix)/bin/virtualenvwrapper_lazy.sh"
+
+# Jenv settings
+export PATH="$HOME/.jenv/bin:$PATH"
+hash jenv 2>/dev/null && eval "$(jenv init -)"
