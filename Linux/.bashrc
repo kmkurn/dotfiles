@@ -104,5 +104,9 @@ export PATH="/opt/redis/bin:$PATH"
 # Add arcanist bin directory to PATH
 export PATH="$HOME/Software/arcanist/arcanist/bin:$PATH"
 
-# added by travis gem
-[ -f /home/kemal/.travis/travis.sh ] && source /home/kemal/.travis/travis.sh
+# Added by travis gem
+[ -f "$HOME/.travis/travis.sh" ] && source "$HOME/.travis/travis.sh"
+
+# Solve locale issue
+# https://stackoverflow.com/questions/26337557/badvalue-invalid-or-no-user-locale-set-please-ensure-lang-and-or-lc-environme
+export LC_ALL=C
