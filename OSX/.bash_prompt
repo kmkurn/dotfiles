@@ -66,22 +66,22 @@ function prompt_git() {
 # Virtualenv status.
 function prompt_virtualenv() {
     prompt_getcolors
-    virtualenv_name="venv"
+    prefix="venv"
     if [ -z "$VIRTUAL_ENV" ]; then
         echo ""
     else
-        echo "$c1($c0$virtualenv_name:$(basename $VIRTUAL_ENV)$c1)$c9"
+        echo "$c1($c0$prefix:$(basename $VIRTUAL_ENV)$c1)$c9"
     fi
 }
 
 # Conda virtualenv status.
 function conda_prompt_virtualenv() {
     prompt_getcolors
-    virtualenv_name="conda"
+    prefix="conda"
     if [ -z "$CONDA_DEFAULT_ENV" ]; then
         echo ""
     else
-        echo "$c1($c0$virtualenv_name:$(basename $CONDA_DEFAULT_ENV)$c1)$c9"
+        echo "$c1($c0$prefix:$(basename $CONDA_DEFAULT_ENV)$c1)$c9"
     fi
 }
 
