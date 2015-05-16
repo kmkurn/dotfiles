@@ -63,13 +63,25 @@ function prompt_git() {
   echo "$c1[$c0$output$c1]$c9"
 }
 
-# Virtualenv status.
-function prompt_virtualenv() {
+# Conda virtualenv status.
+function prompt_conda_virtualenv() {
     prompt_getcolors
+    local prefix="conda"
     if [ -z "$CONDA_DEFAULT_ENV" ]; then
         echo ""
     else
-        echo "$c1($c0$(basename $CONDA_DEFAULT_ENV)$c1)$c9"
+        echo "$c1($c0$prefix:$(basename $CONDA_DEFAULT_ENV)$c1)$c9"
+    fi
+}
+
+# Virtualenv status.
+function prompt_virtualenv() {
+    prompt_getcolors
+    local prefix="venv"
+    if [ -z "$VIRTUAL_ENV" ]; then
+        echo ""
+    else
+        echo "$c1($c0$prefix:$(basename $VIRTUAL_ENV)$c1)$c9"
     fi
 }
 
@@ -94,7 +106,9 @@ function prompt_command() {
   prompt_getcolors
   # http://twitter.com/cowboy/status/150254030654939137
   PS1="\n"
-  # virtualenv: (virtualenv)
+  # conda virtualenv: (conda:virtualenv)
+  PS1="$PS1$(prompt_conda_virtualenv)"
+  # virtualenv: (venv:virtualenv)
   PS1="$PS1$(prompt_virtualenv)"
   # git: [branch:flags]
   PS1="$PS1$(prompt_git)"
