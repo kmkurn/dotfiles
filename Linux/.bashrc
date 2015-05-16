@@ -102,7 +102,7 @@ unset SSH_ASKPASS
 export PATH="/opt/redis/bin:$PATH"
 
 # Add arcanist bin directory to PATH
-export PATH="$HOME/Software/arcanist/arcanist/bin:$PATH"
+export PATH="$HOME/arcanist/arcanist/bin:$PATH"
 
 # Added by travis gem
 [ -f "$HOME/.travis/travis.sh" ] && source "$HOME/.travis/travis.sh"
