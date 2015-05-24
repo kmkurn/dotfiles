@@ -17,6 +17,11 @@ Plugin 'SirVer/ultisnips'               " Snippet engine
 Plugin 'wincent/command-t'              " Easy finding files
 Plugin 'scrooloose/syntastic'           " Syntax checker
 Plugin 'itchyny/lightline.vim'          " Minimalist statusline
+Plugin 'tpope/vim-surround'             " Surrounding made easy
+Plugin 'scrooloose/nerdtree'            " Files and directory browser
+Plugin 'vim-scripts/taglist.vim'        " Source code browser
+Plugin 'embear/vim-localvimrc'          " Enable local Vim settings
+Plugin 'editorconfig/editorconfig-vim'  " Editorconfig plugin
 
 " All plugins must be added before the following line
 call vundle#end()               " required
