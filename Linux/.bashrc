@@ -110,3 +110,7 @@ export PATH="$HOME/arcanist/arcanist/bin:$PATH"
 # Solve locale issue
 # https://stackoverflow.com/questions/26337557/badvalue-invalid-or-no-user-locale-set-please-ensure-lang-and-or-lc-environme
 export LC_ALL=C
+
+# Virtualenv settings
+export WORKON_HOME="$HOME/.virtualenvs"
+source `which virtualenvwrapper.sh`
