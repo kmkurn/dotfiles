@@ -114,3 +114,8 @@ export LC_ALL=C
 # Virtualenv settings
 export WORKON_HOME="$HOME/.virtualenvs"
 source `which virtualenvwrapper.sh`
+
+# NVM
+if [ -d "$HOME/.nvm" ]; then
+  source ~/.nvm/nvm.sh
+fi
