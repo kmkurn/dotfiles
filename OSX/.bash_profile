@@ -90,3 +90,7 @@ export VIRTUALENVWRAPPER_SCRIPT="/usr/local/bin/virtualenvwrapper.sh"
 # Jenv settings
 export PATH="$HOME/.jenv/bin:$PATH"
 hash jenv 2>/dev/null && eval "$(jenv init -)"
+
+# NVM settings
+export NVM_DIR="$HOME/.nvm"
+hash brew 2>/dev/null && source $(brew --prefix nvm)/nvm.sh
