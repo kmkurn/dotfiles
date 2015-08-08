@@ -22,6 +22,11 @@ Plugin 'scrooloose/nerdtree'            " Files and directory browser
 Plugin 'vim-scripts/taglist.vim'        " Source code browser
 Plugin 'embear/vim-localvimrc'          " Enable local Vim settings
 Plugin 'editorconfig/editorconfig-vim'  " Editorconfig plugin
+Plugin 'lepture/vim-jinja'              " Jinja support
+Plugin 'craigemery/vim-autotag'         " Auto-update tags
+Plugin 'fholgado/minibufexpl.vim'       " Mini buffer explorer
+Plugin 'tpope/vim-fugitive'             " Git plugin
+Plugin 'sjl/gundo.vim'                  " Undo trees
 
 " All plugins must be added before the following line
 call vundle#end()               " required
@@ -35,13 +40,16 @@ filetype plugin indent on       " required
 " Configure terminal
 set t_Co=256                    " Support 256 colors
 set background=dark
-"silent! colorscheme solarized
-silent! colorscheme molokai
+silent! colorscheme solarized
+"silent! colorscheme molokai
 
-" Set font in macvim
+" Set font in MacVim
 if has("gui_running")
     set guifont=Inconsolata:h14
 endif
+
+" Disable scrollbar in MacVim
+set guioptions-=L
 
 " Display relative line number
 set relativenumber
@@ -77,13 +85,13 @@ set shiftround
 set laststatus=2
 
 " Format statusline
-set statusline=%F\ \ \           " Full path to file
-set statusline+=%y               " Type of file
-set statusline+=%m               " Modified flag
-set statusline+=%=               " Align right from this point
-set statusline+=%l,%c\ \ \       " Current position
-set statusline+=%L\ lines\ \ \   " Total number of lines
-set statusline+=--%p%%--         " Percentage through file in lines
+"set statusline=%F\ \ \           " Full path to file
+"set statusline+=%y               " Type of file
+"set statusline+=%m               " Modified flag
+"set statusline+=%=               " Align right from this point
+"set statusline+=%l,%c\ \ \       " Current position
+"set statusline+=%L\ lines\ \ \   " Total number of lines
+"set statusline+=--%p%%--         " Percentage through file in lines
 
 " Show partial commmand in the last line of the screen
 set showcmd
@@ -271,7 +279,7 @@ augroup END
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " Email
-iabbrev @@ kemskems@fastmail.com
+iabbrev @@ kemal.maulana@fastmail.com
 
 "--------------------------------------------------------}}}
 
@@ -305,6 +313,17 @@ let g:Tlist_Use_Right_Window = 1
 
 " NERDTree shortcut
 nnoremap <leader>nt :NERDTreeToggle<cr>
+
+" Lightline
+let g:lightline = {
+    \ 'colorscheme': 'solarized_dark',
+    \ }
+
+" TagList
+nnoremap <leader>tl :TlistToggle<cr>
+
+" Gundo
+nnoremap <leader>u :GundoToggle<cr>
 
 "--------------------------------------------------------}}}
 
