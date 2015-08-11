@@ -27,6 +27,9 @@ Plugin 'craigemery/vim-autotag'         " Auto-update tags
 Plugin 'fholgado/minibufexpl.vim'       " Mini buffer explorer
 Plugin 'tpope/vim-fugitive'             " Git plugin
 Plugin 'sjl/gundo.vim'                  " Undo trees
+Plugin 'Valloric/MatchTagAlways'        " Match HTML/XML tags
+Plugin 'HTML-AutoCloseTag'              " Automatically closes HTML tags
+Plugin 'tomtom/tcomment_vim'            " Toggle comments easily
 
 " All plugins must be added before the following line
 call vundle#end()               " required
@@ -40,8 +43,8 @@ filetype plugin indent on       " required
 " Configure terminal
 set t_Co=256                    " Support 256 colors
 set background=dark
-silent! colorscheme solarized
-"silent! colorscheme molokai
+"silent! colorscheme solarized
+silent! colorscheme molokai
 
 " Set font in MacVim
 if has("gui_running")
@@ -213,15 +216,6 @@ inoremap <leader>U <esc>bveUea
 " AUTOCOMMANDS  {{{1
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-" Commenting current line in source codes
-augroup comment
-    autocmd!
-    autocmd FileType cpp nnoremap <buffer> <localleader>c I// <esc>
-    autocmd FileType c nnoremap <buffer> <localleader>c I// <esc>
-    autocmd FileType java nnoremap <buffer> <localleader>c I// <esc>
-    autocmd FileType vim nnoremap <buffer> <localleader>c I" <esc>
-augroup END
-
 " Detect .md files as markdown
 augroup markdown
     autocmd!
@@ -259,10 +253,6 @@ augroup filetype_python
     autocmd!
     autocmd FileType python setlocal foldmethod=indent
     autocmd FileType python setlocal foldlevel=99
-    " Single line comment
-    autocmd FileType python nnoremap <buffer> <localleader>c I# <esc>
-    " Multiline comment
-    autocmd FileType python vnoremap <buffer> <localleader>c <esc>'<O"""<esc>'>o"""<esc>
 augroup END
 
 " JavaScript file settings
@@ -270,6 +260,14 @@ augroup filetype_javascript
     autocmd!
     autocmd FileType javascript setlocal shiftwidth=2
     autocmd FileType javascript setlocal softtabstop=2
+augroup END
+
+" Jinja file settings
+augroup filetype_jinja
+    autocmd!
+    autocmd FileType jinja setlocal shiftwidth=2
+    autocmd FileType jinja setlocal softtabstop=2
+    autocmd FileType jinja source ~/.vim/bundle/HTML-AutoCloseTag/ftplugin/html_autoclosetag.vim
 augroup END
 
 
