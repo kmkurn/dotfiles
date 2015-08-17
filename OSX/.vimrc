@@ -181,8 +181,8 @@ nnoremap <leader>sv :source $MYVIMRC<cr>:nohlsearch<cr>
 nnoremap <leader>U bveU
 
 " Quickfix window easy shortcut
-"nnoremap <leader>co :copen<cr>
-"nnoremap <leader>cc :cclose<cr>
+nnoremap <leader>co :copen<cr>
+nnoremap <leader>cc :cclose<cr>
 
 " Location list easy shortcut
 nnoremap <leader>lo :lopen<cr>
@@ -266,7 +266,7 @@ nnoremap <leader>mbf :MBEFocus<cr>
 nnoremap <leader>% :MtaJumpToOtherTag<cr>
 
 " Tagbar
-nnoremap <leader>tb :TagbarToggle<cr>
+nnoremap <leader>g :TagbarToggle<cr>
 
 " Localvimrc
 let g:localvimrc_ask = 1
