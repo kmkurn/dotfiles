@@ -94,3 +94,6 @@ hash jenv 2>/dev/null && eval "$(jenv init -)"
 # NVM settings
 export NVM_DIR="$HOME/.nvm"
 hash brew 2>/dev/null && source $(brew --prefix nvm)/nvm.sh
+
+# Print archey
+hash archey 2>/dev/null && archey
