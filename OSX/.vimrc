@@ -39,6 +39,8 @@ Plugin 'othree/javascript-libraries-syntax.vim'      " Other JavaScript librarie
 Plugin 'tmhedberg/SimpylFold'                        " Python code folding
 Plugin 'mileszs/ack.vim'                             " Vim plugin for Perl's Ack
 Plugin 'mustache/vim-mustache-handlebars'            " Mustache/Handlebars template support
+Plugin 'mitsuhiko/vim-json'                          " JSON support
+Plugin 'othree/html5.vim'                            " HTML5 support
 
 " All plugins must be added before the following line
 call vundle#end()               " required
@@ -255,6 +257,9 @@ let g:NERDTreeRespectWildIgnore = 1
 " Gundo
 nnoremap <leader>u :GundoToggle<cr>
 
+" Fugitive
+set statusline+=%{fugitive#statusline()}
+
 " Editorconfig
 let g:EditorConfig_exclude_patterns = ['fugitive://.*']
 
@@ -316,6 +321,27 @@ augroup filetype_jinja
     autocmd!
     autocmd FileType htmljinja setlocal shiftwidth=2
     autocmd FileType htmljinja setlocal softtabstop=2
+augroup END
+
+" .bowerrc file settings
+augroup file_bowerrc
+    autocmd!
+    autocmd BufNewFile,BufFilePre,BufRead .bowerrc set filetype=json
+    " autocmd BufNewFile,BufFilePre,BufRead .bowerrc setlocal shiftwidth=2
+    " autocmd BufNewFile,BufFilePre,BufRead .bowerrc setlocal softtabstop=2
+augroup END
+
+" JSON file sttings
+augroup file_json
+    autocmd!
+    autocmd FIleType json setlocal shiftwidth=2
+    autocmd FIleType json setlocal softtabstop=2
+augroup END
+
+augroup file_javascript
+    autocmd!
+    autocmd FileType javascript setlocal shiftwidth=2
+    autocmd FileType javascript setlocal softtabstop=2
 augroup END
 
 "--------------------------------------------------------}}}
