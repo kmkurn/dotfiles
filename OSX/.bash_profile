@@ -29,13 +29,19 @@ HISTFILESIZE=2000
 shopt -s checkwinsize
 
 # Load prompt string configuration
-[ -f "$HOME/.bash_prompt" ] && source "$HOME/.bash_prompt"
+if [ -f "$HOME/.bash_prompt" ]; then
+    source "$HOME/.bash_prompt"
+fi
 
 # Alias definitions
-[ -f "$HOME/.aliases" ] && source "$HOME/.aliases"
+if [ -f "$HOME/.aliases" ]; then
+    source "$HOME/.aliases"
+fi
 
 # Set Solarized dircolors
-[ -f "$HOME/.dircolors" ] && source "$HOME/.dircolors"
+if [ -f "$HOME/.dircolors" ]; then
+    source "$HOME/.dircolors"
+fi
 
 # Color the output of 'man' command
 # source: https://wiki.archlinux.org/index.php/Man_Page#Colored_man_pages
@@ -58,42 +64,62 @@ export EDITOR=vim
 stty -ixon
 
 # Enable bash completion feature installed by Homebrew
-hash brew 2>/dev/null && [ -f "$(brew --prefix)/etc/bash_completion" ] && \
+hash brew 2>/dev/null
+if [ "$?" -eq 0 -a -f "$(brew --prefix)/etc/bash_completion" ]; then
     source "$(brew --prefix)/etc/bash_completion"
+fi
 
 # Tab completion for conda
-[ -f "$HOME/miniconda3/bin/register-python-argcomplete" ] && \
+if [ -f "$HOME/miniconda3/bin/register-python-argcomplete" ]; then
     eval "$($HOME/miniconda3/bin/register-python-argcomplete conda)"
+fi
 
 # Set architecture flag
 export ARCHFLAGS="-arch x86_64"
 
 # Ensure brew-installed binaries take precedence
-hash brew 2>/dev/null && \
+hash brew 2>/dev/null
+if [ "$?" -eq 0 ]; then
     export PATH="$(brew --prefix)/bin:$(brew --prefix)/sbin:$PATH"
+fi
 
 # Prioritize GNU coreutils
-hash brew 2>/dev/null && brew --prefix coreutils > /dev/null 2>&1 && \
-    export PATH="$(brew --prefix coreutils)/libexec/gnubin:$PATH" && \
+hash brew 2>/dev/null
+if [ "$?" -eq 0 -a -n "$(brew --prefix coreutils 2>/dev/null)" ]; then
+    export PATH="$(brew --prefix coreutils)/libexec/gnubin:$PATH"
     export MANPATH="$(brew --prefix coreutils)/libexec/gnuman:$MANPATH"
+fi
 
 # Pip bash completion
-hash pip 2>/dev/null && eval "$(pip completion --bash)"
+hash pip 2>/dev/null
+if [ "$?" -eq 0 ]; then
+    eval "$(pip completion --bash)"
+fi
 
 # Python virtualenv settings
 export WORKON_HOME="$HOME/.virtualenvs"
 export PROJECT_HOME="$HOME/Projects"
 export VIRTUALENVWRAPPER_SCRIPT="/usr/local/bin/virtualenvwrapper.sh"
-[ -f "$(brew --prefix)/bin/virtualenvwrapper_lazy.sh" ] && \
+if [ -f "$(brew --prefix)/bin/virtualenvwrapper_lazy.sh" ]; then
     source "$(brew --prefix)/bin/virtualenvwrapper_lazy.sh"
+fi
 
 # Jenv settings
 export PATH="$HOME/.jenv/bin:$PATH"
-hash jenv 2>/dev/null && eval "$(jenv init -)"
+hash jenv 2>/dev/null
+if [ "$?" -eq 0 ]; then
+    eval "$(jenv init -)"
+fi
 
 # NVM settings
 export NVM_DIR="$HOME/.nvm"
-hash brew 2>/dev/null && source $(brew --prefix nvm)/nvm.sh
+hash brew 2>/dev/null
+if [ "$?" -eq 0 ]; then
+    source "$(brew --prefix nvm)/nvm.sh"
+fi
 
 # Print archey
-hash archey 2>/dev/null && archey
+hash archey 2>/dev/null
+if [ "$?" -eq 0 ]; then
+    archey
+fi
