@@ -93,6 +93,10 @@ set cindent
 " Insert spaces when <Tab> is pressed
 set expandtab
 
+" Set default indent to be 4 spaces
+set softtabstop=4
+set shiftwidth=4
+
 " Round indentation to multiple of shiftwidth
 set shiftround
 
