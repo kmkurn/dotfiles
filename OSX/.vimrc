@@ -1,5 +1,4 @@
-" VUNDLE INITIALIZATION  {{{1
-
+" Vundle {{{
 set nocompatible
 filetype off
 
@@ -44,10 +43,8 @@ Plugin 'othree/html5.vim'                            " HTML5 support
 " All plugins must be added before the following line
 call vundle#end()               " required
 filetype plugin indent on       " required
-
 "--------------------------------------------------------}}}
-" BASIC SETTINGS  {{{1
-
+" Colors {{{
 " Configure terminal
 set t_Co=256                    " Support 256 colors
 set background=dark
@@ -56,7 +53,8 @@ set background=dark
 "silent! colorscheme monokai
 "silent! colorscheme badwolf
 silent! colorscheme gruvbox
-
+"--------------------------------------------------------}}}
+" GUI & Fonts {{{
 " Set font in MacVim
 if has("gui_running")
     set guifont=Inconsolata:h14
@@ -64,7 +62,8 @@ endif
 
 " Disable scrollbar in MacVim
 set guioptions-=L
-
+"--------------------------------------------------------}}}
+" Misc {{{
 " Display relative line number
 set relativenumber
 
@@ -81,21 +80,6 @@ set autoread
 syntax on
 filetype on
 filetype plugin indent on
-
-" Enable indentation
-set autoindent
-set smartindent
-set cindent
-
-" Insert spaces when <Tab> is pressed
-set expandtab
-
-" Set default indent to be 4 spaces
-set softtabstop=4
-set shiftwidth=4
-
-" Round indentation to multiple of shiftwidth
-set shiftround
 
 " Always display statusline
 set laststatus=2
@@ -128,10 +112,24 @@ set cursorline
 
 " Visual autocomplete for command menu
 set wildmenu
-
 "--------------------------------------------------------}}}
-" KEY MAPPINGS  {{{1
+" Tabs, Indents, Spaces {{{
+" Enable indentation
+set autoindent
+set smartindent
+set cindent
 
+" Insert spaces when <Tab> is pressed
+set expandtab
+
+" Set default indent to be 4 spaces
+set softtabstop=4
+set shiftwidth=4
+
+" Round indentation to multiple of shiftwidth
+set shiftround
+"--------------------------------------------------------}}}
+" Key Mappings  {{{
 let mapleader = ","
 let maplocalleader = "\\"           " Single backslash
 
@@ -152,7 +150,7 @@ inoremap <esc> <nop>
 " Some other disabled things
 nnoremap : <nop>
 
-" Normal Mode  {{{2
+" Normal Mode  {{{
 
 " Set capital Y to yank until end of line
 nnoremap Y y$
@@ -202,9 +200,8 @@ nnoremap <space> za
 
 " Jump to tag if there is only one matching tag, otherwise list matching tags
 nnoremap <c-]> g<c-]>
-
 "--------------------------------------------------------}}}
-" Insert Mode  {{{2
+" Insert Mode  {{{
 
 " Use jk as escape key
 inoremap jk <esc>
@@ -214,23 +211,19 @@ inoremap <leader>D <esc>d^xi
 
 " Convert current word into uppercase
 inoremap <leader>U <esc>bveUea
-
 "--------------------------------------------------------}}}
-
 "--------------------------------------------------------}}}
-" PLUGIN-RELATED SETTINGS {{{1
-
-" Command-T
+" Command-T {{{
 let g:CommandTMaxHeight = 10
-
-" UltiSnips
+"--------------------------------------------------------}}}
+" UltiSnips {{{
 let g:UltiSnipsExpandTrigger = g:mapleader . "<tab>"
 let g:UltiSnipsJumpForwardTrigger = g:mapleader . "<tab>"
 let g:UltiSnipsJumpBackwardTrigger = g:mapleader . "<s-tab>"
 let g:UltiSnipsListSnippets = g:mapleader . "`"
 let g:UltiSnipsEditSplit = "horizontal"
-
-" Syntastic
+"--------------------------------------------------------}}}
+" Syntastic {{{
 set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
@@ -246,65 +239,62 @@ let g:syntasitc_html_checkers = ["tidy"]
 let g:syntastic_javascript_checkers = ["jshint", "jscs"]
 let g:syntastic_python_checkers = ["python", "flake8", "pep257"]
 let g:syntastic_less_checkers = ["lessc"]
-
-" YouCompleteMe
+"--------------------------------------------------------}}}
+" YouCompleteMe {{{
 "let g:ycm_path_to_python_interpreter = '/usr/bin/python2.6'
-
-" NERDTree
+"--------------------------------------------------------}}}
+" NERDTree {{{
 nnoremap <leader>nt :NERDTreeToggle<cr>
 let g:NERDTreeRespectWildIgnore = 1
-
-" Gundo
+"--------------------------------------------------------}}}
+" Gundo {{{
 nnoremap <leader>u :GundoToggle<cr>
-
-" Fugitive
+"--------------------------------------------------------}}}
+" Fugitive {{{
 set statusline+=%{fugitive#statusline()}
-
-" Editorconfig
+"--------------------------------------------------------}}}
+" Editorconfig {{{
 let g:EditorConfig_exclude_patterns = ['fugitive://.*']
-
-" MiniBufExplorer
+"--------------------------------------------------------}}}
+" MiniBufExplorer {{{
 nnoremap <leader>mbt :MBEToggle<cr>
 nnoremap <leader>mbf :MBEFocus<cr>
-
-" MatchTagAlways
-nnoremap <leader>% :MtaJumpToOtherTag<cr>
-
-" Tagbar
-nnoremap <leader>g :TagbarToggle<cr>
-
-" Localvimrc
-let g:localvimrc_ask = 1
-
-" vim-mustache-handlebars
-let g:mustache_abbreviations = 1
-
 "--------------------------------------------------------}}}
-" AUTOCOMMANDS  {{{1
-
-" Vimscript file settings
+" MatchTagAlways {{{
+nnoremap <leader>% :MtaJumpToOtherTag<cr>
+"--------------------------------------------------------}}}
+" Tagbar {{{
+nnoremap <leader>g :TagbarToggle<cr>
+"--------------------------------------------------------}}}
+" Localvimrc {{{
+let g:localvimrc_ask = 1
+"--------------------------------------------------------}}}
+" vim-mustache-handlebars {{{
+let g:mustache_abbreviations = 1
+"--------------------------------------------------------}}}
+" Vimscript file settings {{{
 augroup filetype_vim
     autocmd!
     autocmd FileType vim setlocal foldmethod=marker
     autocmd FileType vim setlocal shiftwidth=4
     autocmd FileType vim setlocal softtabstop=4
 augroup END
-
-" Text file settings
+"--------------------------------------------------------}}}
+" Text file settings {{{
 augroup filetype_text
     autocmd!
     autocmd FileType text setlocal wrap
     autocmd FileType text setlocal noexpandtab
 augroup END
-
-" HTML file settings
+"--------------------------------------------------------}}}
+" HTML file settings {{{
 augroup filetype_html
     autocmd!
     autocmd FileType html setlocal shiftwidth=2
     autocmd FileType html setlocal softtabstop=2
 augroup END
-
-" Python file settings
+"--------------------------------------------------------}}}
+" Python file settings {{{
 augroup filetype_python
     autocmd!
     autocmd FileType python setlocal shiftwidth=4
@@ -313,51 +303,47 @@ augroup filetype_python
     " SimpylFold)
     autocmd FileType python setlocal foldlevel=99
 augroup END
-
-" Jinja file settings
+"--------------------------------------------------------}}}
+" Jinja file settings {{{
 augroup filetype_jinja
     autocmd!
     autocmd FileType htmljinja setlocal shiftwidth=2
     autocmd FileType htmljinja setlocal softtabstop=2
 augroup END
-
-" .bowerrc file settings
+"--------------------------------------------------------}}}
+" .bowerrc file settings {{{
 augroup file_bowerrc
     autocmd!
     autocmd BufNewFile,BufFilePre,BufRead .bowerrc set filetype=json
     " autocmd BufNewFile,BufFilePre,BufRead .bowerrc setlocal shiftwidth=2
     " autocmd BufNewFile,BufFilePre,BufRead .bowerrc setlocal softtabstop=2
 augroup END
-
-" JSON file settings
+"--------------------------------------------------------}}}
+" JSON file settings {{{
 augroup file_json
     autocmd!
     autocmd FIleType json setlocal shiftwidth=2
     autocmd FIleType json setlocal softtabstop=2
 augroup END
-
-" JavaScript file settings
+"--------------------------------------------------------}}}
+" JavaScript file settings {{{
 augroup file_javascript
     autocmd!
     autocmd FileType javascript setlocal shiftwidth=2
     autocmd FileType javascript setlocal softtabstop=2
 augroup END
-
-" Markdown file settings
+"--------------------------------------------------------}}}
+" Markdown file settings {{{
 augroup file_markdown
     autocmd!
     autocmd FileType mkd.markdown setlocal wrap
 augroup END
-
 "--------------------------------------------------------}}}
-" ABBREVIATIONS  {{{1
-
+" Abbreviations  {{{
 " Email
 iabbrev @@ kemal.maulana@fastmail.com
-
 "--------------------------------------------------------}}}
-" PLUGIN-LIKE STUFF  {{{1
-
+" Custom stuff {{{
 " Enclose current WORD in quotes, parentheses, etc
 nnoremap <leader>" mzBi"<esc>lEa"<esc>`zl
 nnoremap <leader>' mzBi'<esc>lEa'<esc>`zl
@@ -372,6 +358,4 @@ inoremap <leader>< <esc>Bi<<esc>lEa>
 inoremap <leader>( <esc>Bi(<esc>lEa)
 inoremap <leader>[ <esc>Bi[<esc>lEa]
 inoremap <leader>_ <esc>Bi_<esc>lEa_
-
 "--------------------------------------------------------}}}
-
