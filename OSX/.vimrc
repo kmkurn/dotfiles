@@ -1,5 +1,4 @@
 " VUNDLE INITIALIZATION  {{{1
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 set nocompatible
 filetype off
@@ -47,9 +46,7 @@ call vundle#end()               " required
 filetype plugin indent on       " required
 
 "--------------------------------------------------------}}}
-
 " BASIC SETTINGS  {{{1
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " Configure terminal
 set t_Co=256                    " Support 256 colors
@@ -133,9 +130,7 @@ set cursorline
 set wildmenu
 
 "--------------------------------------------------------}}}
-
 " KEY MAPPINGS  {{{1
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 let mapleader = ","
 let maplocalleader = "\\"           " Single backslash
@@ -158,7 +153,6 @@ inoremap <esc> <nop>
 nnoremap : <nop>
 
 " Normal Mode  {{{2
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " Set capital Y to yank until end of line
 nnoremap Y y$
@@ -210,9 +204,7 @@ nnoremap <space> za
 nnoremap <c-]> g<c-]>
 
 "--------------------------------------------------------}}}
-
 " Insert Mode  {{{2
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " Use jk as escape key
 inoremap jk <esc>
@@ -226,9 +218,7 @@ inoremap <leader>U <esc>bveUea
 "--------------------------------------------------------}}}
 
 "--------------------------------------------------------}}}
-
 " PLUGIN-RELATED SETTINGS {{{1
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " Command-T
 let g:CommandTMaxHeight = 10
@@ -290,9 +280,7 @@ let g:localvimrc_ask = 1
 let g:mustache_abbreviations = 1
 
 "--------------------------------------------------------}}}
-
 " AUTOCOMMANDS  {{{1
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " Vimscript file settings
 augroup filetype_vim
@@ -362,17 +350,13 @@ augroup file_markdown
 augroup END
 
 "--------------------------------------------------------}}}
-
 " ABBREVIATIONS  {{{1
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " Email
 iabbrev @@ kemal.maulana@fastmail.com
 
 "--------------------------------------------------------}}}
-
 " PLUGIN-LIKE STUFF  {{{1
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " Enclose current WORD in quotes, parentheses, etc
 nnoremap <leader>" mzBi"<esc>lEa"<esc>`zl
