@@ -151,7 +151,6 @@ inoremap <esc> <nop>
 nnoremap : <nop>
 
 " Normal Mode  {{{
-
 " Set capital Y to yank until end of line
 nnoremap Y y$
 
@@ -200,9 +199,12 @@ nnoremap <space> za
 
 " Jump to tag if there is only one matching tag, otherwise list matching tags
 nnoremap <c-]> g<c-]>
+
+" Move vertically by visual line
+nnoremap j gj
+nnoremap k gk
 "--------------------------------------------------------}}}
 " Insert Mode  {{{
-
 " Use jk as escape key
 inoremap jk <esc>
 
