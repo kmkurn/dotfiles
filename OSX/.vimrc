@@ -335,17 +335,24 @@ augroup file_bowerrc
     " autocmd BufNewFile,BufFilePre,BufRead .bowerrc setlocal softtabstop=2
 augroup END
 
-" JSON file sttings
+" JSON file settings
 augroup file_json
     autocmd!
     autocmd FIleType json setlocal shiftwidth=2
     autocmd FIleType json setlocal softtabstop=2
 augroup END
 
+" JavaScript file settings
 augroup file_javascript
     autocmd!
     autocmd FileType javascript setlocal shiftwidth=2
     autocmd FileType javascript setlocal softtabstop=2
+augroup END
+
+" Markdown file settings
+augroup file_markdown
+    autocmd!
+    autocmd FileType mkd.markdown setlocal wrap
 augroup END
 
 "--------------------------------------------------------}}}
