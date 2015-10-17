@@ -96,12 +96,16 @@ if [ "$?" -eq 0 ]; then
     eval "$(pip completion --bash)"
 fi
 
-# Python virtualenv settings
-export WORKON_HOME="$HOME/.virtualenvs"
-export PROJECT_HOME="$HOME/Projects"
-export VIRTUALENVWRAPPER_SCRIPT="/usr/local/bin/virtualenvwrapper.sh"
-if [ -f "$(brew --prefix)/bin/virtualenvwrapper_lazy.sh" ]; then
-    source "$(brew --prefix)/bin/virtualenvwrapper_lazy.sh"
+# Pyenv settings
+hash pyenv 2>/dev/null
+if [ "$?" -eq 0 ]; then
+    eval "$(pyenv init -)"
+fi
+
+# Pyenv-virtualenv settings
+hash pyenv 2>/dev/null && pyenv commands | grep -q virtualenv
+if [ "$?" -eq 0 ]; then
+    eval "$(pyenv virtualenv-init -)"
 fi
 
 # Jenv settings
