@@ -126,6 +126,12 @@ set wildignore+=__pycache__     " Python cache files
 set wildignore+=node_modules    " Node.js packages
 set wildignore+=tags            " ctags file
 
+" Highlight current line
+set cursorline
+
+" Visual autocomplete for command menu
+set wildmenu
+
 "--------------------------------------------------------}}}
 
 " KEY MAPPINGS  {{{1
@@ -195,7 +201,7 @@ nnoremap <leader>lo :lopen<cr>
 nnoremap <leader>lc :lclose<cr>
 
 " Clear highlight and redraw screen
-nnoremap <f5> :nohlsearch<cr>:redraw!<cr>
+nnoremap <leader><space> :nohlsearch<cr>
 
 " Toggle fold
 nnoremap <space> za
