@@ -7,7 +7,7 @@ set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 
 " Let Vundle manage Vundle, required
-Plugin 'gmarik/Vundle.vim'
+Plugin 'VundleVim/Vundle.vim'
 
 " List of plugins here
 Plugin 'Valloric/YouCompleteMe'                      " Autocomplete engine
@@ -39,6 +39,8 @@ Plugin 'mileszs/ack.vim'                             " Vim plugin for Perl's Ack
 Plugin 'mustache/vim-mustache-handlebars'            " Mustache/Handlebars template support
 Plugin 'mitsuhiko/vim-json'                          " JSON support
 Plugin 'othree/html5.vim'                            " HTML5 support
+Plugin 'davidhalter/jedi-vim'                        " Turns Vim into a Python IDE
+Plugin 'vim-scripts/syntaxhaskell.vim'               " Haskell syntax support
 
 " All plugins must be added before the following line
 call vundle#end()               " required
@@ -237,7 +239,7 @@ let g:syntastic_filetype_map = { "html.handlebars": "handlebars" }
 
 let g:syntastic_html_tidy_exec = "tidy5"
 
-let g:syntasitc_html_checkers = ["tidy"]
+let g:syntastic_html_checkers = ["tidy"]
 let g:syntastic_javascript_checkers = ["jshint", "jscs"]
 let g:syntastic_python_checkers = ["python", "flake8", "pep257"]
 let g:syntastic_less_checkers = ["lessc"]
@@ -266,13 +268,16 @@ nnoremap <leader>mbf :MBEFocus<cr>
 nnoremap <leader>% :MtaJumpToOtherTag<cr>
 "--------------------------------------------------------}}}
 " Tagbar {{{
-nnoremap <leader>g :TagbarToggle<cr>
+nnoremap <f9> :TagbarToggle<cr>
 "--------------------------------------------------------}}}
 " Localvimrc {{{
 let g:localvimrc_ask = 1
 "--------------------------------------------------------}}}
 " vim-mustache-handlebars {{{
 let g:mustache_abbreviations = 1
+"--------------------------------------------------------}}}
+" jedi-vim {{{
+let g:jedi#completions_enabled = 0  " let YCM handle autocompletion
 "--------------------------------------------------------}}}
 " Vimscript file settings {{{
 augroup filetype_vim
@@ -301,9 +306,7 @@ augroup filetype_python
     autocmd!
     autocmd FileType python setlocal shiftwidth=4
     autocmd FileType python setlocal softtabstop=4
-    " autocmd FileType python setlocal foldmethod=indent (already done by
-    " SimpylFold)
-    autocmd FileType python setlocal foldlevel=99
+    autocmd FileType python setlocal foldlevel=5
 augroup END
 "--------------------------------------------------------}}}
 " Jinja file settings {{{
@@ -317,8 +320,6 @@ augroup END
 augroup file_bowerrc
     autocmd!
     autocmd BufNewFile,BufFilePre,BufRead .bowerrc set filetype=json
-    " autocmd BufNewFile,BufFilePre,BufRead .bowerrc setlocal shiftwidth=2
-    " autocmd BufNewFile,BufFilePre,BufRead .bowerrc setlocal softtabstop=2
 augroup END
 "--------------------------------------------------------}}}
 " JSON file settings {{{
@@ -333,6 +334,8 @@ augroup file_javascript
     autocmd!
     autocmd FileType javascript setlocal shiftwidth=2
     autocmd FileType javascript setlocal softtabstop=2
+    autocmd FileType javascript setlocal foldmethod=indent
+    autocmd FileType javascript setlocal foldlevel=5
 augroup END
 "--------------------------------------------------------}}}
 " Markdown file settings {{{
