@@ -122,6 +122,9 @@ if [ "$?" -eq 0 ]; then
     source "$(brew --prefix nvm)/nvm.sh"
 fi
 
+# Cabal-installed binary
+export PATH="$HOME/Library/Haskell/bin:$PATH"
+
 # Print archey
 hash archey 2>/dev/null
 if [ "$?" -eq 0 ]; then
