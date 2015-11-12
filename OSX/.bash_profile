@@ -28,9 +28,14 @@ HISTFILESIZE=2000
 # update the values of LINES and COLUMNS.
 shopt -s checkwinsize
 
-# Load prompt string configuration
+# Prompt string configuration
 if [ -f "$HOME/.bash_prompt" ]; then
     source "$HOME/.bash_prompt"
+fi
+
+# Local prompt string configuration
+if [ -f "$HOME/.bash_prompt.local" ]; then
+    source "$HOME/.bash_prompt.local"
 fi
 
 # Alias definitions
@@ -38,7 +43,12 @@ if [ -f "$HOME/.aliases" ]; then
     source "$HOME/.aliases"
 fi
 
-# Set Solarized dircolors
+# Local alias definitions
+if [ -f "$HOME/.aliases.local" ]; then
+    source "$HOME/.aliases.local"
+fi
+
+# Set dircolors
 if [ -f "$HOME/.dircolors" ]; then
     source "$HOME/.dircolors"
 fi
@@ -63,9 +73,12 @@ export EDITOR=vim
 # when using Command-T in Vim
 stty -ixon
 
+# Check if Homebrew is installed
+brew help > /dev/null 2>&1
+HOMEBREW_INSTALLED="$?"
+
 # Enable bash completion feature installed by Homebrew
-hash brew 2>/dev/null
-if [ "$?" -eq 0 -a -f "$(brew --prefix)/etc/bash_completion" ]; then
+if [ "$HOMEBREW_INSTALLED" -eq 0 -a -f "$(brew --prefix)/etc/bash_completion" ]; then
     source "$(brew --prefix)/etc/bash_completion"
 fi
 
@@ -78,55 +91,65 @@ fi
 export ARCHFLAGS="-arch x86_64"
 
 # Ensure brew-installed binaries take precedence
-hash brew 2>/dev/null
-if [ "$?" -eq 0 ]; then
+if [ "$HOMEBREW_INSTALLED" -eq 0 ]; then
     export PATH="$(brew --prefix)/bin:$(brew --prefix)/sbin:$PATH"
 fi
 
 # Prioritize GNU coreutils
-hash brew 2>/dev/null
-if [ "$?" -eq 0 -a -n "$(brew --prefix coreutils 2>/dev/null)" ]; then
+if [ "$HOMEBREW_INSTALLED" -eq 0 -a -n "$(brew --prefix coreutils 2>/dev/null)" ]; then
     export PATH="$(brew --prefix coreutils)/libexec/gnubin:$PATH"
     export MANPATH="$(brew --prefix coreutils)/libexec/gnuman:$MANPATH"
 fi
 
 # Pip bash completion
-hash pip 2>/dev/null
+pip help > /dev/null 2>&1
 if [ "$?" -eq 0 ]; then
     eval "$(pip completion --bash)"
 fi
 
+# Check if Pyenv is installed
+pyenv help > /dev/null 2>&1
+PYENV_INSTALLED="$?"
+
 # Pyenv settings
-hash pyenv 2>/dev/null
-if [ "$?" -eq 0 ]; then
+if [ "$PYENV_INSTALLED" -eq 0 ]; then
     eval "$(pyenv init -)"
 fi
 
 # Pyenv-virtualenv settings
-hash pyenv 2>/dev/null && pyenv commands | grep -q virtualenv
-if [ "$?" -eq 0 ]; then
-    eval "$(pyenv virtualenv-init -)"
+if [ "$PYENV_INSTALLED" -eq 0 ]; then
+    pyenv commands | grep -q virtualenv
+    if [ "$?" -eq 0 ]; then
+        eval "$(pyenv virtualenv-init -)"
+    fi
 fi
 
 # Jenv settings
-export PATH="$HOME/.jenv/bin:$PATH"
-hash jenv 2>/dev/null
+jenv help > /dev/null 2>&1
 if [ "$?" -eq 0 ]; then
+    export PATH="$HOME/.jenv/bin:$PATH"
     eval "$(jenv init -)"
 fi
 
 # NVM settings
-export NVM_DIR="$HOME/.nvm"
-hash brew 2>/dev/null
+nvm help > /dev/null 2>&1
 if [ "$?" -eq 0 ]; then
-    source "$(brew --prefix nvm)/nvm.sh"
+    export NVM_DIR="$HOME/.nvm"
+    if [ "$HOMEBREW_INSTALLED" -eq 0 ]; then
+        source "$(brew --prefix nvm)/nvm.sh"
+    fi
 fi
 
 # Cabal-installed binary
 export PATH="$HOME/Library/Haskell/bin:$PATH"
 
 # Print archey
-hash archey 2>/dev/null
+archey --help > /dev/null 2>&1
 if [ "$?" -eq 0 ]; then
     archey
+fi
+
+# Local .bash_profile
+if [ -f "$HOME/.bash_profile.local" ]; then
+    source "$HOME/.bash_profile.local"
 fi
