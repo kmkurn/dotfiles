@@ -9,7 +9,7 @@ call vundle#begin()
 " Let Vundle manage Vundle, required
 Plugin 'VundleVim/Vundle.vim'
 
-" List of plugins here
+" General
 Plugin 'Valloric/YouCompleteMe'                      " Autocomplete engine
 Plugin 'SirVer/ultisnips'                            " Snippet engine
 Plugin 'wincent/command-t'                           " Easy finding files
@@ -20,27 +20,41 @@ Plugin 'scrooloose/nerdtree'                         " Files and directory brows
 Plugin 'majutsushi/tagbar'                           " Source code browser
 Plugin 'embear/vim-localvimrc'                       " Enable local Vim settings
 Plugin 'editorconfig/editorconfig-vim'               " Editorconfig plugin
-Plugin 'mitsuhiko/vim-jinja'                         " Jinja support
 Plugin 'craigemery/vim-autotag'                      " Auto-update tags
 Plugin 'fholgado/minibufexpl.vim'                    " Mini buffer explorer
 Plugin 'tpope/vim-fugitive'                          " Git plugin
 Plugin 'sjl/gundo.vim'                               " Undo trees
-Plugin 'Valloric/MatchTagAlways'                     " Match HTML/XML tags
 Plugin 'tomtom/tcomment_vim'                         " Toggle comment easily
 Plugin 'easymotion/vim-easymotion'                   " Vim motions on speed!
 Plugin 'tpope/vim-unimpaired'                        " Pairs of handy bracket mappings
-Plugin 'godlygeek/tabular'                           " vim-markdown dependency
-Plugin 'plasticboy/vim-markdown'                     " Markdown support
+Plugin 'mileszs/ack.vim'                             " Vim plugin for Perl's Ack
+
+" Python/Jinja
+Plugin 'davidhalter/jedi-vim'                        " Turns Vim into a Python IDE
+Plugin 'tmhedberg/SimpylFold'                        " Python code folding
+Plugin 'mitsuhiko/vim-jinja'                         " Jinja support
+
+" Haskell
+Plugin 'vim-scripts/syntaxhaskell.vim'               " Haskell syntax support
+Plugin 'eagletmt/ghcmod-vim'                         " ghc-mod for Vim
+Plugin 'Shougo/vimproc.vim'                          " ghcmod-vim dependency
+Plugin 'eagletmt/neco-ghc'                           " Haskell completion
+
+" JavaScript/NodeJS/Handlebars
 Plugin 'pangloss/vim-javascript'                     " JavaScript indentation + syntax
 Plugin 'moll/vim-node'                               " Node.js support
+Plugin 'ternjs/tern_for_vim'                         " Turns Vim into a NodeJS IDE
 Plugin 'othree/javascript-libraries-syntax.vim'      " Other JavaScript libraries support
-Plugin 'tmhedberg/SimpylFold'                        " Python code folding
-Plugin 'mileszs/ack.vim'                             " Vim plugin for Perl's Ack
 Plugin 'mustache/vim-mustache-handlebars'            " Mustache/Handlebars template support
+
+" HTML/XML/JSON
+Plugin 'Valloric/MatchTagAlways'                     " Match HTML/XML tags
 Plugin 'mitsuhiko/vim-json'                          " JSON support
 Plugin 'othree/html5.vim'                            " HTML5 support
-Plugin 'davidhalter/jedi-vim'                        " Turns Vim into a Python IDE
-Plugin 'vim-scripts/syntaxhaskell.vim'               " Haskell syntax support
+
+" Markdown
+Plugin 'godlygeek/tabular'                           " vim-markdown dependency
+Plugin 'plasticboy/vim-markdown'                     " Markdown support
 
 " All plugins must be added before the following line
 call vundle#end()               " required
