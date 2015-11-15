@@ -132,16 +132,22 @@ if [ "$?" -eq 0 ]; then
 fi
 
 # NVM settings
-nvm help > /dev/null 2>&1
-if [ "$?" -eq 0 ]; then
-    export NVM_DIR="$HOME/.nvm"
-    if [ "$HOMEBREW_INSTALLED" -eq 0 ]; then
+if [ "$HOMEBREW_INSTALLED" -eq 0 ]; then
+    brew list | grep -q nvm
+    if [ "$?" -eq 0 ]; then
+        export NVM_DIR="$HOME/.nvm"
         source "$(brew --prefix nvm)/nvm.sh"
     fi
 fi
 
-# Cabal-installed binary
-export PATH="$HOME/Library/Haskell/bin:$PATH"
+# Local binary; used by Stackage
+export PATH="$HOME/.local/bin:$PATH"
+
+# Stack tool autocomplete
+stack --help > /dev/null 2>&1
+if [ "$?" -eq 0 ]; then
+    eval "$(stack --bash-completion-script "$(which stack)")"
+fi
 
 # Print archey
 archey --help > /dev/null 2>&1
