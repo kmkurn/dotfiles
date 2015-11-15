@@ -3,6 +3,8 @@ dotfiles
 
 My config files for bash, vim, etc for Linux and OSX.
 
+**NOTE**: The files under `Linux` is currently not maintained since I am primarily using OSX now.
+
 License
 -------
 
