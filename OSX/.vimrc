@@ -10,51 +10,54 @@ call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'
 
 " General
-Plugin 'Valloric/YouCompleteMe'                      " Autocomplete engine
-Plugin 'SirVer/ultisnips'                            " Snippet engine
-Plugin 'wincent/command-t'                           " Easy finding files
-Plugin 'scrooloose/syntastic'                        " Syntax checker
-Plugin 'itchyny/lightline.vim'                       " Minimalist statusline
-Plugin 'tpope/vim-surround'                          " Surrounding made easy
-Plugin 'scrooloose/nerdtree'                         " Files and directory browser
-Plugin 'majutsushi/tagbar'                           " Source code browser
-Plugin 'embear/vim-localvimrc'                       " Enable local Vim settings
-Plugin 'editorconfig/editorconfig-vim'               " Editorconfig plugin
-Plugin 'craigemery/vim-autotag'                      " Auto-update tags
-Plugin 'fholgado/minibufexpl.vim'                    " Mini buffer explorer
-Plugin 'tpope/vim-fugitive'                          " Git plugin
-Plugin 'sjl/gundo.vim'                               " Undo trees
-Plugin 'tomtom/tcomment_vim'                         " Toggle comment easily
-Plugin 'easymotion/vim-easymotion'                   " Vim motions on speed!
-Plugin 'tpope/vim-unimpaired'                        " Pairs of handy bracket mappings
-Plugin 'mileszs/ack.vim'                             " Vim plugin for Perl's Ack
+Plugin 'Valloric/YouCompleteMe'                     " Autocomplete engine
+Plugin 'wincent/command-t'                          " Easy finding files
+Plugin 'scrooloose/syntastic'                       " Syntax checker
+Plugin 'itchyny/lightline.vim'                      " Minimalist statusline
+Plugin 'tpope/vim-surround'                         " Surrounding made easy
+Plugin 'scrooloose/nerdtree'                        " Files and directory browser
+Plugin 'majutsushi/tagbar'                          " Source code browser
+Plugin 'embear/vim-localvimrc'                      " Enable local Vim settings
+Plugin 'editorconfig/editorconfig-vim'              " Editorconfig plugin
+Plugin 'craigemery/vim-autotag'                     " Auto-update tags
+Plugin 'fholgado/minibufexpl.vim'                   " Mini buffer explorer
+Plugin 'tpope/vim-fugitive'                         " Git plugin
+Plugin 'int3/vim-extradite'                         " Git commit browser; depends on vim-fugitive
+Plugin 'sjl/gundo.vim'                              " Undo trees
+Plugin 'tomtom/tcomment_vim'                        " Toggle comment easily
+Plugin 'easymotion/vim-easymotion'                  " Vim motions on speed!
+Plugin 'tpope/vim-unimpaired'                       " Pairs of handy bracket mappings
+Plugin 'mileszs/ack.vim'                            " Vim plugin for Perl's Ack
+Plugin 'nathanaelkane/vim-indent-guides'            " Show indentation guide
+Plugin 'vim-scripts/gitignore'                      " Set wildignore from .gitignore
 
 " Python/Jinja
-Plugin 'davidhalter/jedi-vim'                        " Turns Vim into a Python IDE
-Plugin 'tmhedberg/SimpylFold'                        " Python code folding
-Plugin 'mitsuhiko/vim-jinja'                         " Jinja support
+Plugin 'davidhalter/jedi-vim'                       " Turns Vim into a Python IDE
+Plugin 'tmhedberg/SimpylFold'                       " Python code folding
+Plugin 'mitsuhiko/vim-jinja'                        " Jinja support
 
 " Haskell
-Plugin 'vim-scripts/syntaxhaskell.vim'               " Haskell syntax support
-Plugin 'eagletmt/ghcmod-vim'                         " ghc-mod for Vim
-Plugin 'Shougo/vimproc.vim'                          " ghcmod-vim dependency
-Plugin 'eagletmt/neco-ghc'                           " Haskell completion
+Plugin 'neovimhaskell/haskell-vim'                  " Haskell syntax and indentation support
+Plugin 'eagletmt/ghcmod-vim'                        " ghc-mod for Vim
+Plugin 'Shougo/vimproc.vim'                         " ghcmod-vim dependency
+Plugin 'eagletmt/neco-ghc'                          " Haskell completion
 
 " JavaScript/NodeJS/Handlebars
-Plugin 'pangloss/vim-javascript'                     " JavaScript indentation + syntax
-Plugin 'moll/vim-node'                               " Node.js support
-Plugin 'ternjs/tern_for_vim'                         " Turns Vim into a NodeJS IDE
-Plugin 'othree/javascript-libraries-syntax.vim'      " Other JavaScript libraries support
-Plugin 'mustache/vim-mustache-handlebars'            " Mustache/Handlebars template support
+Plugin 'jelera/vim-javascript-syntax'               " Enhanced JavaScript syntax for Vim
+Plugin 'pangloss/vim-javascript'                    " JavaScript indentation + syntax
+Plugin 'moll/vim-node'                              " Node.js support
+Plugin 'ternjs/tern_for_vim'                        " Turns Vim into a NodeJS IDE
+Plugin 'othree/javascript-libraries-syntax.vim'     " Other JavaScript libraries support
+Plugin 'mustache/vim-mustache-handlebars'           " Mustache/Handlebars template support
 
 " HTML/XML/JSON
-Plugin 'Valloric/MatchTagAlways'                     " Match HTML/XML tags
-Plugin 'mitsuhiko/vim-json'                          " JSON support
-Plugin 'othree/html5.vim'                            " HTML5 support
+Plugin 'Valloric/MatchTagAlways'                    " Match HTML/XML tags
+Plugin 'mitsuhiko/vim-json'                         " JSON support
+Plugin 'othree/html5.vim'                           " HTML5 support
 
 " Markdown
-Plugin 'godlygeek/tabular'                           " vim-markdown dependency
-Plugin 'plasticboy/vim-markdown'                     " Markdown support
+Plugin 'godlygeek/tabular'                          " vim-markdown dependency
+Plugin 'plasticboy/vim-markdown'                    " Markdown support
 
 " All plugins must be added before the following line
 call vundle#end()               " required
@@ -118,11 +121,6 @@ set showmatch
 set nobackup
 set noswapfile
 
-" Ignore some files
-set wildignore+=__pycache__     " Python cache files
-set wildignore+=node_modules    " Node.js packages
-set wildignore+=tags            " ctags file
-
 " Highlight current line
 set cursorline
 
@@ -162,6 +160,9 @@ inoremap <right> <nop>
 " Disable default escape keys
 inoremap <c-[> <nop>
 inoremap <esc> <nop>
+
+" Disable Ex mode
+nnoremap Q <nop>
 
 " Some other disabled things
 nnoremap : <nop>
@@ -234,13 +235,6 @@ inoremap <leader>U <esc>bveUea
 " Command-T {{{
 let g:CommandTMaxHeight = 10
 "--------------------------------------------------------}}}
-" UltiSnips {{{
-let g:UltiSnipsExpandTrigger = g:mapleader . "<tab>"
-let g:UltiSnipsJumpForwardTrigger = g:mapleader . "<tab>"
-let g:UltiSnipsJumpBackwardTrigger = g:mapleader . "<s-tab>"
-let g:UltiSnipsListSnippets = g:mapleader . "`"
-let g:UltiSnipsEditSplit = "horizontal"
-"--------------------------------------------------------}}}
 " Syntastic {{{
 set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
@@ -259,10 +253,24 @@ let g:syntastic_python_checkers = ["python", "flake8", "pep257"]
 let g:syntastic_less_checkers = ["lessc"]
 "--------------------------------------------------------}}}
 " YouCompleteMe {{{
-"let g:ycm_path_to_python_interpreter = '/usr/bin/python2.6'
+let g:ycm_key_detailed_diagnostics = ''
+let g:ycm_semantic_triggers = { 'haskell': ['.'] }
 "--------------------------------------------------------}}}
 " NERDTree {{{
-nnoremap <leader>nt :NERDTreeToggle<cr>
+function! IsNERDTreeOpen()
+    return exists("t:NERDTreeBufName") && (bufwinnr(t:NERDTreeBufName) != -1)
+endfunction
+
+function! ToggleFindNerd()
+  if IsNERDTreeOpen()
+    exec ':NERDTreeToggle'
+  else
+    exec ':NERDTreeFind'
+  endif
+endfunction
+
+" If nerd tree is closed, find current file, if open, close it
+nnoremap <leader>F :call ToggleFindNerd()<cr>
 let g:NERDTreeRespectWildIgnore = 1
 "--------------------------------------------------------}}}
 " Gundo {{{
@@ -270,6 +278,9 @@ nnoremap <leader>u :GundoToggle<cr>
 "--------------------------------------------------------}}}
 " Fugitive {{{
 set statusline+=%{fugitive#statusline()}
+nnoremap <leader>gs :Gstatus<cr>
+nnoremap <leader>gd :Gdiff<cr>
+nnoremap <leader>gb :Gblame<cr>
 "--------------------------------------------------------}}}
 " Editorconfig {{{
 let g:EditorConfig_exclude_patterns = ['fugitive://.*']
@@ -293,41 +304,41 @@ let g:mustache_abbreviations = 1
 " jedi-vim {{{
 let g:jedi#completions_enabled = 0  " let YCM handle autocompletion
 "--------------------------------------------------------}}}
+" haskell-vim {{{
+let g:haskell_indent_in = 0
+"--------------------------------------------------------}}}
+" Extradite {{{
+let g:extradite_width = 60
+nnoremap <leader>gl :Extradite!<cr>
+"--------------------------------------------------------}}}
 " Vimscript file settings {{{
 augroup filetype_vim
     autocmd!
-    autocmd FileType vim setlocal foldmethod=marker
-    autocmd FileType vim setlocal shiftwidth=4
-    autocmd FileType vim setlocal softtabstop=4
+    autocmd FileType vim setlocal foldmethod=marker shiftwidth=4 softtabstop=4
 augroup END
 "--------------------------------------------------------}}}
 " Text file settings {{{
 augroup filetype_text
     autocmd!
-    autocmd FileType text setlocal wrap
-    autocmd FileType text setlocal noexpandtab
+    autocmd FileType text setlocal wrap noexpandtab
 augroup END
 "--------------------------------------------------------}}}
 " HTML file settings {{{
 augroup filetype_html
     autocmd!
-    autocmd FileType html setlocal shiftwidth=2
-    autocmd FileType html setlocal softtabstop=2
+    autocmd FileType html setlocal shiftwidth=2 softtabstop=2
 augroup END
 "--------------------------------------------------------}}}
 " Python file settings {{{
 augroup filetype_python
     autocmd!
-    autocmd FileType python setlocal shiftwidth=4
-    autocmd FileType python setlocal softtabstop=4
-    autocmd FileType python setlocal foldlevel=5
+    autocmd FileType python setlocal shiftwidth=4 softtabstop=4 foldlevel=5
 augroup END
 "--------------------------------------------------------}}}
 " Jinja file settings {{{
 augroup filetype_jinja
     autocmd!
-    autocmd FileType htmljinja setlocal shiftwidth=2
-    autocmd FileType htmljinja setlocal softtabstop=2
+    autocmd FileType htmljinja setlocal shiftwidth=2 softtabstop=2
 augroup END
 "--------------------------------------------------------}}}
 " .bowerrc file settings {{{
@@ -339,23 +350,35 @@ augroup END
 " JSON file settings {{{
 augroup file_json
     autocmd!
-    autocmd FIleType json setlocal shiftwidth=2
-    autocmd FIleType json setlocal softtabstop=2
+    autocmd FIleType json setlocal shiftwidth=2 softtabstop=2
 augroup END
 "--------------------------------------------------------}}}
 " JavaScript file settings {{{
 augroup file_javascript
     autocmd!
-    autocmd FileType javascript setlocal shiftwidth=2
-    autocmd FileType javascript setlocal softtabstop=2
-    autocmd FileType javascript setlocal foldmethod=indent
-    autocmd FileType javascript setlocal foldlevel=5
+    autocmd FileType javascript setlocal sw=2 sts=2 fdm=indent fdl=5
+    autocmd FileType javascript nnoremap <leader>d :TernDef<cr>
+    autocmd FileType javascript nnoremap <leader>ft :TernType<cr>
+    autocmd FileType javascript nnoremap <leader>n :TernRefs<cr>
+    autocmd FileType javascript nnoremap K :TernDoc<cr>
+    autocmd FileType javascript nnoremap <leader>r :TernRename<cr>
 augroup END
 "--------------------------------------------------------}}}
 " Markdown file settings {{{
 augroup file_markdown
     autocmd!
     autocmd FileType mkd.markdown setlocal wrap
+augroup END
+"--------------------------------------------------------}}}
+" Haskell file settings {{{
+augroup file_haskell
+    autocmd!
+    autocmd BufNewFile,BufFilePre,BufRead,BufWritePost *.hs GhcModCheckAndLintAsync
+    autocmd FileType haskell setlocal omnifunc=necoghc#omnifunc
+    autocmd FileType haskell nnoremap <leader>ft :GhcModType<cr>
+    autocmd FileType haskell nnoremap <leader>hc :GhcModTypeClear<cr>
+    autocmd FileType haskell nnoremap <leader>hi :GhcModInfo<cr>
+    autocmd FileType haskell nnoremap <leader>hI :GhcModInfoPreview<cr>
 augroup END
 "--------------------------------------------------------}}}
 " Abbreviations  {{{
@@ -377,4 +400,9 @@ inoremap <leader>< <esc>Bi<<esc>lEa>
 inoremap <leader>( <esc>Bi(<esc>lEa)
 inoremap <leader>[ <esc>Bi[<esc>lEa]
 inoremap <leader>_ <esc>Bi_<esc>lEa_
+
+" Local/custom .vimrc
+if filereadable(expand("~/.vimrc.local"))
+  source ~/.vimrc.local
+endif
 "--------------------------------------------------------}}}
