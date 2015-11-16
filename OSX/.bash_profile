@@ -149,6 +149,12 @@ if [ "$?" -eq 0 ]; then
     eval "$(stack --bash-completion-script "$(which stack)")"
 fi
 
+# rbenv settings
+rbenv --help > /dev/null 2>&1
+if [ "$?" -eq 0 ]; then
+    eval "$(rbenv init -)"
+fi
+
 # Print archey
 archey --help > /dev/null 2>&1
 if [ "$?" -eq 0 ]; then
