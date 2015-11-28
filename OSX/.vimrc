@@ -30,6 +30,10 @@ Plugin 'tpope/vim-unimpaired'                       " Pairs of handy bracket map
 Plugin 'mileszs/ack.vim'                            " Vim plugin for Perl's Ack
 Plugin 'nathanaelkane/vim-indent-guides'            " Show indentation guide
 Plugin 'vim-scripts/gitignore'                      " Set wildignore from .gitignore
+Plugin 'rhysd/conflict-marker.vim'                  " Highlight, jump, and resolve conflicts
+
+" Colorschemes
+Plugin 'morhetz/gruvbox'
 
 " Python/Jinja
 Plugin 'davidhalter/jedi-vim'                       " Turns Vim into a Python IDE
@@ -37,7 +41,7 @@ Plugin 'tmhedberg/SimpylFold'                       " Python code folding
 Plugin 'mitsuhiko/vim-jinja'                        " Jinja support
 
 " Haskell
-Plugin 'neovimhaskell/haskell-vim'                  " Haskell syntax and indentation support
+Plugin 'dag/vim2hs'                                 " A collection of vimscripts for Haskell development
 Plugin 'eagletmt/ghcmod-vim'                        " ghc-mod for Vim
 Plugin 'Shougo/vimproc.vim'                         " ghcmod-vim dependency
 Plugin 'eagletmt/neco-ghc'                          " Haskell completion
@@ -67,10 +71,6 @@ filetype plugin indent on       " required
 " Configure terminal
 set t_Co=256                    " Support 256 colors
 set background=dark
-"silent! colorscheme solarized
-"silent! colorscheme molokai
-"silent! colorscheme monokai
-"silent! colorscheme badwolf
 silent! colorscheme gruvbox
 "--------------------------------------------------------}}}
 " GUI & Fonts {{{
@@ -83,8 +83,12 @@ endif
 set guioptions-=L
 "--------------------------------------------------------}}}
 " Misc {{{
-" Display relative line number
+" Shut the annoying bells up
+set noerrorbells visualbell t_vb=
+
+" Display absolute and relative line number
 set relativenumber
+set number
 
 " Disable line wrapping
 set nowrap
@@ -304,9 +308,6 @@ let g:mustache_abbreviations = 1
 " jedi-vim {{{
 let g:jedi#completions_enabled = 0  " let YCM handle autocompletion
 "--------------------------------------------------------}}}
-" haskell-vim {{{
-let g:haskell_indent_in = 0
-"--------------------------------------------------------}}}
 " Extradite {{{
 let g:extradite_width = 60
 nnoremap <leader>gl :Extradite!<cr>
@@ -373,7 +374,7 @@ augroup END
 " Haskell file settings {{{
 augroup file_haskell
     autocmd!
-    autocmd BufNewFile,BufFilePre,BufRead,BufWritePost *.hs GhcModCheckAndLintAsync
+    autocmd BufRead,BufWritePost *.hs GhcModCheckAndLintAsync
     autocmd FileType haskell setlocal omnifunc=necoghc#omnifunc
     autocmd FileType haskell nnoremap <leader>ft :GhcModType<cr>
     autocmd FileType haskell nnoremap <leader>hc :GhcModTypeClear<cr>
