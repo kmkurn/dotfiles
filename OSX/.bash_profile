@@ -161,6 +161,11 @@ if [ "$?" -eq 0 ]; then
     archey
 fi
 
+# Gruvbox vim colorscheme
+if [ -f "$HOME/.vim/bundle/gruvbox/gruvbox_256palette_osx.sh" ]; then
+    source "$HOME/.vim/bundle/gruvbox/gruvbox_256palette_osx.sh"
+fi
+
 # Local .bash_profile
 if [ -f "$HOME/.bash_profile.local" ]; then
     source "$HOME/.bash_profile.local"
