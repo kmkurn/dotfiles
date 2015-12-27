@@ -53,6 +53,7 @@ Plugin 'moll/vim-node'                              " Node.js support
 Plugin 'ternjs/tern_for_vim'                        " Turns Vim into a NodeJS IDE
 Plugin 'othree/javascript-libraries-syntax.vim'     " Other JavaScript libraries support
 Plugin 'mustache/vim-mustache-handlebars'           " Mustache/Handlebars template support
+Plugin 'mxw/vim-jsx'                                " JSX support (depends on pangloss/vim-javascript)
 
 " HTML/XML/JSON
 Plugin 'Valloric/MatchTagAlways'                    " Match HTML/XML tags
@@ -239,6 +240,11 @@ inoremap <leader>U <esc>bveUea
 " Command-T {{{
 let g:CommandTMaxHeight = 10
 "--------------------------------------------------------}}}
+" Lightline {{{
+let g:lightline = {
+    \ 'colorscheme': 'gruvbox'
+    \ }
+"--------------------------------------------------------}}}
 " Syntastic {{{
 set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
@@ -363,6 +369,17 @@ augroup file_javascript
     autocmd FileType javascript nnoremap <leader>n :TernRefs<cr>
     autocmd FileType javascript nnoremap K :TernDoc<cr>
     autocmd FileType javascript nnoremap <leader>r :TernRename<cr>
+augroup END
+"--------------------------------------------------------}}}
+" JSX file settings {{{
+augroup file_jsx
+    autocmd!
+    autocmd FileType *jsx* setlocal sw=2 sts=2 fdm=indent fdl=5
+    autocmd FileType *jsx* nnoremap <leader>d :TernDef<cr>
+    autocmd FileType *jsx* nnoremap <leader>ft :TernType<cr>
+    autocmd FileType *jsx* nnoremap <leader>n :TernRefs<cr>
+    autocmd FileType *jsx* nnoremap K :TernDoc<cr>
+    autocmd FileType *jsx* nnoremap <leader>r :TernRename<cr>
 augroup END
 "--------------------------------------------------------}}}
 " Markdown file settings {{{

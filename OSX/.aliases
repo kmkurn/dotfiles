@@ -49,3 +49,7 @@ assign_proxy() {
 clear_proxy() {
     assign_proxy ""
 }
+
+# Emacs
+alias ek='emacsclient -e "(kill-emacs)"'
+alias es='emacs --daemon'
