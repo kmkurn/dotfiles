@@ -37,14 +37,6 @@
   (define-key company-active-map (kbd "<backtab>") 'company-select-previous))
 
 
-;; Project management
-(install-package-if-not-exist 'projectile)
-(projectile-global-mode)
-(setq projectile-completion-system 'helm)
-(setq projectile-switch-project-action 'helm-projectile)
-(setq projectile-enable-caching t)
-
-
 ;; Emacs incremental and narrowing framework; better than ido-mode
 (install-package-if-not-exist 'helm)
 (require 'helm)
@@ -93,6 +85,14 @@
 (global-set-key (kbd "C-c h SPC") 'helm-all-mark-rings)
 
 
+;; Project management
+(install-package-if-not-exist 'projectile)
+(projectile-global-mode)
+(setq projectile-completion-system 'helm)
+(setq projectile-switch-project-action 'helm-projectile)
+(setq projectile-enable-caching t)
+
+
 ;; Integrate projectile and helm
 (install-package-if-not-exist 'helm-projectile)
 (helm-projectile-on)
@@ -136,7 +136,7 @@
   (setq-default flycheck-disabled-checkers '(emacs-lisp-checkdoc)))
 
 
-;; Better mode-line
+;; Vim powerline as mode-line
 (install-package-if-not-exist 'powerline)
 (require 'powerline)
 (powerline-default-theme)
@@ -165,12 +165,13 @@
 (install-package-if-not-exist 'evil)
 (require 'evil)
 (evil-mode 1)
+;; Some handy keybindings
 (define-key evil-normal-state-map (kbd "C-u") 'evil-scroll-up)
 (define-key evil-visual-state-map (kbd "C-u") 'evil-scroll-up)
 (define-key evil-insert-state-map (kbd "jk") 'evil-normal-state)
 
 
-;; Better powerline for evil
+;; Better powerline for evil-mode
 (install-package-if-not-exist 'powerline-evil)
 (require 'powerline-evil)
 (powerline-evil-vim-color-theme)
@@ -196,14 +197,14 @@
 (require 'pyenv-mode)
 (pyenv-mode)
 
-(defun projectile-pyenv-mode-set ()
+(defun projectile-pyenv-mode-set-virtualenv ()
   "Set pyenv version matching project name."
   (let ((project (projectile-project-name)))
     (if (member project (pyenv-mode-versions))
         (pyenv-mode-set project)
       (pyenv-mode-unset))))
 
-(defun projectile-pyenv-hook ()
+(defun projectile-pyenv-mode-set-version ()
   "Set pyenv version if .python-version file exists."
   (f-traverse-upwards
    (lambda (path)
@@ -211,8 +212,8 @@
        (if (f-exists? pyenv-version-path)
            (pyenv-mode-set (s-trim (f-read-text pyenv-version-path 'utf-8))))))))
 
-(add-hook 'projectile-after-switch-project-hook 'projectile-pyenv-mode-set)
-(add-hook 'projectile-after-switch-project-hook 'projectile-pyenv-hook)
+(add-hook 'projectile-after-switch-project-hook 'projectile-pyenv-mode-set-virtualenv)
+(add-hook 'projectile-after-switch-project-hook 'projectile-pyenv-mode-set-version)
 
 
 ;; --------------------------------------------------
