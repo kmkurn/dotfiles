@@ -160,6 +160,21 @@
 (require 'editorconfig)
 (editorconfig-mode 1)
 
+
+;; Vim emulation
+(install-package-if-not-exist 'evil)
+(require 'evil)
+(evil-mode 1)
+(define-key evil-normal-state-map (kbd "C-u") 'evil-scroll-up)
+(define-key evil-visual-state-map (kbd "C-u") 'evil-scroll-up)
+(define-key evil-insert-state-map (kbd "jk") 'evil-normal-state)
+
+
+;; Better powerline for evil
+(install-package-if-not-exist 'powerline-evil)
+(require 'powerline-evil)
+(powerline-evil-vim-color-theme)
+
 ;; --------------------------------------------------
 ;; Python
 ;; --------------------------------------------------
