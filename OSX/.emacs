@@ -203,7 +203,7 @@
         (pyenv-mode-set project)
       (pyenv-mode-unset))))
 
-(defun projectile-pyenv-hoook ()
+(defun projectile-pyenv-hook ()
   "Set pyenv version if .python-version file exists."
   (f-traverse-upwards
    (lambda (path)
