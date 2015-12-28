@@ -161,6 +161,30 @@
 (editorconfig-mode 1)
 
 
+;; Map pairs of keys to commands: key-chord
+(install-package-if-not-exist 'key-chord)
+(require 'key-chord)
+(key-chord-mode 1)
+
+
+;; vim-easymotion for emacs: ace-jump-mode
+(install-package-if-not-exist 'ace-jump-mode)
+(setq ace-jump-word-mode-use-query-char nil)
+
+
+;; Vim-style <leader> key for emacs (must be loaded before evil)
+(install-package-if-not-exist 'evil-leader)
+(require 'evil-leader)
+(global-evil-leader-mode)
+(evil-leader/set-leader ",")
+(evil-leader/set-key
+ "w" 'save-buffer
+ "q" 'kill-this-buffer
+ "c" 'evil-ace-jump-char-mode
+ "e" 'evil-ace-jump-word-mode
+ "l" 'evil-ace-jump-line-mode)
+
+
 ;; Vim emulation
 (install-package-if-not-exist 'evil)
 (require 'evil)
