@@ -109,6 +109,8 @@
 (require 'web-mode)
 (add-to-list 'auto-mode-alist '("\\.jsx\\'" . web-mode))
 (add-to-list 'auto-mode-alist '("\\.hbs\\'" . web-mode))
+(add-to-list 'auto-mode-alist '("\\.djhtml\\'" . web-mode))
+(add-to-list 'auto-mode-alist '("\\.html?\\'" . web-mode))
 ;; Make web-mode and smartparens work nicely
 (add-hook 'web-mode-hook (lambda ()
                            (setq web-mode-enable-auto-pairing nil)))
