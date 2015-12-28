@@ -195,13 +195,25 @@
 (install-package-if-not-exist 'pyenv-mode)
 (require 'pyenv-mode)
 (pyenv-mode)
+
 (defun projectile-pyenv-mode-set ()
   "Set pyenv version matching project name."
   (let ((project (projectile-project-name)))
     (if (member project (pyenv-mode-versions))
         (pyenv-mode-set project)
       (pyenv-mode-unset))))
+
+(defun projectile-pyenv-hoook ()
+  "Set pyenv version if .python-version file exists."
+  (f-traverse-upwards
+   (lambda (path)
+     (let ((pyenv-version-path (f-expand ".python-version" path)))
+       (if (f-exists? pyenv-version-path)
+           (pyenv-mode-set (s-trim (f-read-text pyenv-version-path 'utf-8))))))))
+
 (add-hook 'projectile-after-switch-project-hook 'projectile-pyenv-mode-set)
+(add-hook 'projectile-after-switch-project-hook 'projectile-pyenv-hook)
+
 
 ;; --------------------------------------------------
 ;; Haskell
