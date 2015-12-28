@@ -203,6 +203,12 @@
 (require 'powerline-evil)
 (powerline-evil-vim-color-theme)
 
+
+;; Discover keybindings in major and minor modes
+(install-package-if-not-exist 'discover-my-major)
+(global-set-key (kbd "C-h C-m") 'discover-my-major)
+(global-set-key (kbd "C-h M-m") 'discover-my-mode)
+
 ;; --------------------------------------------------
 ;; Python
 ;; --------------------------------------------------
