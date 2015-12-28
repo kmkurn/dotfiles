@@ -192,7 +192,10 @@
 ;; Some handy keybindings
 (define-key evil-normal-state-map (kbd "C-u") 'evil-scroll-up)
 (define-key evil-visual-state-map (kbd "C-u") 'evil-scroll-up)
-(define-key evil-insert-state-map (kbd "jk") 'evil-normal-state)
+(define-key evil-normal-state-map (kbd "H") 'evil-first-non-blank)
+(define-key evil-normal-state-map (kbd "L") 'evil-end-of-line)
+;; Pairs of keys MUST be defined by key-chord
+(key-chord-define evil-insert-state-map (kbd "jk") 'evil-normal-state)
 
 
 ;; Better powerline for evil-mode
