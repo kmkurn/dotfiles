@@ -30,6 +30,11 @@
 ;; Auto-complete for emacs
 (install-package-if-not-exist 'company)
 (add-hook 'after-init-hook 'global-company-mode)
+(with-eval-after-load 'company
+  (define-key company-active-map (kbd "TAB") 'company-complete-common-or-cycle)
+  (define-key company-active-map (kbd "<tab>") 'company-complete-common-or-cycle)
+  (define-key company-active-map (kbd "S-TAB") 'company-select-previous)
+  (define-key company-active-map (kbd "<backtab>") 'company-select-previous))
 
 
 ;; Project management
