@@ -1,3 +1,7 @@
+" This file is not really maintained since I am now using
+" spacemacs (https://github.com/syl20bnr/spacemacs)
+" The file will be kept as reference
+
 " Vundle {{{
 set nocompatible
 filetype off
