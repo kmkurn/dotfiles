@@ -1,3 +1,8 @@
+;; This file is not maintained anymore since I am now using
+;; spacemacs (https://github.com/syl20bnr/spacemacs/). The file
+;; is kept here as reference only. Spacemacs make sense to me
+;; because I tried to build my own Emacs setup using this file.
+
 ;; --------------------------------------------------
 ;; Package initialization
 ;; --------------------------------------------------
