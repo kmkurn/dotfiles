@@ -31,6 +31,7 @@ values."
               haskell-enable-hindent-style "johan-tibell")
      html
      javascript
+     latex
      markdown
      org
      osx
@@ -210,12 +211,16 @@ user code."
 layers configuration. You are free to put any user code."
   ;; Show line numbers
   (global-linum-mode)
+
   ;; Show indent guide
   (indent-guide-global-mode)
+
   ;; Editorconfig support
   (editorconfig-mode 1)
+
   ;; Better powerline separator
   (setq powerline-default-separator 'arrow)
+
   ;; Some handy Vim keybindings I am used to
   (setq-default evil-escape-key-sequence "jk")
   (define-key evil-normal-state-map (kbd "j") 'evil-next-visual-line)
@@ -224,26 +229,37 @@ layers configuration. You are free to put any user code."
   (define-key evil-normal-state-map (kbd "L") 'evil-end-of-visual-line)
   (define-key evil-visual-state-map (kbd "H") 'evil-first-non-blank-of-visual-line)
   (define-key evil-visual-state-map (kbd "L") 'evil-end-of-visual-line)
+
   ;; Enable auto completion globally
   (global-company-mode)
+
   ;; Use spacemacs to edit git commit messages
   (global-git-commit-mode t)
+
   ;; Auto-active virtualenv if there's a virtualenv with the project name
   (defun kemskems/projectile-pyenv-mode-set ()
     "Set pyenv version matching project name."
     (let ((project (projectile-project-name)))
       (if (member project (pyenv-mode-versions))
-          (pyenv-mode-set project)
-        (pyenv-mode-unset))))
+          (pyenv-mode-set project))))
   (add-hook 'projectile-after-switch-project-hook 'kemskems/projectile-pyenv-mode-set)
+
+  ;; Append `node_modules/.bin' to `exec-path'
+  (defun kemskems/projectile-append-node-modules-local-bin ()
+    "Append `node_modules/.bin' to `exec-path' for NodeJS project"
+    (let ((local-bin (concat (projectile-project-root) "node_modules/.bin")))
+      (if (file-exists-p local-bin)
+          (add-to-list 'exec-path local-bin))))
+  (add-hook 'projectile-after-switch-project-hook 'kemskems/projectile-append-node-modules-local-bin)
+
   ;; JavaScript/JSON/ReactJS/CSS indent and globals
   (setq js2-basic-offset 2
         js-indent-level 2
         web-mode-css-indent-offset 2
         web-mode-markup-indent-offset 2
         web-mode-code-indent-offset 2
-        js2-include-node-externs t  ; NodeJS
-        js2-global-externs (list "define"))  ; RequireJS
+        js2-include-node-externs t)  ; NodeJS
+
   ;; Interactive `nvm-use'
   (require 'nvm)
   (defun kemskems/list-nvm-versions (prompt)
@@ -263,6 +279,7 @@ Return a string representing the node version."
           (format "Node version (current %s): " (car nvm-current-version))
         "Node version: ")))
     (setq exec-path (split-string (getenv "PATH") path-separator)))
+
   ;; Run a NodeJS REPL from a directory
   (require 'nodejs-repl)
   ;; Taken from http://williambert.online/2014/02/using-a-node-repl-with-emacs/
