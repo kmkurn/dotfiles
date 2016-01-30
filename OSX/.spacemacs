@@ -45,7 +45,6 @@ values."
             shell-default-position 'bottom)
      syntax-checking
      themes-megapack
-     unimpaired
      vimscript
      yaml
      )
@@ -201,8 +200,17 @@ values."
   "Initialization function for user code.
 It is called immediately after `dotspacemacs/init'.  You are free to put any
 user code."
-  ;; turn off exec-path-from-shell warning
+  ;; Turn off exec-path-from-shell warning
   (setq exec-path-from-shell-check-startup-files nil)
+
+  ;; Show ruler for Python
+  (setq python-fill-column 95)
+
+  ;; Display some operators as unicode symbol
+  (setq haskell-font-lock-symbols t)
+
+  ;; Run stylish-haskell on save
+  (setq haskell-stylish-on-save t)
   )
 
 (defun dotspacemacs/user-config ()
@@ -236,13 +244,16 @@ layers configuration. You are free to put any user code."
   ;; Use spacemacs to edit git commit messages
   (global-git-commit-mode t)
 
-  ;; Auto-active virtualenv if there's a virtualenv with the project name
-  (defun kemskems/projectile-pyenv-mode-set ()
+  ;; Auto-activate virtualenv if there's a virtualenv with the project name
+  (defun kemskems/projectile-pyenv-mode-set-virtualenv ()
     "Set pyenv version matching project name."
     (let ((project (projectile-project-name)))
       (if (member project (pyenv-mode-versions))
           (pyenv-mode-set project))))
-  (add-hook 'projectile-after-switch-project-hook 'kemskems/projectile-pyenv-mode-set)
+  (add-hook 'projectile-after-switch-project-hook 'kemskems/projectile-pyenv-mode-set-virtualenv)
+
+  ;; Auto-set Python version if .python-version file exists on project switch
+  (setq python-auto-set-local-pyenv-version 'on-project-switch)
 
   ;; Append `node_modules/.bin' to `exec-path'
   (defun kemskems/projectile-append-node-modules-local-bin ()
@@ -283,11 +294,14 @@ Return a string representing the node version."
   ;; Run a NodeJS REPL from a directory
   (require 'nodejs-repl)
   ;; Taken from http://williambert.online/2014/02/using-a-node-repl-with-emacs/
-  (defun nodejs-repl-from-dir (cwd)
+  (defun kemskems/nodejs-repl-from-dir (cwd)
     "Run Node.js REPL from a directory."
     (interactive "DDirectory: ")
     (let ((default-directory cwd))
       (nodejs-repl)))
+
+  ;; Enable haskell-indentation minor mode
+  (add-hook 'haskell-mode-hook 'turn-on-haskell-indentation)
   )
 
 ;; Do not write anything past this comment. This is where Emacs will
