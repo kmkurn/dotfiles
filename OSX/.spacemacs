@@ -24,7 +24,9 @@ values."
      ;; <M-m f e R> (Emacs style) to install them.
      ;; ----------------------------------------------------------------
      ansible
-     auto-completion
+     (auto-completion :variables
+                      auto-completion-enable-snippets-in-popup t
+                      auto-completion-enable-sort-by-usage t)
      emacs-lisp
      git
      (haskell :variables
@@ -35,9 +37,14 @@ values."
      markdown
      org
      osx
+     pandoc
      (python :variables
              python-test-runner 'pytest)
+     (ranger :variables
+             ranger-show-preview t)
      react
+     restclient
+     search-engine
      (shell :variables
             shell-default-shell 'ansi-term
             shell-default-term-shell "/usr/local/bin/bash"
@@ -46,6 +53,7 @@ values."
      syntax-checking
      themes-megapack
      vimscript
+     xkcd
      yaml
      )
    ;; List of additional packages that will be installed without being
@@ -54,7 +62,8 @@ values."
    ;; configuration in `dotspacemacs/config'.
    dotspacemacs-additional-packages '(nvm
                                       nodejs-repl
-                                      editorconfig)
+                                      editorconfig
+                                      shakespeare-mode)
    ;; A list of packages and/or extensions that will not be install and loaded.
    dotspacemacs-excluded-packages '()
    ;; If non-nil spacemacs will delete any orphan packages, i.e. packages that
@@ -208,9 +217,6 @@ user code."
 
   ;; Display some operators as unicode symbol
   (setq haskell-font-lock-symbols t)
-
-  ;; Run stylish-haskell on save
-  (setq haskell-stylish-on-save t)
   )
 
 (defun dotspacemacs/user-config ()
@@ -227,7 +233,7 @@ layers configuration. You are free to put any user code."
   (editorconfig-mode 1)
 
   ;; Better powerline separator
-  (setq powerline-default-separator 'arrow)
+  (setq powerline-default-separator 'wave)
 
   ;; Some handy Vim keybindings I am used to
   (setq-default evil-escape-key-sequence "jk")
@@ -300,8 +306,13 @@ Return a string representing the node version."
     (let ((default-directory cwd))
       (nodejs-repl)))
 
-  ;; Enable haskell-indentation minor mode
-  (add-hook 'haskell-mode-hook 'turn-on-haskell-indentation)
+  ;; Setup Haskell indentation
+  (setq haskell-indentation-layout-offset 4
+        haskell-indentation-starter-offset 4
+        haskell-indentation-left-offset 4
+        haskell-indentation-ifte-offset 4
+        haskell-indentation-where-pre-offset 2
+        haskell-indentation-where-post-offset 2)
   )
 
 ;; Do not write anything past this comment. This is where Emacs will
