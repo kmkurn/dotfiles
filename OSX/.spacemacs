@@ -106,7 +106,7 @@ values."
    dotspacemacs-colorize-cursor-according-to-state t
    ;; Default font. `powerline-scale' allows to quickly tweak the mode-line
    ;; size to make separators look not too crappy.
-   dotspacemacs-default-font '("Sauce Code Powerline"
+   dotspacemacs-default-font '("Meslo LG M for Powerline"
                                :size 12
                                :weight normal
                                :width normal
@@ -210,7 +210,7 @@ values."
 It is called immediately after `dotspacemacs/init'.  You are free to put any
 user code."
   ;; Turn off exec-path-from-shell warning
-  (setq exec-path-from-shell-check-startup-files nil)
+  (setq-default exec-path-from-shell-check-startup-files nil)
 
   ;; Show ruler for Python
   (setq python-fill-column 95)
@@ -233,7 +233,7 @@ layers configuration. You are free to put any user code."
   (editorconfig-mode 1)
 
   ;; Better powerline separator
-  (setq powerline-default-separator 'wave)
+  (setq-default powerline-default-separator 'wave)
 
   ;; Some handy Vim keybindings I am used to
   (setq-default evil-escape-key-sequence "jk")
@@ -313,6 +313,13 @@ Return a string representing the node version."
         haskell-indentation-ifte-offset 4
         haskell-indentation-where-pre-offset 2
         haskell-indentation-where-post-offset 2)
+
+  ;; NeoTree do not show hidden files
+  (setq-default neo-show-hidden-files nil)
+
+  ;; NeoTree hidden regexp list
+  (setq-default neo-hidden-regexp-list
+                '("^\\." "\\.pyc$" "~$" "^#.*#$" "\\.elc$" "\\.o$" "\\.hi$"))
   )
 
 ;; Do not write anything past this comment. This is where Emacs will
