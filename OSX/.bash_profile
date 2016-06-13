@@ -28,6 +28,10 @@ HISTFILESIZE=2000
 # update the values of LINES and COLUMNS.
 shopt -s checkwinsize
 
+# Set locale
+export LC_ALL=en_US.UTF-8
+export LANG=en_US.UTF-8
+
 # Prompt string configuration
 if [ -f "$HOME/.bash_prompt" ]; then
     source "$HOME/.bash_prompt"

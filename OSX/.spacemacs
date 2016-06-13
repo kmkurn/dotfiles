@@ -63,7 +63,8 @@ values."
    dotspacemacs-additional-packages '(nvm
                                       nodejs-repl
                                       editorconfig
-                                      shakespeare-mode)
+                                      shakespeare-mode
+                                      company-restclient)
    ;; A list of packages and/or extensions that will not be install and loaded.
    dotspacemacs-excluded-packages '()
    ;; If non-nil spacemacs will delete any orphan packages, i.e. packages that
@@ -319,7 +320,17 @@ Return a string representing the node version."
 
   ;; NeoTree hidden regexp list
   (setq-default neo-hidden-regexp-list
-                '("^\\." "\\.pyc$" "~$" "^#.*#$" "\\.elc$" "\\.o$" "\\.hi$"))
+                '("^\\."
+                  "\\.pyc$"
+                  "~$"
+                  "^#.*#$"
+                  "\\.elc$"
+                  "\\.o$"
+                  "\\.hi$"
+                  "^__pycache__$"))
+
+  ;; Restclient autocomplete
+  (add-to-list 'company-backends 'company-restclient)
   )
 
 ;; Do not write anything past this comment. This is where Emacs will
