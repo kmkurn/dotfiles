@@ -321,13 +321,15 @@ Return a string representing the node version."
   ;; NeoTree hidden regexp list
   (setq-default neo-hidden-regexp-list
                 '("^\\.git"
+                  "TAGS"
                   "\\.pyc$"
                   "~$"
                   "^#.*#$"
                   "\\.elc$"
                   "\\.o$"
                   "\\.hi$"
-                  "^__pycache__$"))
+                  "^__pycache__$"
+                  "^\\.stack-work"))
 
   ;; Restclient autocomplete
   (add-to-list 'company-backends 'company-restclient)

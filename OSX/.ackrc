@@ -97,6 +97,9 @@
 # http://www.haskell.org/cabal/users-guide/installing-packages.html
 --ignore-directory=is:.cabal-sandbox
 
+# Haskell Stack
+--ignore-directory=is:.stack-work
+
 ### Files to ignore
 
 # Backup files
@@ -132,6 +135,7 @@
 
 # Ctags file
 --ignore-file=is:tags
+--ignore-file=is:TAGS
 
 
 ### Filetypes defined
