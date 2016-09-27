@@ -1,0 +1,19 @@
+[user]
+    name = Kemal Maulana
+    email = s1630997@sms.ed.ac.uk
+[color]
+    ui = true
+[alias]
+    co = checkout
+    st = status -sb
+    ds = diff --staged
+    mg = merge --no-ff
+    del = branch -d
+    ren = branch -m
+    graph = log --graph --pretty=format':%C(yellow)%h%Cblue%d%Creset %s %C(white) %an, %ar%Creset'
+    br = branch
+    ci = commit
+[core]
+    editor = vim
+[push]
+    default = simple

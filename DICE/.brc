@@ -1,9 +1,73 @@
 #!/bin/bash
 
+# If not running interactively, don't do anything
+case $- in
+    *i*) ;;
+    *) return;;
+esac
+
+# Don't put duplicate lines or lines starting with space in the history.
+# See bash(1) for more options
+HISTCONTROL=ignoreboth
+
+# Append to the history file, don't overwrite it
+shopt -s histappend
+
+# No limit on history size but do limit the history file size
+HISTSIZE=""
+HISTFILESIZE=2000
+
+# Check the window size after each command and, if necessary,
+# update the values of LINES and COLUMNS.
+shopt -s checkwinsize
+
+# Prompt string configuration
 if [ -f "$HOME/.bash_prompt" ]; then
     source "$HOME/.bash_prompt"
 fi
 
+# Local prompt string configuration
+if [ -f "$HOME/.bash_prompt.local" ]; then
+    source "$HOME/.bash_prompt.local"
+fi
+
+# Alias definitions
 if [ -f "$HOME/.aliases" ]; then
     source "$HOME/.aliases"
+fi
+
+# Local alias definitions
+if [ -f "$HOME/.aliases.local" ]; then
+    source "$HOME/.aliases.local"
+fi
+
+# Set dircolors
+if [ -f "$HOME/.dircolors" ]; then
+    source "$HOME/.dircolors"
+fi
+
+# Color the output of 'man' command
+# source: https://wiki.archlinux.org/index.php/Man_Page#Colored_man_pages
+man() {
+    env LESS_TERMCAP_mb=$(printf "\e[1;31m") \
+        LESS_TERMCAP_md=$(printf "\e[1;31m") \
+        LESS_TERMCAP_me=$(printf "\e[0m") \
+        LESS_TERMCAP_se=$(printf "\e[0m") \
+        LESS_TERMCAP_so=$(printf "\e[1;44;33m") \
+        LESS_TERMCAP_ue=$(printf "\e[0m") \
+        LESS_TERMCAP_us=$(printf "\e[1;32m") \
+        man "$@"
+}
+
+# Use Vim as the default text editor (useful when using Git)
+export EDITOR=vim
+
+# Tab completion for conda
+if [ -f "$HOME/miniconda2/bin/register-python-argcomplete" ]; then
+    eval "$($HOME/miniconda2/bin/register-python-argcomplete conda)"
+fi
+
+# Local .brc
+if [ -f "$HOME/.brc.local" ]; then
+    source "$HOME/.brc.local"
 fi
