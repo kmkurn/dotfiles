@@ -70,8 +70,8 @@ man() {
         man "$@"
 }
 
-# Use Vim as the default text editor (useful when using Git)
-export EDITOR=vim
+# Set the default text editor (useful when using Git)
+export EDITOR=emacs
 
 # Disable flow control. This enables Ctrl+s to open file in horizontal split
 # when using Command-T in Vim
