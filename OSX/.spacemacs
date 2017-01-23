@@ -18,6 +18,7 @@ values."
    ;; of a list then all discovered layers will be installed.
    dotspacemacs-configuration-layers
    '(
+     ruby
      ;; ----------------------------------------------------------------
      ;; Example of useful layers you may want to use right away.
      ;; Uncomment some layer names and press <SPC f e R> (Vim style) or
@@ -27,6 +28,7 @@ values."
      (auto-completion :variables
                       auto-completion-enable-snippets-in-popup t
                       auto-completion-enable-sort-by-usage t)
+     csv
      emacs-lisp
      git
      (haskell :variables
@@ -102,7 +104,8 @@ values."
    ;; List of themes, the first of the list is loaded when spacemacs starts.
    ;; Press <SPC> T n to cycle to the next theme in the list (works great
    ;; with 2 themes variants, one dark and one light)
-   dotspacemacs-themes '(gruvbox)
+   dotspacemacs-themes '(sanityinc-solarized-dark
+                         gruvbox)
    ;; If non nil the cursor color matches the state color.
    dotspacemacs-colorize-cursor-according-to-state t
    ;; Default font. `powerline-scale' allows to quickly tweak the mode-line
@@ -216,7 +219,7 @@ user code."
   ;; Show ruler for Python
   (setq python-fill-column 95)
 
-  ;; Display some operators as unicode symbol
+  ;; Display some operators as unicode symbol for Haskell
   (setq haskell-font-lock-symbols t)
   )
 
@@ -335,18 +338,23 @@ Return a string representing the node version."
   (add-to-list 'company-backends 'company-restclient)
   )
 
-;; Do not write anything past this comment. This is where Emacs will
-;; auto-generate custom variable definitions.
+(defun dotspacemacs/emacs-custom-settings ()
+  "Emacs custom settings.
+This is an auto-generated function, do not modify its content directly, use
+Emacs customize menu instead.
+This function is called at the very end of Spacemacs initialization."
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(paradox-github-token t))
+ '(package-selected-packages
+   (quote
+    (rvm ruby-tools ruby-test-mode rubocop rspec-mode robe rbenv rake minitest chruby bundler inf-ruby spinner ht org log4e gntp json-snatcher json-reformat multiple-cursors parent-mode window-purpose imenu-list gitignore-mode pos-tip anzu web-completion-data dash-functional restclient know-your-http-well ghc anaconda-mode pythonic f s auto-complete winum iedit alert haml-mode autothemer company-ansible bind-key auctex tern smartparens highlight flycheck request zenburn-theme which-key web-mode tao-theme spacemacs-theme spaceline smeargle seti-theme pug-mode phoenix-dark-pink-theme persp-mode osx-dictionary org-projectile org-plus-contrib open-junk-file ob-http neotree monokai-theme markdown-toc live-py-mode intero info+ indent-guide htmlize helm-projectile google-translate git-link evil-mc eshell-z editorconfig darktooth-theme company-statistics clues-theme apropospriate-theme ample-theme ace-link bind-map haskell-mode company projectile yasnippet skewer-mode js2-mode magit magit-popup git-commit hydra helm helm-core zonokai-theme zen-and-art-theme yapfify yaml-mode xterm-color xkcd ws-butler with-editor window-numbering web-beautify volatile-highlights vimrc-mode vi-tilde-fringe uuidgen use-package underwater-theme ujelly-theme twilight-theme twilight-bright-theme twilight-anti-bright-theme tronesque-theme toxi-theme toc-org tangotango-theme tango-plus-theme tango-2-theme tagedit sunny-day-theme sublime-themes subatomic256-theme subatomic-theme spacegray-theme sourcerer-theme soothe-theme soft-stone-theme soft-morning-theme soft-charcoal-theme smyx-theme slim-mode simple-httpd shell-pop shakespeare-mode scss-mode sass-mode reverse-theme reveal-in-osx-finder restclient-helm restart-emacs ranger rainbow-delimiters railscasts-theme quelpa pyvenv pytest pyenv-mode py-isort purple-haze-theme professional-theme powerline popwin planet-theme pip-requirements phoenix-dark-mono-theme pcre2el pbcopy pastels-on-dark-theme paradox pandoc-mode ox-pandoc osx-trash orgit organic-green-theme org-present org-pomodoro org-download org-bullets omtose-phellack-theme oldlace-theme occidental-theme obsidian-theme ob-restclient nvm nodejs-repl noctilux-theme niflheim-theme naquadah-theme mustang-theme multi-term move-text monochrome-theme molokai-theme moe-theme mmm-mode minimal-theme material-theme markdown-mode majapahit-theme magit-gitflow macrostep lush-theme lorem-ipsum livid-mode linum-relative link-hint light-soap-theme less-css-mode launchctl json-mode js2-refactor js-doc jinja2-mode jbeans-theme jazz-theme ir-black-theme inkpot-theme ido-vertical-mode hy-mode hungry-delete hlint-refactor hl-todo hindent highlight-parentheses highlight-numbers highlight-indentation hide-comnt heroku-theme hemisu-theme help-fns+ helm-themes helm-swoop helm-pydoc helm-purpose helm-mode-manager helm-make helm-hoogle helm-gitignore helm-flx helm-descbinds helm-css-scss helm-company helm-c-yasnippet helm-ag hc-zenburn-theme haskell-snippets gruvbox-theme gruber-darker-theme grandshell-theme gotham-theme golden-ratio gnuplot gitconfig-mode gitattributes-mode git-timemachine git-messenger gh-md gandalf-theme flycheck-pos-tip flycheck-haskell flx-ido flatui-theme flatland-theme firebelly-theme fill-column-indicator farmhouse-theme fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-matchit evil-magit evil-lisp-state evil-indent-plus evil-iedit-state evil-exchange evil-escape evil-ediff evil-args evil-anzu eval-sexp-fu espresso-theme eshell-prompt-extras esh-help engine-mode emmet-mode elisp-slime-nav dumb-jump dracula-theme django-theme darkokai-theme darkmine-theme darkburn-theme dakrone-theme dactyl-mode cython-mode cyberpunk-theme csv-mode company-web company-tern company-restclient company-ghci company-ghc company-cabal company-auctex company-anaconda column-enforce-mode color-theme-sanityinc-tomorrow color-theme-sanityinc-solarized coffee-mode cmm-mode clean-aindent-mode cherry-blossom-theme busybee-theme bubbleberry-theme birds-of-paradise-plus-theme badwolf-theme auto-yasnippet auto-highlight-symbol auto-compile auctex-latexmk anti-zenburn-theme ansible-doc ansible ample-zen-theme alect-themes aggressive-indent afternoon-theme adaptive-wrap ace-window ace-jump-helm-line ac-ispell))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(company-tooltip-common ((t (:inherit company-tooltip :weight bold :underline nil))))
- '(company-tooltip-common-selection ((t (:inherit company-tooltip-selection :weight bold :underline nil)))))
+ )
+)
