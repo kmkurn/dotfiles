@@ -39,9 +39,9 @@ if [ -f ~/.dircolors ]; then
     . ~/.dircolors
 fi
 
-# Load prompt configuration in ~/.bash_prompt
-if [ -f ~/.bash_prompt ]; then
-    . ~/.bash_prompt
+# Load prompt configuration
+if [ -f ~/.bash-powerline.sh ]; then
+    . ~/.bash-powerline.sh
 fi
 
 # If this is an xterm set the title to user@host:dir

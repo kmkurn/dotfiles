@@ -33,13 +33,8 @@ export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
 
 # Prompt string configuration
-if [ -f "$HOME/.bash_prompt" ]; then
-    source "$HOME/.bash_prompt"
-fi
-
-# Local prompt string configuration
-if [ -f "$HOME/.bash_prompt.local" ]; then
-    source "$HOME/.bash_prompt.local"
+if [ -f "$HOME/.bash-powerline.sh" ]; then
+    source "$HOME/.bash-powerline.sh"
 fi
 
 # Alias definitions
