@@ -22,6 +22,9 @@ if [ -f "$HOME/.sensible.bash" ]; then
     source "$HOME/.sensible.bash"
 fi
 
+# Add targets for cd for fast access (thanks bash-sensible!)
+CDPATH=".:$HOME/Projects"
+
 # Prompt string configuration
 if [ -f "$HOME/.bash-powerline.sh" ]; then
     source "$HOME/.bash-powerline.sh"
