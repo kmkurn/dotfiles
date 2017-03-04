@@ -1,9 +1,6 @@
 [submodule "OSX/dircolors-solarized"]
 	path = OSX/dircolors-solarized
 	url = http://github.com/seebi/dircolors-solarized
-[submodule "bash-powerline"]
-	path = bash-powerline
-	url = https://github.com/riobard/bash-powerline.git
 [submodule "bash-sensible"]
 	path = bash-sensible
 	url = https://github.com/mrzool/bash-sensible.git
