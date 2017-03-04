@@ -13,24 +13,14 @@ case $- in
       *) return;;
 esac
 
-# Don't put duplicate lines or lines starting with space in the history.
-# See bash(1) for more options
-HISTCONTROL=ignoreboth
-
-# Append to the history file, don't overwrite it
-shopt -s histappend
-
-# No limit on history size but do limit the history file size
-HISTSIZE=""
-HISTFILESIZE=2000
-
-# Check the window size after each command and, if necessary,
-# update the values of LINES and COLUMNS.
-shopt -s checkwinsize
-
 # Set locale
 export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
+
+# Sensible bash defaults
+if [ -f "$HOME/.sensible.bash" ]; then
+    source "$HOME/.sensible.bash"
+fi
 
 # Prompt string configuration
 if [ -f "$HOME/.bash-powerline.sh" ]; then

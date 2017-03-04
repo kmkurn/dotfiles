@@ -11,20 +11,10 @@ case $- in
       *) return;;
 esac
 
-# Don't put duplicate lines or lines starting with space in the history.
-# See bash(1) for more options
-HISTCONTROL=ignoreboth
-
-# Append to the history file, don't overwrite it
-shopt -s histappend
-
-# No limit on history size but do limit the history file size
-HISTSIZE=""
-HISTFILESIZE=2000
-
-# Check the window size after each command and, if necessary,
-# update the values of LINES and COLUMNS.
-shopt -s checkwinsize
+# Sensible bash defaults
+if [ -f ~/.sensible.bash ]; then
+    . ~/.sensible.bash
+fi
 
 # Make less more friendly for non-text input files, see lesspipe(1)
 [ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
