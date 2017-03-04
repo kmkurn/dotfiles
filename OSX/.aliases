@@ -15,18 +15,6 @@ alias lh='ls -lhF'
 # Alias to clean unused files
 alias clean='rm -f \#* *~ .*~ *.bak .*.bak *.tmp .*.tmp *.swp .*.swp core a.out'
 
-# List NUMBER processes sorted by CPU usage
-# Usage: pssort NUMBER
-pssort() {
-    DEFAULT_NUM=3
-    if [[ "$#" -ge 1 ]]; then
-        num="$1"
-    else
-        num=$DEFAULT_NUM
-    fi
-    ps aux | tail -n+2 | sort -nr -k 3 | head -n "$num"
-}
-
 # Alias for shutdown
 alias sd='sudo shutdown now'
 
@@ -52,3 +40,8 @@ clear_proxy() {
 # Emacs
 alias ek='emacsclient -e "(kill-emacs)"'
 alias es='emacs --daemon'
+
+# Shorthand for htop
+if brew help > /dev/null 2>&1 && brew ls --versions htop-osx > /dev/null; then
+    alias htop='sudo htop'
+fi
