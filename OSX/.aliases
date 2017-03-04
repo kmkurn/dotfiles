@@ -1,8 +1,7 @@
 # Mac OS X
 
 # Some simple aliases
-hash brew 2>/dev/null && brew --prefix coreutils > /dev/null 2>&1
-if [ "$?" -eq 0 ]; then
+if brew help > /dev/null 2>&1 && brew ls --versions coreutils > /dev/null; then
     alias ls='ls --color=auto'
 else
     alias ls='ls -G'

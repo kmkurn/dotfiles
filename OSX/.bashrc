@@ -94,12 +94,11 @@ if [ "$HOMEBREW_INSTALLED" -eq 0 -a -n "$(brew --prefix coreutils 2>/dev/null)" 
 fi
 
 # Pip bash completion
-pip help > /dev/null 2>&1
-if [ "$?" -eq 0 ]; then
+if pip help > /dev/null 2>&1; then
     eval "$(pip completion --bash)"
 fi
 
-# Check if Pyenv is installed
+# Check if pyenv is installed
 pyenv help > /dev/null 2>&1
 PYENV_INSTALLED="$?"
 
@@ -110,23 +109,20 @@ fi
 
 # Pyenv-virtualenv settings
 if [ "$PYENV_INSTALLED" -eq 0 ]; then
-    pyenv commands | grep -q virtualenv
-    if [ "$?" -eq 0 ]; then
+    if pyenv commands | grep -q virtualenv; then
         eval "$(pyenv virtualenv-init -)"
     fi
 fi
 
 # Jenv settings
-jenv help > /dev/null 2>&1
-if [ "$?" -eq 0 ]; then
+if jenv help > /dev/null 2>&1; then
     export PATH="$HOME/.jenv/bin:$PATH"
     eval "$(jenv init -)"
 fi
 
 # NVM settings
 if [ "$HOMEBREW_INSTALLED" -eq 0 ]; then
-    brew list | grep -q nvm
-    if [ "$?" -eq 0 ]; then
+    if brew ls --versions nvm > /dev/null; then
         export NVM_DIR="$HOME/.nvm"
         source "$(brew --prefix nvm)/nvm.sh"
     fi
@@ -136,20 +132,17 @@ fi
 export PATH="$HOME/.local/bin:$PATH"
 
 # Stack tool autocomplete
-stack --help > /dev/null 2>&1
-if [ "$?" -eq 0 ]; then
+if stack --help > /dev/null 2>&1; then
     eval "$(stack --bash-completion-script "$(which stack)")"
 fi
 
 # rbenv settings
-rbenv --help > /dev/null 2>&1
-if [ "$?" -eq 0 ]; then
+if rbenv --help > /dev/null 2>&1; then
     eval "$(rbenv init -)"
 fi
 
 # Print archey
-archey --help > /dev/null 2>&1
-if [ "$?" -eq 0 ]; then
+if archey --help > /dev/null 2>&1; then
     archey
 fi
 
