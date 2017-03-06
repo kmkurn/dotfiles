@@ -151,7 +151,7 @@ if [ -f "$HOME/.vim/bundle/gruvbox/gruvbox_256palette_osx.sh" ]; then
     source "$HOME/.vim/bundle/gruvbox/gruvbox_256palette_osx.sh"
 fi
 
-# Local .bash_profile
-if [ -f "$HOME/.bash_profile.local" ]; then
-    source "$HOME/.bash_profile.local"
+# Local .bashrc
+if [ -f "$HOME/.bashrc.local" ]; then
+    source "$HOME/.bashrc.local"
 fi
