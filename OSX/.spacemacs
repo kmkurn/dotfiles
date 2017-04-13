@@ -338,6 +338,10 @@ Return a string representing the node version."
 
   ;; Restclient autocomplete
   (add-to-list 'company-backends 'company-restclient)
+
+  ;; Org-mode todo state sequence
+  (setq org-todo-keywords
+        '((sequence "TODO" "DOING" "|" "DONE" "CANCELED(@)")))
   )
 
 (defun dotspacemacs/emacs-custom-settings ()
