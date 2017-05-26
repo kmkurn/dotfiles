@@ -19,3 +19,5 @@
     editor = vim
 [push]
     default = simple
+[status]
+    showUntrackedFiles = all

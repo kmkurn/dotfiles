@@ -14,6 +14,7 @@
     standup = log --since '1 day ago' --oneline --author kemal.maulana@fastmail.com
     br = branch
     ci = commit
+    llog = log --oneline -n 10
 [core]
     editor = vim
 [push]
