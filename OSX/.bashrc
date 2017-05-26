@@ -1,9 +1,9 @@
-# My custom .bash_profile based on /usr/share/doc/bash/example/startup-files
+# My custom .bashrc based on /usr/share/doc/bash/example/startup-files
 # in the bash-doc package
 
 # Mac OS X with iTerm2
 
-# Copyright (c) 2014-2015 Kemal Maulana
+# Copyright (c) Kemal Maulana
 # Licensed under the MIT license
 # See LICENSE to view the full license
 

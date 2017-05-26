@@ -1,7 +1,7 @@
 # My custom .bashrc file based on /usr/share/doc/bash/example/startup-files
 # in the bash-doc package
 
-# Copyright (c) 2014 Kemal Maulana
+# Copyright (c) Kemal Maulana
 # Licensed under the MIT license
 # See LICENSE to view the full license
 
@@ -11,27 +11,43 @@ case $- in
       *) return;;
 esac
 
+# Set locale
+export LC_ALL=en_US.UTF-8
+export LANG=en_US.UTF-8
+
 # Sensible bash defaults
-if [ -f ~/.sensible.bash ]; then
-    . ~/.sensible.bash
+if [ -f "$HOME/.sensible.bash" ]; then
+    source "$HOME/.sensible.bash"
+fi
+
+# Prompt string configuration
+if [ -f "$HOME/.bash-powerline.sh" ]; then
+    source "$HOME/.bash-powerline.sh"
+fi
+
+# Alias definitions
+if [ -f "$HOME/.aliases" ]; then
+    source "$HOME/.aliases"
+fi
+
+# Local alias definitions
+if [ -f "$HOME/.aliases.local" ]; then
+    source "$HOME/.aliases.local"
+fi
+
+# Set dircolors
+if [ -f "$HOME/.dircolors" ]; then
+    source "$HOME/.dircolors"
 fi
 
 # Make less more friendly for non-text input files, see lesspipe(1)
-[ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
+if [ -x /usr/bin/lesspipe ]; then
+    eval "$(SHELL=/bin/sh lesspipe)"
+fi
 
 # Set variable identifying the chroot you work in (used in the prompt below)
 if [ -z "${debian_chroot:-}" ] && [ -r /etc/debian_chroot ]; then
     debian_chroot=$(cat /etc/debian_chroot)
-fi
-
-# Load dircolors configuration
-if [ -f ~/.dircolors ]; then
-    . ~/.dircolors
-fi
-
-# Load prompt configuration
-if [ -f ~/.bash-powerline.sh ]; then
-    . ~/.bash-powerline.sh
 fi
 
 # If this is an xterm set the title to user@host:dir
@@ -42,11 +58,6 @@ xterm*|rxvt*)
 *)
     ;;
 esac
-
-# Alias definitions
-if [ -f ~/.aliases ]; then
-    . ~/.aliases
-fi
 
 # Enable programmable completion features (you don't need to enable
 # this, if it's already enabled in /etc/bash.bashrc and /etc/profile
@@ -72,9 +83,6 @@ man() {
         man "$@"
 }
 
-# Use GVim as the default GUI text editor
-export VISUAL=gvim
-
 # Use Vim as the default text editor (useful when using Git)
 export EDITOR=vim
 
@@ -83,29 +91,34 @@ export EDITOR=vim
 stty -ixon
 
 # Tab completion for conda
-[ -f "$HOME/miniconda3/bin/register-python-argcomplete" ] && eval "$($HOME/miniconda3/bin/register-python-argcomplete conda)"
+if [ -f "$HOME/miniconda3/bin/register-python-argcomplete" ]; then
+    eval "$($HOME/miniconda3/bin/register-python-argcomplete conda)"
+fi
 
 # DO NOT use graphical ssh
 unset SSH_ASKPASS
 
-# Add redis bin directory to PATH
-export PATH="/opt/redis/bin:$PATH"
+# Redis settings
+if [ -d "/opt/redis/bin" ]; then
+    export PATH="/opt/redis/bin:$PATH"
+fi
 
-# Add arcanist bin directory to PATH
-export PATH="$HOME/arcanist/arcanist/bin:$PATH"
+# Arcanist settings
+if [ -d "$HOME/arcanist/arcanist/bin" ]; then
+    export PATH="$HOME/arcanist/arcanist/bin:$PATH"
+fi
 
-# Added by travis gem
-[ -f "$HOME/.travis/travis.sh" ] && source "$HOME/.travis/travis.sh"
+# Travis CI settings
+if [ -f "$HOME/.travis/travis.sh" ]; then
+    source "$HOME/.travis/travis.sh"
+fi
 
-# Solve locale issue
-# https://stackoverflow.com/questions/26337557/badvalue-invalid-or-no-user-locale-set-please-ensure-lang-and-or-lc-environme
-export LC_ALL=C
-
-# Virtualenv settings
-export WORKON_HOME="$HOME/.virtualenvs"
-source `which virtualenvwrapper.sh`
-
-# NVM
-if [ -d "$HOME/.nvm" ]; then
+# NVM settings
+if [ -f "$HOME/.nvm/nvm.sh" ]; then
   source ~/.nvm/nvm.sh
+fi
+
+# Local .bashrc
+if [ -f "$HOME/.bashrc.local" ]; then
+    source "$HOME/.bashrc.local"
 fi
