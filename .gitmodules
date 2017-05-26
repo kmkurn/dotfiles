@@ -4,3 +4,6 @@
 [submodule "bash-powerline"]
 	path = bash-powerline
 	url = https://github.com/Hexcles/bash-powerline.git
+[submodule "dircolors-solarized"]
+	path = dircolors-solarized
+	url = https://github.com/seebi/dircolors-solarized
