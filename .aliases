@@ -1,0 +1,19 @@
+# Some simple aliases
+alias grep='grep --color=auto'
+alias fgrep='fgrep --color=auto'
+alias egrep='egrep --color=auto'
+alias ll='ls -lF'
+alias lh='ls -lhF'
+
+# Alias to clean unused files
+alias clean='rm -f \#* *~ .*~ *.bak .*.bak *.tmp .*.tmp *.swp .*.swp core a.out'
+
+# Alias for shutdown
+alias sd='sudo shutdown now'
+
+# Alias for restart
+alias rs='sudo shutdown -r now'
+
+# Emacs
+alias ek='emacsclient -e "(kill-emacs)"'
+alias es='emacs --daemon'
