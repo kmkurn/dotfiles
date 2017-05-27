@@ -1,9 +1,9 @@
 dotfiles
 ========
 
-My config files for bash, vim, etc for Linux and OSX.
+My config files for bash, emacs, etc for Linux and macOS.
 
-**NOTE**: The files under `Linux` is currently not maintained since I am primarily using OSX now.
+**NOTE**: Dotfiles for Linux is not actively maintained since I am primarily using macOS.
 
 License
 -------
