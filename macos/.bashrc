@@ -77,6 +77,8 @@ fi
 # Tab completion for conda
 if [ -f "$HOME/miniconda3/bin/register-python-argcomplete" ]; then
     eval "$($HOME/miniconda3/bin/register-python-argcomplete conda)"
+elif [ -f "$HOME/.pyenv/versions/miniconda3-latest/bin/register-python-argcomplete" ]; then
+    eval "$($HOME/.pyenv/versions/miniconda3-latest/bin/register-python-argcomplete conda)"
 fi
 
 # Set architecture flag
