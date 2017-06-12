@@ -50,7 +50,6 @@ values."
      react
      restclient
      ruby
-     search-engine
      (shell :variables
             shell-default-shell 'ansi-term
             shell-default-term-shell "/usr/local/bin/bash"
@@ -59,7 +58,6 @@ values."
      syntax-checking
      themes-megapack
      vimscript
-     xkcd
      yaml
      )
    ;; List of additional packages that will be installed without being
