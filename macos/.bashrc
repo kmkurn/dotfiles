@@ -58,13 +58,6 @@ man() {
         man "$@"
 }
 
-# Set the default text editor (useful when using Git)
-export EDITOR=emacs
-
-# Disable flow control. This enables Ctrl+s to open file in horizontal split
-# when using Command-T in Vim
-stty -ixon
-
 # Check if Homebrew is installed
 brew help > /dev/null 2>&1
 HOMEBREW_INSTALLED="$?"
@@ -146,11 +139,6 @@ fi
 # Print archey
 if archey --help > /dev/null 2>&1; then
     archey
-fi
-
-# Gruvbox vim colorscheme
-if [ -f "$HOME/.vim/bundle/gruvbox/gruvbox_256palette_osx.sh" ]; then
-    source "$HOME/.vim/bundle/gruvbox/gruvbox_256palette_osx.sh"
 fi
 
 # Local .bashrc
