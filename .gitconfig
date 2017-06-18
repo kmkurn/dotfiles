@@ -1,6 +1,6 @@
 [user]
     name = Kemal Maulana
-    email = kemal.maulana@fastmail.com
+    email = kemal@kkurniawan.com
 [color]
     ui = true
 [alias]
@@ -11,7 +11,7 @@
     del = branch -d
     ren = branch -m
     graph = log --graph --pretty=format':%C(yellow)%h%Cblue%d%Creset %s %C(white) %an, %ar%Creset'
-    standup = log --since '1 day ago' --oneline --author kemal.maulana@fastmail.com
+    standup = log --since '1 day ago' --oneline --author kemal@kkurniawan.com
     br = branch
     ci = commit
     llog = log --oneline -n 10
