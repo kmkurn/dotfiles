@@ -363,23 +363,23 @@ layers configuration. You are free to put any user code."
   (global-git-commit-mode t)
 
   ;; Auto-activate virtualenv if there's a virtualenv with the project name
-  (defun kemskems/projectile-pyenv-mode-set-virtualenv ()
+  (defun my/projectile-pyenv-mode-set-virtualenv ()
     "Set pyenv version matching project name."
     (let ((project (projectile-project-name)))
       (if (member project (pyenv-mode-versions))
           (pyenv-mode-set project))))
-  (add-hook 'projectile-after-switch-project-hook 'kemskems/projectile-pyenv-mode-set-virtualenv)
+  (add-hook 'projectile-after-switch-project-hook 'my/projectile-pyenv-mode-set-virtualenv)
 
   ;; Auto-set Python version if .python-version file exists on project switch
   (setq python-auto-set-local-pyenv-version 'on-project-switch)
 
   ;; Append `node_modules/.bin' to `exec-path'
-  (defun kemskems/projectile-append-node-modules-local-bin ()
+  (defun my/projectile-append-node-modules-local-bin ()
     "Append `node_modules/.bin' to `exec-path' for NodeJS project"
     (let ((local-bin (concat (projectile-project-root) "node_modules/.bin")))
       (if (file-exists-p local-bin)
           (add-to-list 'exec-path local-bin))))
-  (add-hook 'projectile-after-switch-project-hook 'kemskems/projectile-append-node-modules-local-bin)
+  (add-hook 'projectile-after-switch-project-hook 'my/projectile-append-node-modules-local-bin)
 
   ;; JavaScript/JSON/ReactJS/CSS indent and globals
   (setq js2-basic-offset 2
@@ -391,7 +391,7 @@ layers configuration. You are free to put any user code."
 
   ;; Interactive `nvm-use'
   (require 'nvm)
-  (defun kemskems/list-nvm-versions (prompt)
+  (defun my/list-nvm-versions (prompt)
     "List all available node versions from nvm prompting the user with PROMPT.
 Return a string representing the node version."
     (let ((candidates (sort (mapcar 'car (nvm--installed-versions)) 'string<)))
@@ -399,11 +399,11 @@ Return a string representing the node version."
                        candidates nil t nil
                        nil
                        (car candidates))))
-  (defun kemskems/nvm-use ()
+  (defun my/nvm-use ()
     "Do `nvm-use` interactively."
     (interactive)
     (nvm-use
-     (kemskems/list-nvm-versions
+     (my/list-nvm-versions
       (if nvm-current-version
           (format "Node version (current %s): " (car nvm-current-version))
         "Node version: ")))
@@ -412,7 +412,7 @@ Return a string representing the node version."
   ;; Run a NodeJS REPL from a directory
   (require 'nodejs-repl)
   ;; Taken from http://williambert.online/2014/02/using-a-node-repl-with-emacs/
-  (defun kemskems/nodejs-repl-from-dir (cwd)
+  (defun my/nodejs-repl-from-dir (cwd)
     "Run Node.js REPL from a directory."
     (interactive "DDirectory: ")
     (let ((default-directory cwd))
