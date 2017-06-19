@@ -23,7 +23,7 @@ if [ -f "$HOME/.sensible.bash" ]; then
 fi
 
 # Add targets for cd for fast access (thanks bash-sensible!)
-CDPATH=".:$HOME/Projects"
+CDPATH=".:$HOME/projects"
 
 # Prompt string configuration
 if [ -f "$HOME/.bash-powerline.sh" ]; then
