@@ -136,6 +136,11 @@ if rbenv --help > /dev/null 2>&1; then
     eval "$(rbenv init -)"
 fi
 
+# Set jar path for languagetool
+if [ "$HOMEBREW_INSTALLED" -eq 0 -a -n "$(brew --prefix languagetool 2>/dev/null)" ]; then
+    export LANGTOOL_JAR_PATH="$(brew --prefix languagetool)/libexec/languagetool-commandline.jar"
+fi
+
 # Print archey
 if archey --help > /dev/null 2>&1; then
     archey

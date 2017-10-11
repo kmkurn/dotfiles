@@ -69,6 +69,10 @@ values."
             shell-default-height 30
             shell-default-position 'bottom)
      syntax-checking
+     (spell-checking :variables
+                     spell-checking-enable-by-default nil
+                     spell-checking-enable-auto-dictionary t
+                     enable-flyspell-auto-completion t)
      themes-megapack
      vimscript
      yaml
@@ -81,7 +85,8 @@ values."
                                       nodejs-repl
                                       editorconfig
                                       shakespeare-mode
-                                      company-restclient)
+                                      company-restclient
+                                      langtool)
    ;; A list of packages that cannot be updated.
    dotspacemacs-frozen-packages '()
    ;; A list of packages and/or extensions that will not be install and loaded.
@@ -452,6 +457,21 @@ Return a string representing the node version."
   ;; Org-mode todo state sequence
   (setq org-todo-keywords
         '((sequence "TODO" "DOING" "|" "DONE" "CANCELED(@)")))
+
+  ;; Enable popup for langtool (http://d.hatena.ne.jp/LaclefYoshi/20150912/langtool_popup)
+  (defun my/langtool-autoshow-detail-popup (overlays)
+    (when (require 'popup nil t)
+      ;; Do not interrupt current popup
+      (unless (or popup-instances
+                  ;; suppress popup after type `C-g` .
+                  (memq last-command '(keyboard-quit)))
+        (let ((msg (langtool-details-error-message overlays)))
+          (popup-tip msg)))))
+  (setq langtool-autoshow-message-function
+        'my/langtool-autoshow-detail-popup)
+
+  ;; Local configuration
+  (load "~/.spacemacs.local")
   )
 
 (defun dotspacemacs/emacs-custom-settings ()
