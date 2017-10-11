@@ -117,9 +117,10 @@ fi
 
 # NVM settings
 if [ "$HOMEBREW_INSTALLED" -eq 0 ]; then
-    if brew ls --versions nvm > /dev/null; then
+    if command -v nvm > /dev/null; then
         export NVM_DIR="$HOME/.nvm"
-        source "$(brew --prefix nvm)/nvm.sh"
+        source "$NVM_DIR/nvm.sh"
+        source "$NVM_DIR/bash_completion"
     fi
 fi
 
