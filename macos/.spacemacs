@@ -42,7 +42,8 @@ values."
      better-defaults
      bibtex
      (c-c++ :variables
-            c-c++-default-mode-for-headers 'c++-mode)
+            c-c++-default-mode-for-headers 'c++-mode
+            c-c++-enable-clang-support t)
      csv
      emacs-lisp
      git
