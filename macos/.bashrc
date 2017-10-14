@@ -18,7 +18,7 @@ export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
 
 # Sensible bash defaults
-if [ -f "$HOME/.sensible.bash" ]; then
+if [[ -e "$HOME/.sensible.bash" ]]; then
     source "$HOME/.sensible.bash"
 fi
 
@@ -26,22 +26,22 @@ fi
 CDPATH=".:$HOME/projects"
 
 # Prompt string configuration
-if [ -f "$HOME/.bash-powerline.sh" ]; then
+if [[ -e "$HOME/.bash-powerline.sh" ]]; then
     source "$HOME/.bash-powerline.sh"
 fi
 
 # Alias definitions
-if [ -f "$HOME/.aliases" ]; then
+if [[ -e "$HOME/.aliases" ]]; then
     source "$HOME/.aliases"
 fi
 
 # Local alias definitions
-if [ -f "$HOME/.aliases.local" ]; then
+if [[ -e "$HOME/.aliases.local" ]]; then
     source "$HOME/.aliases.local"
 fi
 
 # Set dircolors
-if [ -f "$HOME/.dircolors" ]; then
+if [[ -e "$HOME/.dircolors" ]]; then
     source "$HOME/.dircolors"
 fi
 
@@ -63,14 +63,14 @@ brew help > /dev/null 2>&1
 HOMEBREW_INSTALLED="$?"
 
 # Enable bash completion feature installed by Homebrew
-if [ "$HOMEBREW_INSTALLED" -eq 0 -a -f "$(brew --prefix)/etc/bash_completion" ]; then
+if [[ "$HOMEBREW_INSTALLED" -eq 0 && -e "$(brew --prefix)/etc/bash_completion" ]]; then
     source "$(brew --prefix)/etc/bash_completion"
 fi
 
 # Tab completion for conda
-if [ -f "$HOME/miniconda3/bin/register-python-argcomplete" ]; then
+if [[ -e "$HOME/miniconda3/bin/register-python-argcomplete" ]]; then
     eval "$($HOME/miniconda3/bin/register-python-argcomplete conda)"
-elif [ -f "$HOME/.pyenv/versions/miniconda3-latest/bin/register-python-argcomplete" ]; then
+elif [[ -e "$HOME/.pyenv/versions/miniconda3-latest/bin/register-python-argcomplete" ]]; then
     eval "$($HOME/.pyenv/versions/miniconda3-latest/bin/register-python-argcomplete conda)"
 fi
 
@@ -78,12 +78,12 @@ fi
 export ARCHFLAGS="-arch x86_64"
 
 # Ensure brew-installed binaries take precedence
-if [ "$HOMEBREW_INSTALLED" -eq 0 ]; then
+if [[ "$HOMEBREW_INSTALLED" -eq 0 ]]; then
     export PATH="$(brew --prefix)/bin:$(brew --prefix)/sbin:$PATH"
 fi
 
 # Prioritize GNU coreutils
-if [ "$HOMEBREW_INSTALLED" -eq 0 -a -n "$(brew --prefix coreutils 2>/dev/null)" ]; then
+if [[ "$HOMEBREW_INSTALLED" -eq 0 && -n "$(brew --prefix coreutils 2>/dev/null)" ]]; then
     export PATH="$(brew --prefix coreutils)/libexec/gnubin:$PATH"
     export MANPATH="$(brew --prefix coreutils)/libexec/gnuman:$MANPATH"
 fi
@@ -98,12 +98,12 @@ pyenv help > /dev/null 2>&1
 PYENV_INSTALLED="$?"
 
 # Pyenv settings
-if [ "$PYENV_INSTALLED" -eq 0 ]; then
+if [[ "$PYENV_INSTALLED" -eq 0 ]]; then
     eval "$(pyenv init -)"
 fi
 
 # Pyenv-virtualenv settings
-if [ "$PYENV_INSTALLED" -eq 0 ]; then
+if [[ "$PYENV_INSTALLED" -eq 0 ]]; then
     if pyenv commands | grep -q virtualenv; then
         eval "$(pyenv virtualenv-init -)"
     fi
@@ -116,7 +116,7 @@ if jenv help > /dev/null 2>&1; then
 fi
 
 # NVM settings
-if [ "$HOMEBREW_INSTALLED" -eq 0 ]; then
+if [[ "$HOMEBREW_INSTALLED" -eq 0 ]]; then
     if command -v nvm > /dev/null; then
         export NVM_DIR="$HOME/.nvm"
         source "$NVM_DIR/nvm.sh"
@@ -138,7 +138,7 @@ if rbenv --help > /dev/null 2>&1; then
 fi
 
 # Set jar path for languagetool
-if [ "$HOMEBREW_INSTALLED" -eq 0 -a -n "$(brew --prefix languagetool 2>/dev/null)" ]; then
+if [[ "$HOMEBREW_INSTALLED" -eq 0 && -n "$(brew --prefix languagetool 2>/dev/null)" ]]; then
     export LANGTOOL_JAR_PATH="$(brew --prefix languagetool)/libexec/languagetool-commandline.jar"
 fi
 
@@ -148,6 +148,6 @@ if archey --help > /dev/null 2>&1; then
 fi
 
 # Local .bashrc
-if [ -f "$HOME/.bashrc.local" ]; then
+if [[ -e "$HOME/.bashrc.local" ]]; then
     source "$HOME/.bashrc.local"
 fi
