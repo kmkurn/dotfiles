@@ -89,17 +89,13 @@ if pip help > /dev/null 2>&1; then
     eval "$(pip completion --bash)"
 fi
 
-# Check if pyenv is installed
-pyenv help > /dev/null 2>&1
-PYENV_INSTALLED="$?"
-
 # Pyenv settings
-if [[ "$PYENV_INSTALLED" -eq 0 ]]; then
+if pyenv help > /dev/null 2>&1; then
     eval "$(pyenv init -)"
 fi
 
 # Pyenv-virtualenv settings
-if [[ "$PYENV_INSTALLED" -eq 0 ]]; then
+if pyenv help > /dev/null 2>&1; then
     if pyenv commands | grep -q virtualenv; then
         eval "$(pyenv virtualenv-init -)"
     fi
