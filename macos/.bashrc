@@ -58,12 +58,8 @@ man() {
         man "$@"
 }
 
-# Check if Homebrew is installed
-brew help > /dev/null 2>&1
-HOMEBREW_INSTALLED="$?"
-
 # Enable bash completion feature installed by Homebrew
-if [[ "$HOMEBREW_INSTALLED" -eq 0 && -e "$(brew --prefix)/etc/bash_completion" ]]; then
+if [[ `brew help > /dev/null 2>&1` && -e "$(brew --prefix)/etc/bash_completion" ]]; then
     source "$(brew --prefix)/etc/bash_completion"
 fi
 
@@ -78,12 +74,12 @@ fi
 export ARCHFLAGS="-arch x86_64"
 
 # Ensure brew-installed binaries take precedence
-if [[ "$HOMEBREW_INSTALLED" -eq 0 ]]; then
+if brew help > /dev/null 2>&1; then
     export PATH="$(brew --prefix)/bin:$(brew --prefix)/sbin:$PATH"
 fi
 
 # Prioritize GNU coreutils
-if [[ "$HOMEBREW_INSTALLED" -eq 0 && -n "$(brew --prefix coreutils 2>/dev/null)" ]]; then
+if [[ `brew help > /dev/null 2>&1` && -n "$(brew --prefix coreutils 2>/dev/null)" ]]; then
     export PATH="$(brew --prefix coreutils)/libexec/gnubin:$PATH"
     export MANPATH="$(brew --prefix coreutils)/libexec/gnuman:$MANPATH"
 fi
@@ -116,7 +112,7 @@ if jenv help > /dev/null 2>&1; then
 fi
 
 # NVM settings
-if [[ "$HOMEBREW_INSTALLED" -eq 0 ]]; then
+if brew help > /dev/null 2>&1; then
     if command -v nvm > /dev/null; then
         export NVM_DIR="$HOME/.nvm"
         source "$NVM_DIR/nvm.sh"
@@ -138,7 +134,7 @@ if rbenv --help > /dev/null 2>&1; then
 fi
 
 # Set jar path for languagetool
-if [[ "$HOMEBREW_INSTALLED" -eq 0 && -n "$(brew --prefix languagetool 2>/dev/null)" ]]; then
+if [[ `brew help > /dev/null 2>&1` && -n "$(brew --prefix languagetool 2>/dev/null)" ]]; then
     export LANGTOOL_JAR_PATH="$(brew --prefix languagetool)/libexec/languagetool-commandline.jar"
 fi
 
