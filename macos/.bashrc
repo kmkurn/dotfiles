@@ -59,7 +59,7 @@ man() {
 }
 
 # Enable bash completion feature installed by Homebrew
-if [[ `brew help > /dev/null 2>&1` && -e "$(brew --prefix)/etc/bash_completion" ]]; then
+if brew help > /dev/null 2>&1 && [[ -e "$(brew --prefix)/etc/bash_completion" ]]; then
     source "$(brew --prefix)/etc/bash_completion"
 fi
 
@@ -79,7 +79,7 @@ if brew help > /dev/null 2>&1; then
 fi
 
 # Prioritize GNU coreutils
-if [[ `brew help > /dev/null 2>&1` && -n "$(brew --prefix coreutils 2>/dev/null)" ]]; then
+if brew help > /dev/null 2>&1 && [[ -n "$(brew --prefix coreutils 2>/dev/null)" ]]; then
     export PATH="$(brew --prefix coreutils)/libexec/gnubin:$PATH"
     export MANPATH="$(brew --prefix coreutils)/libexec/gnuman:$MANPATH"
 fi
@@ -130,7 +130,7 @@ if rbenv --help > /dev/null 2>&1; then
 fi
 
 # Set jar path for languagetool
-if [[ `brew help > /dev/null 2>&1` && -n "$(brew --prefix languagetool 2>/dev/null)" ]]; then
+if brew help > /dev/null 2>&1 && [[ -n "$(brew --prefix languagetool 2>/dev/null)" ]]; then
     export LANGTOOL_JAR_PATH="$(brew --prefix languagetool)/libexec/languagetool-commandline.jar"
 fi
 
