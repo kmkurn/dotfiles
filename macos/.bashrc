@@ -108,12 +108,10 @@ if jenv help > /dev/null 2>&1; then
 fi
 
 # NVM settings
-if brew help > /dev/null 2>&1; then
-    if command -v nvm > /dev/null; then
-        export NVM_DIR="$HOME/.nvm"
-        source "$NVM_DIR/nvm.sh"
-        source "$NVM_DIR/bash_completion"
-    fi
+if [[ -e $HOME/.nvm/nvm.sh ]]; then
+    export NVM_DIR="$HOME/.nvm"
+    source "$NVM_DIR/nvm.sh"
+    source "$NVM_DIR/bash_completion"
 fi
 
 # Local binary; used by Stackage
