@@ -45,6 +45,7 @@ values."
             c-c++-default-mode-for-headers 'c++-mode
             c-c++-enable-clang-support t)
      csv
+     docker
      emacs-lisp
      git
      (haskell :variables
