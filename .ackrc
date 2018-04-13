@@ -16,6 +16,10 @@
 
 ### Directories to ignore
 
+# Mypy
+# http://mypy-lang.org/
+--ignore-directory=is:.mypy_cache
+
 # Bazaar
 # http://bazaar.canonical.com/
 --ignore-directory=is:.bzr
