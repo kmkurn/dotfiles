@@ -84,11 +84,6 @@ if brew help > /dev/null 2>&1 && [[ -n "$(brew --prefix coreutils 2>/dev/null)" 
     export MANPATH="$(brew --prefix coreutils)/libexec/gnuman:$MANPATH"
 fi
 
-# Pip bash completion
-if pip help > /dev/null 2>&1; then
-    eval "$(pip completion --bash)"
-fi
-
 # Pyenv settings
 if pyenv help > /dev/null 2>&1; then
     eval "$(pyenv init -)"
@@ -99,6 +94,11 @@ if pyenv help > /dev/null 2>&1; then
     if pyenv commands | grep -q virtualenv; then
         eval "$(pyenv virtualenv-init -)"
     fi
+fi
+
+# Pip bash completion
+if pip help > /dev/null 2>&1; then
+    eval "$(pip completion --bash)"
 fi
 
 # Jenv settings
