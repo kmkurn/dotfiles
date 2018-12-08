@@ -84,6 +84,9 @@ if brew help > /dev/null 2>&1 && [[ -n "$(brew --prefix coreutils 2>/dev/null)" 
     export MANPATH="$(brew --prefix coreutils)/libexec/gnuman:$MANPATH"
 fi
 
+# Local binary; used by Stackage, pipx, etc.
+export PATH="$HOME/.local/bin:$PATH"
+
 # Pyenv settings
 if pyenv help > /dev/null 2>&1; then
     eval "$(pyenv init -)"
@@ -113,9 +116,6 @@ if [[ -e $HOME/.nvm/nvm.sh ]]; then
     source "$NVM_DIR/nvm.sh"
     source "$NVM_DIR/bash_completion"
 fi
-
-# Local binary; used by Stackage
-export PATH="$HOME/.local/bin:$PATH"
 
 # Stack tool autocomplete
 if stack --help > /dev/null 2>&1; then
