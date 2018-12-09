@@ -17,6 +17,9 @@ esac
 export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
 
+# Set architecture flag
+export ARCHFLAGS="-arch x86_64"
+
 # Sensible bash defaults
 if [[ -e "$HOME/.sensible.bash" ]]; then
     source "$HOME/.sensible.bash"
@@ -58,21 +61,6 @@ man() {
         man "$@"
 }
 
-# Enable bash completion feature installed by Homebrew
-if brew help > /dev/null 2>&1 && [[ -e "$(brew --prefix)/etc/bash_completion" ]]; then
-    source "$(brew --prefix)/etc/bash_completion"
-fi
-
-# Tab completion for conda
-if [[ -e "$HOME/miniconda3/bin/register-python-argcomplete" ]]; then
-    eval "$($HOME/miniconda3/bin/register-python-argcomplete conda)"
-elif [[ -e "$HOME/.pyenv/versions/miniconda3-latest/bin/register-python-argcomplete" ]]; then
-    eval "$($HOME/.pyenv/versions/miniconda3-latest/bin/register-python-argcomplete conda)"
-fi
-
-# Set architecture flag
-export ARCHFLAGS="-arch x86_64"
-
 # Ensure brew-installed binaries take precedence
 if brew help > /dev/null 2>&1; then
     export PATH="$(brew --prefix)/bin:$(brew --prefix)/sbin:$PATH"
@@ -84,24 +72,22 @@ if brew help > /dev/null 2>&1 && [[ -n "$(brew --prefix coreutils 2>/dev/null)" 
     export MANPATH="$(brew --prefix coreutils)/libexec/gnuman:$MANPATH"
 fi
 
+# Enable bash completion feature installed by Homebrew
+if brew help > /dev/null 2>&1 && [[ -e "$(brew --prefix)/etc/bash_completion" ]]; then
+    source "$(brew --prefix)/etc/bash_completion"
+fi
+
 # Local binary; used by Stackage, pipx, etc.
 export PATH="$HOME/.local/bin:$PATH"
+
+# Conda binary
+if [[ -d "$HOME/miniconda3/bin" ]]; then
+    export PATH="$HOME/miniconda3/bin:$PATH"
+fi
 
 # Pyenv settings
 if pyenv help > /dev/null 2>&1; then
     eval "$(pyenv init -)"
-fi
-
-# Pyenv-virtualenv settings
-if pyenv help > /dev/null 2>&1; then
-    if pyenv commands | grep -q virtualenv; then
-        eval "$(pyenv virtualenv-init -)"
-    fi
-fi
-
-# Pip bash completion
-if pip help > /dev/null 2>&1; then
-    eval "$(pip completion --bash)"
 fi
 
 # Jenv settings
@@ -117,14 +103,14 @@ if [[ -e $HOME/.nvm/nvm.sh ]]; then
     source "$NVM_DIR/bash_completion"
 fi
 
-# Stack tool autocomplete
-if stack --help > /dev/null 2>&1; then
-    eval "$(stack --bash-completion-script "$(which stack)")"
-fi
-
 # rbenv settings
 if rbenv --help > /dev/null 2>&1; then
     eval "$(rbenv init -)"
+fi
+
+# Stack tool autocomplete
+if stack --help > /dev/null 2>&1; then
+    eval "$(stack --bash-completion-script "$(which stack)")"
 fi
 
 # Set jar path for languagetool
