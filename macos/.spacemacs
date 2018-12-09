@@ -374,14 +374,6 @@ layers configuration. You are free to put any user code."
   ;; Use spacemacs to edit git commit messages
   (global-git-commit-mode t)
 
-  ;; Auto-activate virtualenv if there's a virtualenv with the project name
-  (defun my/projectile-pyenv-mode-set-virtualenv ()
-    "Set pyenv version matching project name."
-    (let ((project (projectile-project-name)))
-      (if (member project (pyenv-mode-versions))
-          (pyenv-mode-set project))))
-  (add-hook 'projectile-after-switch-project-hook 'my/projectile-pyenv-mode-set-virtualenv)
-
   ;; Auto-set Python version if .python-version file exists on project switch
   (setq python-auto-set-local-pyenv-version 'on-project-switch)
 
