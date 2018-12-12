@@ -89,6 +89,9 @@ fi
 if pyenv help > /dev/null 2>&1; then
     eval "$(pyenv init -)"
 fi
+if which pyenv-virtualenv-init > /dev/null; then
+    eval "$(pyenv virtualenv-init -)"
+fi
 
 # Jenv settings
 if jenv help > /dev/null 2>&1; then
@@ -97,7 +100,7 @@ if jenv help > /dev/null 2>&1; then
 fi
 
 # NVM settings
-if [[ -e $HOME/.nvm/nvm.sh ]]; then
+if [[ -e "$HOME/.nvm/nvm.sh" ]]; then
     export NVM_DIR="$HOME/.nvm"
     source "$NVM_DIR/nvm.sh"
     source "$NVM_DIR/bash_completion"
