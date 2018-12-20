@@ -465,6 +465,9 @@ Return a string representing the node version."
   (setq langtool-autoshow-message-function
         'my/langtool-autoshow-detail-popup)
 
+  ;; Copy indentation as is from snippets
+  (setq yas-indent-line 'fixed)
+
   ;; Local configuration
   (load "~/.spacemacs.local")
   )
