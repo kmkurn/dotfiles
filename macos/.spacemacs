@@ -468,6 +468,10 @@ Return a string representing the node version."
   ;; Copy indentation as is from snippets
   (setq yas-indent-line 'fixed)
 
+  ;; Fix smartparens escaping single quotes in some modes
+  ;; https://github.com/Fuco1/smartparens/issues/783
+  (setq-default sp-escape-quotes-after-insert nil)
+
   ;; Local configuration
   (load "~/.spacemacs.local")
   )
