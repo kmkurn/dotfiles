@@ -60,7 +60,6 @@ values."
      (ranger :variables
              ranger-show-preview t)
      restclient
-     semantic
      (shell :variables
             shell-default-shell 'ansi-term
             shell-default-term-shell "/usr/local/bin/bash"
