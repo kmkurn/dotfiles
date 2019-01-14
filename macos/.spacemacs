@@ -50,6 +50,7 @@ values."
      git
      (haskell :variables
               haskell-enable-hindent-style "johan-tibell")
+     html
      latex
      markdown
      org
