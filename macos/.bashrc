@@ -28,11 +28,6 @@ fi
 # Add targets for cd for fast access (thanks bash-sensible!)
 CDPATH=".:$HOME/projects"
 
-# Prompt string configuration
-if [[ -e "$HOME/.bash-powerline.sh" ]]; then
-    source "$HOME/.bash-powerline.sh"
-fi
-
 # Alias definitions
 if [[ -e "$HOME/.aliases" ]]; then
     source "$HOME/.aliases"
@@ -114,6 +109,17 @@ fi
 # Stack tool autocomplete
 if stack --help > /dev/null 2>&1; then
     eval "$(stack --bash-completion-script "$(which stack)")"
+fi
+
+# Prompt string configuration
+function _update_ps1() {
+    PS1=$(powerline-shell $?)
+}
+
+if powerline-shell --help > /dev/null 2>&1; then
+    if [[ $TERM != linux && ! $PROMPT_COMMAND =~ _update_ps1 ]]; then
+        PROMPT_COMMAND="_update_ps1; $PROMPT_COMMAND"
+    fi
 fi
 
 # Set jar path for languagetool
