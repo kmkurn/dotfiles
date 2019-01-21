@@ -75,9 +75,9 @@ fi
 # Local binary; used by Stackage, pipx, etc.
 export PATH="$HOME/.local/bin:$PATH"
 
-# Conda binary
-if [[ -d "$HOME/miniconda3/bin" ]]; then
-    export PATH="$HOME/miniconda3/bin:$PATH"
+# Setup conda
+if [[ -d "$HOME/miniconda3" ]]; then
+    source "$HOME/miniconda3/etc/profile.d/conda.sh"
 fi
 
 # Pyenv settings
