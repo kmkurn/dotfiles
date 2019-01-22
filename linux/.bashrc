@@ -20,11 +20,6 @@ if [ -f "$HOME/.sensible.bash" ]; then
     source "$HOME/.sensible.bash"
 fi
 
-# Prompt string configuration
-if [ -f "$HOME/.bash-powerline.sh" ]; then
-    source "$HOME/.bash-powerline.sh"
-fi
-
 # Alias definitions
 if [ -f "$HOME/.aliases" ]; then
     source "$HOME/.aliases"
@@ -50,7 +45,7 @@ if [ -z "${debian_chroot:-}" ] && [ -r /etc/debian_chroot ]; then
     debian_chroot=$(cat /etc/debian_chroot)
 fi
 
-# If this is an xterm set the title to user@host:dir
+# If this is an xterm set the title to user@host:dir (default PS1)
 case "$TERM" in
 xterm*|rxvt*)
     PS1="\[\e]0;${debian_chroot:+($debian_chroot)}\u@\h: \w\a\]$PS1"
@@ -58,17 +53,6 @@ xterm*|rxvt*)
 *)
     ;;
 esac
-
-# Enable programmable completion features (you don't need to enable
-# this, if it's already enabled in /etc/bash.bashrc and /etc/profile
-# sources /etc/bash.bashrc).
-if ! shopt -oq posix; then
-  if [ -f /usr/share/bash-completion/bash_completion ]; then
-    . /usr/share/bash-completion/bash_completion
-  elif [ -f /etc/bash_completion ]; then
-    . /etc/bash_completion
-  fi
-fi
 
 # Color the output of 'man' command
 # source: https://wiki.archlinux.org/index.php/Man_Page#Colored_man_pages
@@ -90,13 +74,11 @@ export EDITOR=vim
 # when using Command-T in Vim
 stty -ixon
 
-# Tab completion for conda
-if [ -f "$HOME/miniconda3/bin/register-python-argcomplete" ]; then
-    eval "$($HOME/miniconda3/bin/register-python-argcomplete conda)"
-fi
-
 # DO NOT use graphical ssh
 unset SSH_ASKPASS
+
+# Local binary; used by pipx, etc.
+export PATH="$HOME/.local/bin:$PATH"
 
 # Redis settings
 if [ -d "/opt/redis/bin" ]; then
@@ -116,6 +98,17 @@ fi
 # NVM settings
 if [ -f "$HOME/.nvm/nvm.sh" ]; then
   source ~/.nvm/nvm.sh
+fi
+
+# Prompt string configuration
+function _update_ps1() {
+    PS1=$(powerline-shell $?)
+}
+
+if powerline-shell --help > /dev/null 2>&1; then
+    if [[ $TERM != linux && ! $PROMPT_COMMAND =~ _update_ps1 ]]; then
+        PROMPT_COMMAND="_update_ps1; $PROMPT_COMMAND"
+    fi
 fi
 
 # Local .bashrc
