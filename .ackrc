@@ -24,6 +24,9 @@
 # http://mypy-lang.org/
 --ignore-directory=is:.mypy_cache
 
+# Python package
+--ignore-directory=match:/[.]egg-info$/
+
 # Bazaar
 # http://bazaar.canonical.com/
 --ignore-directory=is:.bzr
