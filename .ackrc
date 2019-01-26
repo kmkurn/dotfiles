@@ -16,6 +16,10 @@
 
 ### Directories to ignore
 
+# Pytest
+# https://docs.pytest.org/en/latest/index.html
+--ignore-directory=is:.pytest_cache
+
 # Mypy
 # http://mypy-lang.org/
 --ignore-directory=is:.mypy_cache
