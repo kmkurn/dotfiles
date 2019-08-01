@@ -4,6 +4,7 @@ alias fgrep='fgrep --color=auto'
 alias egrep='egrep --color=auto'
 alias ll='ls -lF'
 alias lh='ls -lhF'
+alias lha='ls -alhF'
 
 # Alias to clean unused files
 alias clean='rm -f \#* *~ .*~ *.bak .*.bak *.tmp .*.tmp *.swp .*.swp core a.out'
