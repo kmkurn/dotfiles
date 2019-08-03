@@ -13,9 +13,6 @@ case $- in
       *) return;;
 esac
 
-# Set architecture flag
-export ARCHFLAGS="-arch x86_64"
-
 # Sensible bash defaults
 if [[ -e "$HOME/.sensible.bash" ]]; then
     source "$HOME/.sensible.bash"
