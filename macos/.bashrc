@@ -50,18 +50,18 @@ man() {
 }
 
 # Ensure brew-installed binaries take precedence
-if brew help > /dev/null 2>&1; then
+if hash brew 2>/dev/null; then
     export PATH="$(brew --prefix)/bin:$(brew --prefix)/sbin:$PATH"
 fi
 
 # Prioritize GNU coreutils
-if brew help > /dev/null 2>&1 && [[ -n "$(brew --prefix coreutils 2>/dev/null)" ]]; then
+if hash brew 2>/dev/null && [[ -n "$(brew --prefix coreutils 2>/dev/null)" ]]; then
     export PATH="$(brew --prefix coreutils)/libexec/gnubin:$PATH"
     export MANPATH="$(brew --prefix coreutils)/libexec/gnuman:$MANPATH"
 fi
 
 # Enable bash completion feature installed by Homebrew
-if brew help > /dev/null 2>&1 && [[ -e "$(brew --prefix)/etc/bash_completion" ]]; then
+if hash brew 2>/dev/null && [[ -e "$(brew --prefix)/etc/bash_completion" ]]; then
     source "$(brew --prefix)/etc/bash_completion"
 fi
 
@@ -74,12 +74,12 @@ if [[ -d "$HOME/miniconda3" ]]; then
 fi
 
 # Pyenv settings
-if pyenv help > /dev/null 2>&1; then
+if hash pyenv 2>/dev/null; then
     eval "$(pyenv init -)"
 fi
 
 # Jenv settings
-if jenv help > /dev/null 2>&1; then
+if hash jenv 2>/dev/null; then
     export PATH="$HOME/.jenv/bin:$PATH"
     eval "$(jenv init -)"
 fi
@@ -92,13 +92,13 @@ if [[ -e "$HOME/.nvm/nvm.sh" ]]; then
 fi
 
 # rbenv settings
-if rbenv --help > /dev/null 2>&1; then
+if hash rbenv 2>/dev/null; then
     eval "$(rbenv init -)"
 fi
 
 # Stack tool autocomplete
-if stack --help > /dev/null 2>&1; then
-    eval "$(stack --bash-completion-script "$(which stack)")"
+if hash stack 2>/dev/null; then
+    eval "$(stack --bash-completion-script "$(command -v stack)")"
 fi
 
 # Prompt string configuration
@@ -106,19 +106,19 @@ function _update_ps1() {
     PS1=$(powerline-shell $?)
 }
 
-if powerline-shell --help > /dev/null 2>&1; then
+if hash powerline-shell 2>/dev/null; then
     if [[ $TERM != linux && ! $PROMPT_COMMAND =~ _update_ps1 ]]; then
         PROMPT_COMMAND="_update_ps1; $PROMPT_COMMAND"
     fi
 fi
 
 # Set jar path for languagetool
-if brew help > /dev/null 2>&1 && [[ -n "$(brew --prefix languagetool 2>/dev/null)" ]]; then
+if hash brew 2>/dev/null && [[ -n "$(brew --prefix languagetool 2>/dev/null)" ]]; then
     export LANGTOOL_JAR_PATH="$(brew --prefix languagetool)/libexec/languagetool-commandline.jar"
 fi
 
 # Print archey
-if archey --help > /dev/null 2>&1; then
+if hash archey 2>/dev/null; then
     archey
 fi
 
