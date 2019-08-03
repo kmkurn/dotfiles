@@ -49,6 +49,8 @@ man() {
         man "$@"
 }
 
+##### modify PATH etc below #####
+
 # Ensure brew-installed binaries take precedence
 if hash brew 2>/dev/null; then
     export PATH="$(brew --prefix)/bin:$(brew --prefix)/sbin:$PATH"
@@ -65,7 +67,7 @@ if hash brew 2>/dev/null && [[ -e "$(brew --prefix)/etc/bash_completion" ]]; the
     source "$(brew --prefix)/etc/bash_completion"
 fi
 
-# Local binary; used by Stackage, pipx, etc.
+# Local binary; used by pipx, etc.
 export PATH="$HOME/.local/bin:$PATH"
 
 # Setup conda
@@ -76,29 +78,6 @@ fi
 # Pyenv settings
 if hash pyenv 2>/dev/null; then
     eval "$(pyenv init -)"
-fi
-
-# Jenv settings
-if hash jenv 2>/dev/null; then
-    export PATH="$HOME/.jenv/bin:$PATH"
-    eval "$(jenv init -)"
-fi
-
-# NVM settings
-if [[ -e "$HOME/.nvm/nvm.sh" ]]; then
-    export NVM_DIR="$HOME/.nvm"
-    source "$NVM_DIR/nvm.sh"
-    source "$NVM_DIR/bash_completion"
-fi
-
-# rbenv settings
-if hash rbenv 2>/dev/null; then
-    eval "$(rbenv init -)"
-fi
-
-# Stack tool autocomplete
-if hash stack 2>/dev/null; then
-    eval "$(stack --bash-completion-script "$(command -v stack)")"
 fi
 
 # Prompt string configuration
@@ -115,11 +94,6 @@ fi
 # Set jar path for languagetool
 if hash brew 2>/dev/null && [[ -n "$(brew --prefix languagetool 2>/dev/null)" ]]; then
     export LANGTOOL_JAR_PATH="$(brew --prefix languagetool)/libexec/languagetool-commandline.jar"
-fi
-
-# Print archey
-if hash archey 2>/dev/null; then
-    archey
 fi
 
 # Local .bashrc
