@@ -432,7 +432,7 @@ Return a string representing the node version."
   ;; NeoTree hidden regexp list
   (setq-default neo-hidden-regexp-list
                 '("^\\.git"
-                  "TAGS"
+                  "^TAGS$"
                   "\\.pyc$"
                   "~$"
                   "^#.*#$"
