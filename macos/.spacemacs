@@ -52,7 +52,8 @@ values."
      (haskell :variables
               haskell-enable-hindent-style "johan-tibell")
      html
-     latex
+     (latex :variables
+            latex-build-command "LatexMk")
      markdown
      org
      pandoc
@@ -84,8 +85,7 @@ values."
                                       editorconfig
                                       shakespeare-mode
                                       company-restclient
-                                      langtool
-                                      auctex-latexmk)
+                                      langtool)
    ;; A list of packages that cannot be updated.
    dotspacemacs-frozen-packages '()
    ;; A list of packages and/or extensions that will not be install and loaded.
