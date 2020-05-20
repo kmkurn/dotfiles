@@ -52,6 +52,7 @@ values."
      (haskell :variables
               haskell-enable-hindent-style "johan-tibell")
      html
+     java
      (latex :variables
             latex-build-command "LatexMk")
      markdown
