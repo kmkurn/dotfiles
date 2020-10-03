@@ -340,6 +340,9 @@ user code."
 
   ;; Display some operators as unicode symbol for Haskell
   (setq haskell-font-lock-symbols t)
+
+  ;; Set spacemacs default font because it doesn't always work at startup
+  (spacemacs/set-default-font dotspacemacs-default-font)
   )
 
 (defun dotspacemacs/user-config ()
