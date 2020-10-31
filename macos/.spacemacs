@@ -53,7 +53,8 @@ values."
               haskell-enable-hindent-style "johan-tibell")
      html
      java
-     latex
+     (latex :variables
+            latex-build-command "LatexMk")
      markdown
      org
      pandoc
