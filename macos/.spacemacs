@@ -90,6 +90,9 @@ values."
                                       company-restclient
                                       langtool
                                       blacken
+                                      (evil-magit :location (recipe
+                                                             :fetcher github
+                                                             :repo "emacs-evil/evil-magit"))
                                       )
    ;; A list of packages that cannot be updated.
    dotspacemacs-frozen-packages '()
