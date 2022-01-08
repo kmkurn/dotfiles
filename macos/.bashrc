@@ -99,6 +99,11 @@ if hash brew 2>/dev/null && [[ -n "$(brew --prefix languagetool 2>/dev/null)" ]]
     export LANGTOOL_JAR_PATH="$(brew --prefix languagetool)/libexec/languagetool-commandline.jar"
 fi
 
+# Setup fzf bash completion
+if [[ -f "$HOME/.fzf.bash" ]]; then
+    source "$HOME/.fzf.bash"
+fi
+
 # Local .bashrc
 if [[ -e "$HOME/.bashrc.local" ]]; then
     source "$HOME/.bashrc.local"
