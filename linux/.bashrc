@@ -11,6 +11,11 @@ case $- in
       *) return;;
 esac
 
+# Homebrew for Linux
+if [[ -d "$HOME/.linuxbrew" ]]; then
+    eval "$($HOME/.linuxbrew/bin/brew shellenv)"
+fi
+
 # Sensible bash defaults
 if [[ -f "$HOME/.sensible.bash" ]]; then
     source "$HOME/.sensible.bash"
@@ -63,10 +68,6 @@ if hash powerline-shell 2>/dev/null; then
     if [[ $TERM != linux && ! $PROMPT_COMMAND =~ _update_ps1 ]]; then
         PROMPT_COMMAND="_update_ps1; $PROMPT_COMMAND"
     fi
-fi
-
-if [[ -d "$HOME/.linuxbrew" ]]; then
-    eval "$($HOME/.linuxbrew/bin/brew shellenv)"
 fi
 
 if hash bat 2>/dev/null; then
