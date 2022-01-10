@@ -74,6 +74,20 @@ if hash bat 2>/dev/null; then
     export BAT_THEME="Solarized (dark)"
 fi
 
+if [[ -f "$HOME/.fzf.bash" ]]; then
+    source "$HOME/.fzf.bash"
+fi
+
+if hash fzf 2>/dev/null && hash fd 2>/dev/null; then
+    _fzf_compgen_path() {
+        fd --follow . "$1"
+    }
+
+    _fzf_compgen_dir() {
+        fd --type d --follow . "$1"
+    }
+fi
+
 # Local .bashrc
 if [[ -f "$HOME/.bashrc.local" ]]; then
     source "$HOME/.bashrc.local"
