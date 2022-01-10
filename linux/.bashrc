@@ -65,6 +65,14 @@ if hash powerline-shell 2>/dev/null; then
     fi
 fi
 
+if [[ -d "$HOME/.linuxbrew" ]]; then
+    eval "$($HOME/.linuxbrew/bin/brew shellenv)"
+fi
+
+if hash bat 2>/dev/null; then
+    export BAT_THEME="Solarized (dark)"
+fi
+
 # Local .bashrc
 if [[ -f "$HOME/.bashrc.local" ]]; then
     source "$HOME/.bashrc.local"
