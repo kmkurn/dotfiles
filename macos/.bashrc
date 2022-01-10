@@ -99,6 +99,10 @@ if hash brew 2>/dev/null && [[ -n "$(brew --prefix languagetool 2>/dev/null)" ]]
     export LANGTOOL_JAR_PATH="$(brew --prefix languagetool)/libexec/languagetool-commandline.jar"
 fi
 
+if hash bat 2>/dev/null; then
+    export BAT_THEME="Solarized (dark)"
+fi
+
 # Setup fzf bash completion
 if [[ -f "$HOME/.fzf.bash" ]]; then
     source "$HOME/.fzf.bash"
