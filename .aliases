@@ -2,9 +2,13 @@
 alias grep='grep --color=auto'
 alias fgrep='fgrep --color=auto'
 alias egrep='egrep --color=auto'
-alias ll='ls -lF'
-alias lh='ls -lhF'
-alias lha='ls -alhF'
+if hash exa 2>/dev/null; then
+    alias ls='exa -F'
+    alias ll='exa -lF'
+    alias la='exa -alF'
+    alias lha='exa -alF'
+    alias tree='exa -T'
+fi
 
 # Alias to clean unused files
 alias clean='rm -f \#* *~ .*~ *.bak .*.bak *.tmp .*.tmp *.swp .*.swp core a.out'
