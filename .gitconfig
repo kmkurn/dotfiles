@@ -15,19 +15,18 @@
     llog = log --oneline -n 10
 [core]
     editor = vim
-    #pager = delta
+    pager = delta
 [push]
     default = simple
 [status]
     showUntrackedFiles = all
 [pull]
     rebase = false
-# Uncomment if delta is installed
-#[interactive]
-#    diffFilter = delta --color-only
-#[merge]
-#    conflictstyle = diff3
-#[diff]
-#    colorMoved = default
-#[delta]
-#    navigate = true
+[interactive]
+    diffFilter = delta --color-only
+[merge]
+    conflictstyle = diff3
+[diff]
+    colorMoved = default
+[delta]
+    navigate = true
