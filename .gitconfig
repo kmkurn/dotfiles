@@ -1,17 +1,15 @@
 [user]
     name = Kemal Kurniawan
-    email = kemal@kkurniawan.com
 [color]
     ui = true
 [alias]
     co = checkout
     st = status -sb
     ds = diff --staged
-    mg = merge --no-ff
     del = branch -d
     ren = branch -m
     graph = log --graph --pretty=format':%C(yellow)%h%Cblue%d%Creset %s %C(white) %an, %ar%Creset'
-    standup = log --since '1 day ago' --oneline --author kemal@kkurniawan.com
+    standup = log --since '1 day ago' --oneline
     br = branch
     ci = commit
     llog = log --oneline -n 10
