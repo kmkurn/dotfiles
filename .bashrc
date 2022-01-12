@@ -21,16 +21,6 @@ fi
 # Add targets for cd for fast access (thanks bash-sensible!)
 CDPATH=".:$HOME/projects"
 
-# Alias definitions
-if [[ -e "$HOME/.aliases" ]]; then
-    source "$HOME/.aliases"
-fi
-
-# Local alias definitions
-if [[ -e "$HOME/.aliases.local" ]]; then
-    source "$HOME/.aliases.local"
-fi
-
 # Set dircolors
 if [[ -e "$HOME/.dircolors" ]]; then
     source "$HOME/.dircolors"
@@ -116,6 +106,35 @@ if hash fzf 2>/dev/null && hash fd 2>/dev/null; then
     _fzf_compgen_dir() {
         fd --type d --follow . "$1"
     }
+fi
+
+# Aliases
+alias grep='grep --color=auto'
+alias fgrep='fgrep --color=auto'
+alias egrep='egrep --color=auto'
+if hash exa 2>/dev/null; then
+    alias ls='exa -F'
+    alias ll='exa -lF'
+    alias la='exa -alF'
+    alias lha='exa -alF'
+    alias tree='exa -T'
+else
+    echo "exa isn't installed" >&2
+    if hash brew 2>/dev/null && brew ls --versions coreutils > /dev/null; then
+        alias ls='gls --color=auto'
+        alias ll='gls -lhF --color=auto'
+        alias lha='gls -alhF --color=auto'
+    else
+        echo "brew coreutils isn't installed" >&2
+        alias ls='ls -G'
+        alias ll='ls -lhFG'
+        alias lha='ls -alhFG'
+    fi
+fi
+if hash brew 2>/dev/null && brew ls --versions htop-osx > /dev/null; then
+    alias htop='sudo htop'
+else
+    echo "brew htop isn't installed" >&2
 fi
 
 # Local .bashrc
