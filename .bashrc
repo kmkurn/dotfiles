@@ -130,6 +130,12 @@ else
     echo "fd isn't installed" >&2
 fi
 
+if hash zoxide 2>/dev/null; then
+    eval "$(zoxide init bash)"
+else
+    echo "zoxide isn't installed"
+fi
+
 ##### Aliases #####
 
 alias grep='grep --color=auto'
