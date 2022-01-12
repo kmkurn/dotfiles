@@ -39,22 +39,33 @@ man() {
         man "$@"
 }
 
-##### modify PATH etc below #####
+if ! hash brew 2>/dev/null; then
+    echo "homebrew isn't installed" >&2
+fi
+
+##### Set environment variables #####
 
 # Ensure brew-installed binaries take precedence
 if hash brew 2>/dev/null; then
-    export PATH="$(brew --prefix)/bin:$(brew --prefix)/sbin:$PATH"
+    PATH="$(brew --prefix)/bin:$(brew --prefix)/sbin:$PATH"
+    export PATH
 fi
 
 # Prioritize GNU coreutils
 if hash brew 2>/dev/null && [[ -n "$(brew --prefix coreutils 2>/dev/null)" ]]; then
-    export PATH="$(brew --prefix coreutils)/libexec/gnubin:$PATH"
-    export MANPATH="$(brew --prefix coreutils)/libexec/gnuman:$MANPATH"
+    PATH="$(brew --prefix coreutils)/libexec/gnubin:$PATH"
+    MANPATH="$(brew --prefix coreutils)/libexec/gnuman:$MANPATH"
+    export PATH
+    export MANPATH
+else
+    echo "brew coreutils isn't installed" >&2
 fi
 
 # Enable bash completion feature installed by Homebrew
 if hash brew 2>/dev/null && [[ -e "$(brew --prefix)/etc/bash_completion" ]]; then
     source "$(brew --prefix)/etc/bash_completion"
+else
+    echo "brew bash completion isn't installed" >&2
 fi
 
 # Local binary; used by pipx, etc.
@@ -67,8 +78,10 @@ fi
 
 # Pyenv settings
 if hash pyenv 2>/dev/null; then
-    export PYENV_ROOT="$HOME/.pyenv"
-    export PATH="$PYENV_ROOT/bin:$PATH"
+    PYENV_ROOT="$HOME/.pyenv"
+    PATH="$PYENV_ROOT/bin:$PATH"
+    export PYENV_ROOT
+    export PATH
     eval "$(pyenv init --path)"
     eval "$(pyenv init -)"
 fi
@@ -82,23 +95,30 @@ if hash powerline-shell 2>/dev/null; then
     if [[ $TERM != linux && ! $PROMPT_COMMAND =~ _update_ps1 ]]; then
         PROMPT_COMMAND="_update_ps1; $PROMPT_COMMAND"
     fi
+else
+    echo "powerline-shell isn't installed" >&2
 fi
 
 # Set jar path for languagetool
 if hash brew 2>/dev/null && [[ -n "$(brew --prefix languagetool 2>/dev/null)" ]]; then
-    export LANGTOOL_JAR_PATH="$(brew --prefix languagetool)/libexec/languagetool-commandline.jar"
+    LANGTOOL_JAR_PATH="$(brew --prefix languagetool)/libexec/languagetool-commandline.jar"
+    export LANGTOOL_JAR_PATH
 fi
 
 if hash bat 2>/dev/null; then
     export BAT_THEME="Solarized (dark)"
+else
+    echo "bat isn't installed" >&2
 fi
 
 # Setup fzf bash completion
 if [[ -f "$HOME/.fzf.bash" ]]; then
     source "$HOME/.fzf.bash"
+else
+    echo "fzf bash completion isn't installed" >&2
 fi
 
-if hash fzf 2>/dev/null && hash fd 2>/dev/null; then
+if hash fd 2>/dev/null; then
     _fzf_compgen_path() {
         fd --follow . "$1"
     }
@@ -106,12 +126,16 @@ if hash fzf 2>/dev/null && hash fd 2>/dev/null; then
     _fzf_compgen_dir() {
         fd --type d --follow . "$1"
     }
+else
+    echo "fd isn't installed" >&2
 fi
 
-# Aliases
+##### Aliases #####
+
 alias grep='grep --color=auto'
 alias fgrep='fgrep --color=auto'
 alias egrep='egrep --color=auto'
+
 if hash exa 2>/dev/null; then
     alias ls='exa -F'
     alias ll='exa -lF'
@@ -125,12 +149,12 @@ else
         alias ll='gls -lhF --color=auto'
         alias lha='gls -alhF --color=auto'
     else
-        echo "brew coreutils isn't installed" >&2
         alias ls='ls -G'
         alias ll='ls -lhFG'
         alias lha='ls -alhFG'
     fi
 fi
+
 if hash brew 2>/dev/null && brew ls --versions htop-osx > /dev/null; then
     alias htop='sudo htop'
 else
