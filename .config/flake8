@@ -1,6 +1,3 @@
-# Config file for flake8
-# Symlink this to ~/.config/flake8
-
 [flake8]
 ignore = E,W  # let formatter handle stylistic issues
 show-source = True
