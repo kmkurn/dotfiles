@@ -45,18 +45,41 @@ fi
 
 ##### Set environment variables #####
 
+export PATH
+export MANPATH
+
+# Prepend to PATH if not there yet
+# Src: https://superuser.com/a/753948
+pathprepend() {
+    for ((i=$#; i>0; i--));
+    do
+        ARG=${!i}
+        if [ -d "$ARG" ] && [[ ":$PATH:" != *":$ARG:"* ]]; then
+            PATH="$ARG${PATH:+":$PATH"}"
+        fi
+    done
+}
+
+# Similar to pathprepend but for MANPATH
+manpathprepend() {
+    for ((i=$#; i>0; i--));
+    do
+        ARG=${!i}
+        if [ -d "$ARG" ] && [[ ":$MANPATH:" != *":$ARG:"* ]]; then
+            MANPATH="$ARG${MANPATH:+":$MANPATH"}"
+        fi
+    done
+}
+
 # Ensure brew-installed binaries take precedence
 if hash brew 2>/dev/null; then
-    PATH="$(brew --prefix)/bin:$(brew --prefix)/sbin:$PATH"
-    export PATH
+    pathprepend "$(brew --prefix)/bin" "$(brew --prefix)/sbin"
 fi
 
 # Prioritize GNU coreutils
 if hash brew 2>/dev/null && [[ -n "$(brew --prefix coreutils 2>/dev/null)" ]]; then
-    PATH="$(brew --prefix coreutils)/libexec/gnubin:$PATH"
-    MANPATH="$(brew --prefix coreutils)/libexec/gnuman:$MANPATH"
-    export PATH
-    export MANPATH
+    pathprepend "$(brew --prefix coreutils)/libexec/gnubin"
+    manpathprepend "$(brew --prefix coreutils)/libexec/gnuman"
 else
     echo "brew coreutils isn't installed" >&2
 fi
@@ -69,7 +92,7 @@ else
 fi
 
 # Local binary; used by pipx, etc.
-export PATH="$HOME/.local/bin:$PATH"
+pathprepend "$HOME/.local/bin"
 
 # Setup conda
 if [[ -d "$HOME/miniconda3" ]]; then
@@ -79,9 +102,8 @@ fi
 # Pyenv settings
 if hash pyenv 2>/dev/null; then
     PYENV_ROOT="$HOME/.pyenv"
-    PATH="$PYENV_ROOT/bin:$PATH"
     export PYENV_ROOT
-    export PATH
+    pathprepend "$PYENV_ROOT/bin"
     eval "$(pyenv init --path)"
     eval "$(pyenv init -)"
 fi
