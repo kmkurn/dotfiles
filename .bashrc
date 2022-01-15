@@ -109,7 +109,7 @@ if hash pyenv 2>/dev/null; then
 fi
 
 # Prompt string configuration
-function _update_ps1() {
+_update_ps1() {
     PS1=$(powerline-shell $?)
 }
 
