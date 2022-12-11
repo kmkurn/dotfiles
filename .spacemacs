@@ -67,7 +67,7 @@ values."
      rust
      (shell :variables
             shell-default-shell 'ansi-term
-            shell-default-term-shell "/usr/local/bin/bash"
+            shell-default-term-shell "/opt/homebrew/bin/bash"
             shell-default-height 30
             shell-default-position 'bottom)
      shell-scripts

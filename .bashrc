@@ -39,10 +39,6 @@ man() {
         man "$@"
 }
 
-if ! hash brew 2>/dev/null; then
-    echo "homebrew isn't installed" >&2
-fi
-
 ##### Set environment variables #####
 
 export PATH
@@ -70,6 +66,20 @@ prepend_manpath() {
         fi
     done
 }
+
+# Setup Homebrew in Apple Silicon Macs
+if [ -d "/opt/homebrew" ]; then
+    export HOMEBREW_PREFIX="/opt/homebrew"
+    export HOMEBREW_CELLAR="/opt/homebrew/Cellar"
+    export HOMEBREW_REPOSITORY="/opt/homebrew"
+    prepend_path "$HOMEBREW_PREFIX/bin" "$HOMEBREW_PREFIX/sbin"
+    prepend_manpath "$HOMEBREW_PREFIX/share/man"
+    export INFOPATH="$HOMEBREW_PREFIX/share/info:${INFOPATH:-}"
+fi
+
+if ! hash brew 2>/dev/null; then
+    echo "homebrew isn't installed" >&2
+fi
 
 # Ensure brew-installed binaries take precedence
 if hash brew 2>/dev/null; then
