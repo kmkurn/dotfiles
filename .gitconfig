@@ -20,6 +20,8 @@
     showUntrackedFiles = all
 [pull]
     rebase = false
+
+# Delta config starts
 [interactive]
     diffFilter = delta --color-only
 [merge]
@@ -28,3 +30,4 @@
     colorMoved = default
 [delta]
     navigate = true
+# Delta config ends
