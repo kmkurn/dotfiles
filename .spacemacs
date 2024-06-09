@@ -63,7 +63,8 @@ This function should only modify configuration layer settings."
      org
      pandoc
      (python :variables
-             python-test-runner 'pytest)
+             python-test-runner 'pytest
+             python-formatter 'black)
      (ranger :variables
              ranger-show-preview t)
      restclient
