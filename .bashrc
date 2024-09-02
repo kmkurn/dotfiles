@@ -185,14 +185,14 @@ alias grep='grep --color=auto'
 alias fgrep='fgrep --color=auto'
 alias egrep='egrep --color=auto'
 
-if hash exa 2>/dev/null; then
-    alias ls='exa -F'
-    alias ll='exa -lF'
-    alias la='exa -alF'
-    alias lha='exa -alF'
-    alias tree='exa -T'
+if hash eza 2>/dev/null; then
+    alias ls='eza -F'
+    alias ll='eza -lF'
+    alias la='eza -alF'
+    alias lha='eza -alF'
+    alias tree='eza -T'
 else
-    echo "exa isn't installed" >&2
+    echo "eza isn't installed" >&2
     if hash brew 2>/dev/null && brew ls --versions coreutils > /dev/null; then
         alias ls='gls --color=auto'
         alias ll='gls -lhF --color=auto'
