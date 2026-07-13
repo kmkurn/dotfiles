@@ -186,10 +186,10 @@ alias fgrep='fgrep --color=auto'
 alias egrep='egrep --color=auto'
 
 if hash eza 2>/dev/null; then
-    alias ls='eza -F'
-    alias ll='eza -lF'
-    alias la='eza -alF'
-    alias lha='eza -alF'
+    alias ls='eza -F auto'
+    alias ll='eza -lF auto'
+    alias la='eza -alF auto'
+    alias lha='eza -alF auto'
     alias tree='eza -T'
 else
     echo "eza isn't installed" >&2
