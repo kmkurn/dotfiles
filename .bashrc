@@ -95,10 +95,16 @@ else
 fi
 
 # Enable bash completion feature installed by Homebrew
-if hash brew 2>/dev/null && [[ -e "$(brew --prefix)/etc/bash_completion" ]]; then
-    source "$(brew --prefix)/etc/bash_completion"
-else
-    echo "brew bash completion isn't installed" >&2
+if hash brew 2>/dev/null; then
+    if [[ -r "$(brew --prefix)/etc/profile.d/bash_completion.sh" ]]; then
+        # bash-completion@2 for newer Bash
+        source "$(brew --prefix)/etc/profile.d/bash_completion.sh"
+    elif [[ -e "$(brew --prefix)/etc/bash_completion" ]]; then
+        # bash-completion for older Bash
+        source "$(brew --prefix)/etc/bash_completion"
+    else
+        echo "brew bash completion isn't installed" >&2
+    fi
 fi
 
 # Local binary; used by pipx, etc.
@@ -123,12 +129,15 @@ _update_ps1() {
     PS1=$(powerline-shell $?)
 }
 
-if hash powerline-shell 2>/dev/null; then
+if hash starship 2>/dev/null; then
+    eval "$(starship init bash)"
+elif hash powerline-shell 2>/dev/null; then
+    # powerline-shell doesn't work for newer Python
     if [[ $TERM != linux && ! $PROMPT_COMMAND =~ _update_ps1 ]]; then
         PROMPT_COMMAND="_update_ps1; $PROMPT_COMMAND"
     fi
 else
-    echo "powerline-shell isn't installed" >&2
+    echo "both starship and powerline-shell aren't installed" >&2
 fi
 
 # Set jar path for languagetool
@@ -144,7 +153,10 @@ else
 fi
 
 # Setup fzf bash completion
-if [[ -f "$HOME/.fzf.bash" ]]; then
+if hash fzf 2>/dev/null; then
+    # newer version seems to use this
+    eval "$(fzf --bash)"
+elif [[ -f "$HOME/.fzf.bash" ]]; then
     source "$HOME/.fzf.bash"
 else
     echo "fzf bash completion isn't installed" >&2
